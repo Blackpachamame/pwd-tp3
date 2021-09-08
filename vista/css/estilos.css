@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Kufam:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: "Kufam";
+  font-weight: 600;
+}
+
+main {
+  min-height: 510px;
+}
+
+footer {
+  color: #fff;
+  background-color: #1b1b1b;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+label,
+legend {
+  font-weight: 600;
+}
+
+label.form-check-label {
+  font-weight: inherit;
+}
+
+/* Navbar */
+.bg-nav {
+  /*background-color: #0a2e48;*/
+  background: linear-gradient(
+    270deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 46, 94, 1) 60%,
+    rgba(0, 123, 255, 1) 100%
+  );
+}
+
+a.navbar-brand {
+  font-family: "Kufam", sans-serif;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+
+/* #contenido {
+  text-align: justify;
+} */
+
+.navbar-dark .navbar-toggler,
+.navbar-dark .navbar-toggler:focus,
+.navbar-dark .navbar-toggler:active {
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  border: 0;
+}
+
+/* Login */
+.login {
+  width: 300px;
+}
+
+/* Acordeon */
+#sidebarMenu .accordion-button {
+  position: inherit;
+  background-color: #f8f9fa;
+  font-size: inherit;
+}
+
+#sidebarMenu .accordion-button:focus,
+#sidebarMenu .accordion-button:not(.collapsed) {
+  border-color: none;
+  box-shadow: none;
+}
+
+/* Validaciones */
+.help-block {
+  color: #dc3545;
+}
+
+.help-block::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  content: "\f556";
+}
