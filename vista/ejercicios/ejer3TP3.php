@@ -127,7 +127,7 @@ include_once("../estructura/cabeceraBT.php");
             <label for="imagen" class="form-label">Portada de la película</label>
             <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" required>
             <div id="enMin" class="form-text">
-                Solo se permiten imágenes
+                Solo se permiten imágenes - Se recomienda una relación de aspecto de 2/3
             </div>
         </div>
     </div>
