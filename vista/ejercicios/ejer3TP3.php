@@ -76,8 +76,8 @@ include_once("../estructura/cabeceraBT.php");
                 <!--<option disabled>Choose...</option>-->
                 <option value="Comedia">Comedia</option>
                 <option value="Terror">Terror</option>
-                <option value="Acción">Accion</option>
-                <option value="Romántica">Romantica</option>
+                <option value="Acción">Acción</option>
+                <option value="Romántica">Romántica</option>
                 <option value="Suspenso">Suspenso</option>
             </select>
             <div class="invalid-feedback">
@@ -136,54 +136,6 @@ include_once("../estructura/cabeceraBT.php");
         <input id="btn_tp3e3" class="btn btn-primary btn-lg" name="btn_tp3e3" type="submit" value="Enviar">
     </div>
 </form>
-
-
-<!--<form id="tp3eje1" name="tp3eje1" method="POST" action="../acciones/accion1TP3.php" enctype="multipart/form-data">
-
-     <div class="row mb-3">
-        <div class="col-sm-12 ">
-            <div class="form-group has-feedback">
-                <label for="imagen" class="control-label">Imagen:</label>
-                <div class="input-group">
-                    <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
-                </div>
-                <small class="text-muted">Imagenes GIF, PNG o JPEG - No superiores a 300 KB</small>
-                <span class="form-control-feedback" aria-hidden="true"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-sm-12 ">
-            <div class="form-group has-feedback">
-                <label for="texto" class="control-label">Archivo Texto:</label>
-                <div class="input-group">
-                    <input type="file" class="form-control" id="texto" name="texto">
-                </div>
-                <small class="text-muted">Archivo PDF - No superiores a 400 KB</small>
-                <span class="form-control-feedback" aria-hidden="true"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-sm-12 ">
-            <div class="form-group has-feedback">
-                <label for="observaciones" class="control-label">Observaciones:</label>
-                <div class="input-group">
-                    <textarea type="text" class="form-control" id="observaciones" name="observaciones" required></textarea>
-                </div>
-                <span class="form-control-feedback" aria-hidden="true"></span>
-            </div>
-        </div>
-    </div> 
-
-    <div class="row">
-        <div class="col-md-12">
-            <input id="btn_tp3e1" class="btn btn-primary btn-block" name="btn_tp3e1" type="submit" value="Enviar">
-        </div>
-    </div>
-</form>-->
 
 
 <?php

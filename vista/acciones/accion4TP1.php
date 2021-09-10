@@ -17,12 +17,8 @@ include_once("../../control/control4TP1.php");
 
     ?>
 
-    <div class="alert alert-info mt-5" role="alert">
-        <?php echo $respuesta ?>
-    </div>
-
-    <div class="alert alert-success" role="alert">
-        <?php echo $respuesta2 ?>
+    <div class="alert alert-success mt-5" role="alert">
+        <?php echo $respuesta2 . $respuesta ?>
     </div>
 </div>
 

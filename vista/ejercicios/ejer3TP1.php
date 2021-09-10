@@ -32,8 +32,7 @@ include_once("../estructura/cabeceraBT.php");
 
         <div class="col-sm-8 col-md-12 mb-4">
             <label for="direccion">Dirección</label>
-            <textarea class="form-control text-wrap" name="direccion" id="direccion" placeholder="Escriba su direccion completa" required>
-            </textarea>
+            <textarea class="form-control text-wrap" name="direccion" id="direccion" placeholder="Escriba su direccion completa" required></textarea>
         </div>
 
     </div>

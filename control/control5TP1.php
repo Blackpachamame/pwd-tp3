@@ -33,21 +33,21 @@ class control_ej5
 
         //Edad
         if ($edad >= 18) {
-            $texto = "<h4>Datos</h4>
-                 <strong>Nombre:</strong> " . $nombre .
-                "<br /><strong>Apellido:</strong> " . $apellido .
-                "<br /><strong>Direccion:</strong> " . $direccion .
-                "<br /><strong>Mayor de edad:</strong> Si
-                 <br /><strong>Sexo:</strong> " . $sex .
-                "<br /><strong>Nivel de estudio:</strong> " . $est;
+            $texto = "<h3>Datos</h3>
+                 <b>Nombre:</b> " . $nombre .
+                "<br /><b>Apellido:</b> " . $apellido .
+                "<br /><b>Dirección:</b> " . $direccion .
+                "<br /><b>Mayor de edad:</b> Si
+                 <br /><b>Sexo:</b> " . $sex .
+                "<br /><b>Nivel de estudio:</b> " . $est;
         } else {
-            $texto = "<h4>Datos</h4> <br />
-                 <strong>Nombre:</strong> " . $nombre .
-                "<br /><strong>Apellido:</strong> " . $apellido .
-                "<br /><strong>Direccion:</strong> " . $direccion .
-                "<br /><strong>Mayor de edad:</strong> No
-                 <br /><strong>Sexo:</strong> " . $sex .
-                "<br /><strong>Nivel de estudio:</strong> " . $est;
+            $texto = "<h3>Datos</h3>
+                 <b>Nombre:</b> " . $nombre .
+                "<br /><b>Apellido:</b> " . $apellido .
+                "<br /><b>Dirección:</b> " . $direccion .
+                "<br /><b>Mayor de edad:</b> No
+                 <br /><b>Sexo:</b> " . $sex .
+                "<br /><b>Nivel de estudio:</b> " . $est;
         }
 
         return $texto;

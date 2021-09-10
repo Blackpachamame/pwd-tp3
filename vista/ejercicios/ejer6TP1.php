@@ -31,8 +31,7 @@ include_once("../estructura/cabeceraBT.php");
 
         <div class="col-sm-8 col-md-12 mb-3">
             <label for="direccion">Dirección</label>
-            <textarea class="form-control text-wrap" name="direccion" id="direccion" placeholder="Escriba su direccion completa" required>
-            </textarea>
+            <textarea class="form-control" name="direccion" id="direccion" placeholder="Escriba su direccion completa" required></textarea>
         </div>
 
     </div>
@@ -78,7 +77,7 @@ include_once("../estructura/cabeceraBT.php");
         <div class="col-sm-8 col-md-11">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="deporte[]" id="deporte" value="option1">
-                <label class="form-check-label" for="deporte">Futbol</label>
+                <label class="form-check-label" for="deporte">Fútbol</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="deporte[]" id="deporte" value="option2">

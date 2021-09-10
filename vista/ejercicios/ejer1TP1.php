@@ -13,7 +13,7 @@ include_once("../estructura/cabeceraBT.php");
 
 <form class="row" id="eje1" name="eje1" method="POST" action="../acciones/accion1TP1.php">
     <div class="col-7 col-lg-6 col-xl-4">
-        <div class="input-group mb-3">
+        <div class="input-group mb-5">
             <input type="number" class="form-control" name="numero" id="numero" placeholder="Ingrese un número" aria-label="Ingrese un número" aria-describedby="numero" required>
             <button class="btn btn-primary" type="submit" id="numero">Enviar</button>
         </div>

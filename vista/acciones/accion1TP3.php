@@ -15,10 +15,10 @@ $error = $mensaje['archivo']['error'];
         <?php
         if ($error == "") {
             echo "<div class='alert alert-success mt-5' role='alert'>
-            <p><h4>Información</h4>
-                    Ruta archivo: $link <br>
-                    <a href=" . $link . ">Ver archivo</a> <br>  
-                   </p>
+            <h3>Información</h3>
+                    <b><em>Archivo subido correctamente</em></b><br />
+                    <b>Ruta archivo:</b> $link <br />
+                    <a href=" . $link . ">Ver archivo</a><br />
             </div>";
         } else {
             echo "<div class='alert alert-danger mt-5' role='alert'>$error</div>";

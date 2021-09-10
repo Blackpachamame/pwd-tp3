@@ -15,23 +15,23 @@ include_once("../estructura/cabeceraBT.php");
     <div class="row">
         <div class="col mb-2">
             <label for="arregloHoras0">Lunes </label>
-            <input type="text" class="form-control" id="arregloHoras0" name="arregloHoras0" placeholder="Horas" value="" min="0" max="10" required>
+            <input type="number" class="form-control" id="arregloHoras0" name="arregloHoras0" placeholder="Horas" value="" min="0" max="10" required>
         </div>
         <div class="col mb-2">
             <label for="arregloHoras1">Martes </label>
-            <input type="text" class="form-control" id="arregloHoras1" name="arregloHoras1" placeholder="Horas" value="" min="0" max="10" required>
+            <input type="number" class="form-control" id="arregloHoras1" name="arregloHoras1" placeholder="Horas" value="" min="0" max="10" required>
         </div>
         <div class="col mb-2">
             <label for="arregloHoras2">Miércoles </label>
-            <input type="text" class="form-control" id="arregloHoras2" name="arregloHoras2" placeholder="Horas" value="" min="0" max="10" required>
+            <input type="number" class="form-control" id="arregloHoras2" name="arregloHoras2" placeholder="Horas" value="" min="0" max="10" required>
         </div>
         <div class="col mb-2">
             <label for="arregloHoras3">Jueves </label>
-            <input type="text" class="form-control" id="arregloHoras3" name="arregloHoras3" placeholder="Horas" value="" min="0" max="10" required>
+            <input type="number" class="form-control" id="arregloHoras3" name="arregloHoras3" placeholder="Horas" value="" min="0" max="10" required>
         </div>
         <div class="col mb-5">
             <label for="arregloHoras4">Viernes </label>
-            <input type="text" class="form-control" id="arregloHoras4" name="arregloHoras4" placeholder="Horas" value="" min="0" max="10" required>
+            <input type="number" class="form-control" id="arregloHoras4" name="arregloHoras4" placeholder="Horas" value="" min="0" max="10" required>
         </div>
     </div>
     <div class="d-grid gap-2 col-8 col-sm-4 col-md-3 mx-auto mb-5">

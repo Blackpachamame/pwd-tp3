@@ -82,8 +82,8 @@ include_once("../estructura/cabeceraBT.php");
                 <!--<option disabled>Choose...</option>-->
                 <option value="Comedia">Comedia</option>
                 <option value="Terror">Terror</option>
-                <option value="Acción">Accion</option>
-                <option value="Romántica">Romantica</option>
+                <option value="Acción">Acción</option>
+                <option value="Romántica">Romántica</option>
                 <option value="Suspenso">Suspenso</option>
             </select>
             <div class="invalid-feedback">
@@ -121,7 +121,7 @@ include_once("../estructura/cabeceraBT.php");
 
     <div class="row mx-3 mb-3">
         <div class="col-md-12 mb-4">
-            <label for=" sinopsis">Sinopsis</label>
+            <label for="sinopsis">Sinopsis</label>
             <textarea class="form-control" id="sinopsis" name="sinopsis" placeholder="Ingrese la sinopsis de la película" required></textarea>
             <div class="invalid-feedback">
                 Debe ingresarse la sinopsis de la película
@@ -130,8 +130,8 @@ include_once("../estructura/cabeceraBT.php");
     </div>
     <!-- Botones -->
     <div class="text-center mb-5">
-        <input class="btn btn-primary btn-lg" name="btn_eje4_tp2" type="submit" value="Enviar"></input>
         <input class="btn btn-danger btn-lg" name="btn_eje4_tp2b" type="reset" value="Borrar"></input>
+        <input class="btn btn-primary btn-lg" name="btn_eje4_tp2" type="submit" value="Enviar"></input>
     </div>
 </form>
 

@@ -19,17 +19,8 @@
 <script src="../js/popper/popper.min.js"></script>
 <script src="../js/bootstrap/5.1.0/bootstrap.min.js"></script>
 <script src="../js/bootstrap/5.1.0/bootstrapValidator.min.js"></script>
-<!-- <script src="../js/bootstrap/5.1.0/bootstrapValidator.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap/5.1.0/validator.js"></script>
 
-<script>
-    $('#summernote').summernote({
-        placeholder: 'Esta es una descripción genérica, si lo necesita la puede cambiar.',
-        tabsize: 2,
-        height: 100
-    });
-</script>
 </body>
 
 </html>

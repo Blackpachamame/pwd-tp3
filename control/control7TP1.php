@@ -10,13 +10,13 @@ class control_ej7
 
         if ($op == "suma") {
             $solucion = $v1 + $v2;
-            $texto = "El <strong>resultado</strong> de " . $v1 . " + " . $v2 . " es = " . $solucion;
+            $texto = "El <b>resultado</b> de (" . $v1 . ") + (" . $v2 . ") es = " . $solucion;
         } elseif ($op == "resta") {
             $solucion = $v1 - $v2;
-            $texto = "El <strong>resultado</strong> de " . $v1 . " - " . $v2 . " es = " . $solucion;
+            $texto = "El <b>resultado</b> de (" . $v1 . ") - (" . $v2 . ") es = " . $solucion;
         } elseif ($op == "multiplicacion") {
             $solucion = $v1 * $v2;
-            $texto = "El <strong>resultado</strong> de " . $v1 . " * " . $v2 . " es = " . $solucion;
+            $texto = "El <b>resultado</b> de (" . $v1 . ") * (" . $v2 . ") es = " . $solucion;
         }
         return $texto;
     }

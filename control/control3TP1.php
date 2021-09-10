@@ -8,9 +8,13 @@ class control_ej3
         $apellido = $datos['apellido'];
         $edad = $datos['edad'];
         $direccion = $datos['direccion'];
-        $texto = "Hola yo soy " . $nombre . ", " . $apellido . " tengo " . $edad . " y vivo en " . $direccion;
-        
+
+        if ($edad == 1) {
+            $texto = "¡Hola! soy " . $nombre . " " . $apellido . ", tengo " . $edad . " año y vivo en " . $direccion . ".";
+        } else {
+            $texto = "¡Hola! soy " . $nombre . " " . $apellido . ", tengo " . $edad . " años y vivo en " . $direccion . ".";
+        }
+
         return $texto;
     }
 }
-?>

@@ -10,7 +10,6 @@ class control_ej6
         $direccion = $datos['direccion'];
         $estudios = $datos["estudios"];
         $sexo = $datos["sexo"];
-        $deporte = $datos["deporte"];
 
         //Nivel de Estudio
         if ($estudios == "primario") {
@@ -32,9 +31,8 @@ class control_ej6
 
         //Cantidad de Deportes
         $cantDep = 0;
-        $dep = count($deporte);
-        if ($dep != null) {
-            for ($i = 1; $i <= $dep; $i++) {
+        if (isset($datos["deporte"])) {
+            for ($i = 1; $i <= (count($datos["deporte"])); $i++) {
                 $cantDep = $cantDep + 1;
             }
         }
@@ -42,23 +40,23 @@ class control_ej6
         $texto = "";
 
         if ($edad >= 18) {
-            $texto = "<h4>Datos</h4>
-                 <strong>Nombre:</strong> " . $nombre .
-                "<br /><strong>Apellido:</strong> " . $apellido .
-                "<br /><strong>Direccion:</strong> " . $direccion .
-                "<br /><strong>Mayor de edad:</strong> Si
-                 <br /><strong>Sexo:</strong> " . $sex .
-                "<br /><strong>Nivel de estudio:</strong> " . $est .
-                "<br /><strong>Cantidad de deportes:</strong> " . $cantDep;
+            $texto = "<h3>Datos</h3>
+                 <b>Nombre:</b> " . $nombre .
+                "<br /><b>Apellido:</b> " . $apellido .
+                "<br /><b>Direccion:</b> " . $direccion .
+                "<br /><b>Mayor de edad:</b> Si
+                 <br /><b>Sexo:</b> " . $sex .
+                "<br /><b>Nivel de estudio:</b> " . $est .
+                "<br /><b>Cantidad de deportes:</b> " . $cantDep;
         } else {
-            $texto = "<h4>Datos</h4>
-                 <strong>Nombre:</strong> " . $nombre .
-                "<br /><strong>Apellido:</strong> " . $apellido .
-                "<br /><strong>Direccion:</strong> " . $direccion .
-                "<br /><strong>Mayor de edad:</strong> No
-                 <br /><strong>Sexo:</strong> " . $sex .
-                "<br /><strong>Nivel de estudio:</strong> " . $est .
-                "<br /><strong>Cantidad de deportes:</strong> " . $cantDep;;
+            $texto = "<h3>Datos</h3>
+                 <b>Nombre:</b> " . $nombre .
+                "<br /><b>Apellido:</b> " . $apellido .
+                "<br /><b>Direccion:</b> " . $direccion .
+                "<br /><b>Mayor de edad:</b> No
+                 <br /><b>Sexo:</b> " . $sex .
+                "<br /><b>Nivel de estudio:</b> " . $est .
+                "<br /><b>Cantidad de deportes:</b> " . $cantDep;;
         }
 
         return $texto;

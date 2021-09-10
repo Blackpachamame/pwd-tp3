@@ -17,10 +17,10 @@ $contenidoTxt = $obj2->obtenerContenido();
         <?php
         if ($error == "") {
             echo "<div class='alert alert-success mt-5' role='alert'>
-            <p><h4>Información</h4>
-                    Ruta texto: $link <br>
-                    <a href=" . $link . ">Ver texto</a> <br>  
-                   </p>
+            <h3>Información</h3>
+                    <b><em>Archivo subido correctamente</em></b><br />
+                    <b>Ruta archivo:</b> $link <br />
+                    <a href=" . $link . ">Ver texto</a><br />
             </div>";
             echo "<div class='mb-3'>" . $contenidoTxt["Observaciones"] . "</div>";
         } else {

@@ -9,7 +9,12 @@ class control_ej2
         for ($i = 0; $i < count($array); $i++) {
             $sum = $sum + $array[$i];
         }
-        $texto = "La cantidad total de horas de cursada durante la semana es de: " . $sum . " hrs.";
+
+        if ($sum == 1) {
+            $texto = "La cantidad total de horas de cursada durante la semana es de " . $sum . " hora.";
+        } else {
+            $texto = "La cantidad total de horas de cursada durante la semana es de " . $sum . " horas.";
+        }
 
         return $texto;
     }

@@ -8,12 +8,12 @@ class control_ej8
         $estudiante = $datos["estudiante"];
         if ($estudiante == "si") {
             if ($edad >= 12) {
-                $texto = "El precio de la entrada es 180 pesos.";
+                $texto = "El precio de la entrada es de $180.";
             } elseif ($edad < 12) {
-                $texto = "El precio de la entrada es 160 pesos.";
+                $texto = "El precio de la entrada es de $160.";
             }
         } else {
-            $texto = "El precio de la entrada es 300 pesos.";
+            $texto = "El precio de la entrada es de $300.";
         }
         return $texto;
     }

@@ -8,7 +8,7 @@ $obj = new controlArchivos();
 $infoArchivo = $obj->obtenerInfoDeArchivo($_POST);
 ?>
 
-<div class="row  mb-3">
+<div class="row mb-3">
     <div class="col-sm-4 ">
 
         <?php

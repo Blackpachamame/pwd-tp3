@@ -12,7 +12,7 @@ h6 {
 }
 
 main {
-  min-height: 510px;
+  min-height: 512px;
 }
 
 footer {
@@ -94,4 +94,9 @@ a.navbar-brand {
   -webkit-font-smoothing: antialiased;
   font-family: "Font Awesome 5 Free";
   content: "\f556";
+}
+
+/* Botones Películas */
+#pelis .btn {
+  border-radius: inherit;
 }

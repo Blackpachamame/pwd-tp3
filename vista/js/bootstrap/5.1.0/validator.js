@@ -16,7 +16,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -28,7 +28,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -71,7 +71,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -83,7 +83,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -126,7 +126,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -138,7 +138,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -195,7 +195,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -207,7 +207,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },
@@ -305,7 +305,95 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'Solo son validas letras'
+                        message: ' La primer letra en mayuscula. Solo letras.'
+                    }
+                }
+            },
+            minutos: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere duración'
+                    }
+                }
+            },
+            edad: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere seleccionar una opción'
+                    }
+                }
+            },
+            sinopsis: {
+                validators: {
+                    notEmpty: {
+                        message: ' Debe añadir una descripción'
+                    }
+                }
+            }
+        },
+    });
+});
+
+//EJERCICIO 3 - TP3
+$(document).ready(function () {
+    $('#tp3eje3').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            titulo: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere un título'
+                    }
+                }
+            },
+            actores: {
+                validators: {
+                    notEmpty: {
+                        message: ' Ingresar actores'
+                    }
+                }
+            },
+            director: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere el director'
+                    }
+                }
+            },
+            guion: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere un guión'
+                    }
+                }
+            },
+            produccion: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere el nombre de producción'
+                    }
+                }
+            },
+            year: {
+                validators: {
+                    notEmpty: {
+                        message: ' Año obligatorio'
+                    }
+                }
+            },
+            nacion: {
+                validators: {
+                    notEmpty: {
+                        message: ' La nacionalidad es obligatoria'
+                    },
+                    regexp: {
+                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
+                        message: ' La primer letra en mayuscula. Solo letras.'
                     }
                 }
             },

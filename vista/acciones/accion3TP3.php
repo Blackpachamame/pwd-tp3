@@ -17,13 +17,11 @@ $respuesta = $obj2->verInformacion($_POST);
         <?php
         if ($error == "") {
             echo "<div class='alert alert-success mt-5' role='alert'>
-                    <div class='row align-items-center my-3'>
+                    <div class='row px-2 my-3'>
                         <div class='col-lg-7 col-xl-8'>$respuesta</div>
-                        <div class='col-lg-5 col-xl-4'><img alt='Portada' src='" . $link . "'></div>
+                        <div class='col-lg-5 col-xl-4 text-lg-end'><img class='img-fluid' alt='Portada' src='" . $link . "'></div>
                     </div>
                   </div>";
-            // echo "<img alt='Portada' class='mt-3 mb-3' src='" . $link . "'>";
-            // echo "<div class='alert alert-primary mt-5' role='alert'>$respuesta</div>";
         } else {
             echo "<div class='alert alert-danger mt-5' role='alert'>$error</div>";
         }

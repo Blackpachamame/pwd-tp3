@@ -10,11 +10,10 @@ class control_ej4
         //$direccion = $datos['direccion'];
         $texto = "";
         if ($edad >= 18)
-            $texto =  "Hola yo soy " . $nombre . ", " . $apellido . " y soy mayor de edad.";
+            $texto =  " Soy mayor de edad.";
         else
-            $texto = "Hola yo soy " . $nombre . ", " . $apellido . " y NO soy mayor de edad.";
+            $texto = " NO soy mayor de edad.";
 
         return $texto;
     }
 }
-?>
