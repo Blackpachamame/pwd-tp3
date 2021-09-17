@@ -13,16 +13,19 @@ include_once("../estructura/cabeceraBT.php");
 
 <form id="eje7" name="eje7" method="POST" action="../acciones/accion7TP1.php" data-toggle="validator">
     <div class="row mx-3 mx-lg-0 justify-content-center justify-content-md-start">
+        <!-- Valor 1 -->
         <div class="col-sm-5 col-lg-3 mb-3">
             <label for="valor1">Ingrese un valor</label>
             <input type="number" class="form-control" id="valor1" name="valor1" placeholder="Ejemplo: 1" required>
         </div>
+        <!-- Valor 2 -->
         <div class="col-sm-5 col-lg-3 mb-3">
             <label for="valor2">Ingrese otro valor</label>
             <input type="number" class="form-control" id="valor2" name="valor2" placeholder="Ejemplo: 2" required>
         </div>
     </div>
     <div class="row mx-3 mx-lg-0 justify-content-center justify-content-md-start">
+        <!-- Operación y Enviar -->
         <div class="col-sm-10 col-lg-6">
             <div class="input-group mt-2 mb-5">
                 <select class="form-select mr-sm-2" id="op" name="op" required>

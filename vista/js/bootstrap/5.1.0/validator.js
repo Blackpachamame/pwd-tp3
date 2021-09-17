@@ -246,6 +246,46 @@ $(document).ready(function () {
     });
 });
 
+//EJERCICIO 3 - TP2
+$(document).ready(function () {
+    $('#tp2ej3').bootstrapValidator({
+        message: 'Este valor no es valido',
+
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: {
+                        message: ' El nombre de usuario es requerido'
+                    },
+                    stringLength: {
+                        min: 4,
+                        message: ' Debe superar los 4 caracteres'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: ' Completar campo <br>'
+                    },
+                    regexp: {
+                        regexp: /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/,
+                        message: ' Debe contener letras y números <br>'
+                    },
+                    stringLength: {
+                        min: 8,
+                        message: ' Debe tener mínimo 8 caracteres <br>'
+                    },
+                    different: {
+                        field: 'username',
+                        message: ' La contraseña no debe ser igual al nombre del usuario'
+                    }
+                }
+            },
+        }
+    });
+});
+
 //EJERCICIO 4 - TP2
 $(document).ready(function () {
     $('#eje4tp2').bootstrapValidator({
@@ -334,6 +374,60 @@ $(document).ready(function () {
     });
 });
 
+//EJERCICIO 1 - TP3
+$(document).ready(function () {
+    $('#tp3eje1').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            archivo: {
+                validators: {
+                    notEmpty: {
+                        message: ' Envie un archivo'
+                    },
+                    file: {
+                        maxSize: 1024 * 1024 * 2,
+                        extension: 'doc, pdf',
+                        type: 'application/pdf, application/msword',
+                        message: ' Solo pdf o doc'
+                    }
+                }
+            }
+        },
+    });
+});
+
+//EJERCICIO 2 - TP3
+$(document).ready(function () {
+    $('#tp3eje2').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            archivo: {
+                validators: {
+                    notEmpty: {
+                        message: ' envie un archivo'
+                    },
+                    file: {
+                        maxSize: 1024 * 1024 * 2,
+                        extension: 'txt',
+                        type: 'txt',
+                        message: ' Solo txt'
+                    }
+                }
+            }
+        },
+    });
+});
+
 //EJERCICIO 3 - TP3
 $(document).ready(function () {
     $('#tp3eje3').bootstrapValidator({
@@ -362,6 +456,24 @@ $(document).ready(function () {
                 validators: {
                     notEmpty: {
                         message: ' Se requiere el director'
+                    }
+                }
+            },
+            imagen: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere seleccionar una imagen'
+                    },
+                    file: {
+                        maxSize: 683 * 1024,
+                        message: ' Excede el tamaño máximo'
+                    }
+                },
+                custom: {
+                    fileheight: function ($el) {
+                        if ($el[0].files[0].height / ($el[0].files[0].width) > 1.5) {
+                            return "Debe ser una relación de aspecto de 2/3"
+                        }
                     }
                 }
             },

@@ -74,11 +74,13 @@ include_once("../estructura/cabeceraBT.php");
             <label for="genero">Género</label>
             <select class="form-select d-block w-100" id="genero" name="genero" required>
                 <!--<option disabled>Choose...</option>-->
-                <option value="Comedia">Comedia</option>
-                <option value="Terror">Terror</option>
                 <option value="Acción">Acción</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Drama">Drama</option>
                 <option value="Romántica">Romántica</option>
                 <option value="Suspenso">Suspenso</option>
+                <option value="Terror">Terror</option>
+                <option value="Otro">Otro</option>
             </select>
             <div class="invalid-feedback">
                 Seleccione un genero.
@@ -127,7 +129,7 @@ include_once("../estructura/cabeceraBT.php");
             <label for="imagen" class="form-label">Portada de la película</label>
             <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" required>
             <div id="enMin" class="form-text">
-                Solo se permiten imágenes - Se recomienda una relación de aspecto de 2/3
+                Solo se permiten imágenes - Relación de aspecto de 2/3
             </div>
         </div>
     </div>

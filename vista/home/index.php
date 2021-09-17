@@ -9,17 +9,10 @@ $arreglo = $obj->obtenerArchivos();
 
 <div class="text-center mb-5">
     <div class="mt-3 mb-3">
-        <img alt="Programación Web Dinámica" class="mt-3 mb-3" src="../img/logoPWD.jpeg">
+        <img alt="Programación Web Dinámica" class="mt-3 mb-3" src="../img/logoPWD2.png" width="25%">
         <h2 class="mt-2"><strong>Programación Web Dinámica</strong></h2>
         <h5 class="mb-3">HTML - CSS - JAVASCRIPT - BOOSTRAP</h5>
     </div>
-
-    <!-- <div>
-        <p>Valide todos los formularios que implemente en cada uno de los siguientes ejercicios de TP. Utilice los atributos de HTML5 y donde crea necesario complemente la validación con javascript.
-            Valide todos los formularios que implemente en cada uno de los siguientes ejercicios de TP. Utilice los atributos de HTML5 y donde crea necesario complemente la validación con javascript.
-            Valide todos los formularios que implemente en cada uno de los siguientes ejercicios de TP. Utilice los atributos de HTML5 y donde crea necesario complemente la validación con javascript.
-        </p>
-    </div> -->
 </div>
 
 <h2>Lista de películas</h2>
@@ -31,7 +24,7 @@ $arreglo = $obj->obtenerArchivos();
             if (strlen($archivo) > 2 && strpos($archivo, "txt") <= 0  && strpos($archivo, "pdf") <= 0) {
                 echo    "<div id='pelis' class='d-grid col-lg-2 col-sm-4 mb-4'>
                             <img class='img-fluid' alt='$archivo' src='../../uploads/$archivo' width='100%'>
-                            <div class='d-grid'>
+                            <div class='d-grid align-items-end'>
                                 <input type='submit' name='Seleccion:$archivo' id='Seleccion:$archivo' class='btn btn-primary' value='Ver detalles'>
                             </div>
                         </div>";

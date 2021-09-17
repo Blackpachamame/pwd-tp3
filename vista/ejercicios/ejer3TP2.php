@@ -28,16 +28,20 @@ include_once("../estructura/cabeceraBT.php");
 <form class="form-signin" action="../acciones/verificaPass.php" method="POST" id="tp2ej3" name="tp2ej3">
     <div class="login mx-auto">
         <h1 class="h3 mb-3 text-center">Member Login</h1>
-        <div class="input-group mb-3">
-            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-            <input type="text" id="username" name="login[username]" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        <div class="form-group">
+            <div class="input-group mt-3">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+            </div>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-            <input type="password" class="form-control" placeholder="Password" name="login[password]" id="password" aria-label="password" aria-describedby="basic-addon1">
+        <div class="form-group">
+            <div class="input-group mt-3">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-label="password" aria-describedby="basic-addon1" required>
+            </div>
         </div>
-        <div class="d-grid">
-            <button class="btn btn-success mb-5" type="submit">Login</button>
+        <div class="d-grid mb-5 mt-3">
+            <button class="btn btn-success" type="submit">Login</button>
         </div>
     </div>
 </form>

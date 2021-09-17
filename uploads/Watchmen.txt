@@ -1,0 +1,12 @@
+<h3>Información de la película</h3>
+                          <p><b>Título:</b> Watchmen: Los Vigilantes <br />
+                          <b>Actores:</b> Jackie Earle Haley, Patrick Wilson, Billy Crudup <br />
+                          <b>Director:</b> Zack Snyder <br />
+                          <b>Guión:</b> Alex Tse, David Hayter <br />
+                          <b>Producción:</b> Lloyd Levin, Lawrence Gordon, Deborah Snyder <br />
+                          <b>A&ntilde;o:</b> 2009 <br />
+                          <b>Nacionalidad:</b> Estadounidense <br />
+                          <b>Genero:</b> Acción <br />
+                          <b>Duración:</b> 162 minutos<br />
+                          <b>Restricciones de edad:</b> Mayores de 18 A&ntilde;os <br />
+                          <b>Sinopsis:</b> Los Minutemen son un grupo de hombres y mujeres disfrazados que luchan contra el crimen, grupo formado en 1938 en respuesta a un aumento de las pandillas y delincuentes, también disfrazados, y los Watchmen se forman similarmente décadas más tarde. <br />

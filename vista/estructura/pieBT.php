@@ -2,7 +2,7 @@
 </div>
 </div>
 
-<footer class="pt-4 pb-2 text-center">
+<footer class="pt-4 pb-2 text-center mt-auto">
     <div class="row align-items-center mx-md-5 mx-2">
         <p class="col-8 col-sm-10 text-start">Blog creado con <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
         <p class="col text-end">

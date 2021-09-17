@@ -12,6 +12,8 @@ class control_ej8
             } elseif ($edad < 12) {
                 $texto = "El precio de la entrada es de $160.";
             }
+        } elseif ($edad < 12) {
+            $texto = "El precio de la entrada es de $160.";
         } else {
             $texto = "El precio de la entrada es de $300.";
         }

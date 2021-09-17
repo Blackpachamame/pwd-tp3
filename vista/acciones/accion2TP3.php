@@ -22,7 +22,7 @@ $contenidoTxt = $obj2->obtenerContenido();
                     <b>Ruta archivo:</b> $link <br />
                     <a href=" . $link . ">Ver texto</a><br />
             </div>";
-            echo "<div class='mb-3'>" . $contenidoTxt["Observaciones"] . "</div>";
+            echo "<div class='mb-3'><textarea class='form-control'>" . $contenidoTxt["Descripcion"] . "</textarea></div>";
         } else {
             echo "<div class='alert alert-danger mt-5' role='alert'>$error</div>";
         }

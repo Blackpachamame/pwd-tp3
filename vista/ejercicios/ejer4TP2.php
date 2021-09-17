@@ -21,6 +21,7 @@ include_once("../estructura/cabeceraBT.php");
 
 <form id="eje4tp2" name="eje4tp2" method="POST" action="../acciones/accion4TP2.php" data-toggle="validator">
     <div class="row mx-3 justify-content-center justify-content-md-start">
+        <!-- Título -->
         <div class="col-md-6 mb-3">
             <label for="firstName">Título</label>
             <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Título" required>
@@ -28,6 +29,7 @@ include_once("../estructura/cabeceraBT.php");
                 Título incorrecto
             </div>
         </div>
+        <!-- Actores -->
         <div class="col-md-6 mb-3">
             <label for="actores">Actores</label>
             <input type="text" class="form-control" id="actores" name="actores" placeholder="Actores" required>
@@ -35,7 +37,7 @@ include_once("../estructura/cabeceraBT.php");
                 Ingrese el nombre de los actores
             </div>
         </div>
-
+        <!-- Director -->
         <div class="col-md-6 mb-3">
             <label for="director">Director</label>
             <input type="text" class="form-control" id="director" name="director" placeholder="Director" required>
@@ -43,7 +45,7 @@ include_once("../estructura/cabeceraBT.php");
                 Ingrese el nombre del director
             </div>
         </div>
-
+        <!-- Guión -->
         <div class="col-md-6 mb-3">
             <label for="guion">Guión</label>
             <input type="text" class="form-control" id="guion" name="guion" placeholder="Guión" required>
@@ -51,7 +53,7 @@ include_once("../estructura/cabeceraBT.php");
                 Ingrese el guión de la película
             </div>
         </div>
-
+        <!-- Producción -->
         <div class="col-md-6 mb-3">
             <label for="produccion">Producción</label>
             <input type="text" class="form-control" id="produccion" name="produccion" placeholder="Producción" required>
@@ -59,7 +61,7 @@ include_once("../estructura/cabeceraBT.php");
                 Ingrese el nombre de la producción
             </div>
         </div>
-
+        <!-- Año -->
         <div class="col-sm-6 col-lg-3 mb-3">
             <label for="year">Año</label>
             <input type="number" class="form-control" id="year" name="year" placeholder="Ej: 1991" min="1900" max="2021" required>
@@ -67,7 +69,7 @@ include_once("../estructura/cabeceraBT.php");
                 Ingrese el año de la película
             </div>
         </div>
-
+        <!-- Nacionalidad -->
         <div class="col-sm-6 col-lg-3 mb-3">
             <label for="nacion">Nacionalidad</label>
             <input type="text" class="form-control" id="nacion" name="nacion" placeholder="Ej: Japonesa" required>
@@ -75,7 +77,7 @@ include_once("../estructura/cabeceraBT.php");
                 Ingrese la nacionalidad
             </div>
         </div>
-
+        <!-- Género -->
         <div class="col-sm-6 col-lg-3 mb-3">
             <label for="genero">Género</label>
             <select class="form-select d-block w-100" id="genero" name="genero" required>
@@ -90,7 +92,7 @@ include_once("../estructura/cabeceraBT.php");
                 Seleccione un genero.
             </div>
         </div>
-
+        <!-- Duración -->
         <div class="col-sm-6 col-lg-3 mb-3">
             <label for="minutos">Duración</label>
             <input type="number" class="form-control" id="minutos" name="minutos" placeholder="Ej: 120" aria-describedby="enMin" min="1" max="250" required>
@@ -100,7 +102,7 @@ include_once("../estructura/cabeceraBT.php");
         </div>
 
     </div>
-
+    <!-- Edad -->
     <div class="row mx-3 mb-3">
         <legend class="col-form-label col-sm-8">Restricciones de edad</legend>
         <div class="col-sm-8 col-md-11">
@@ -118,7 +120,7 @@ include_once("../estructura/cabeceraBT.php");
             </div>
         </div>
     </div>
-
+    <!-- Sinopsis -->
     <div class="row mx-3 mb-3">
         <div class="col-md-12 mb-4">
             <label for="sinopsis">Sinopsis</label>

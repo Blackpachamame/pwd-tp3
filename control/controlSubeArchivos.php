@@ -27,6 +27,15 @@ class controlArchivos
             $todoOK = false;
         }
 
+        /* Verificamos que el tipo de archivo sea PDF o DOC */
+        $tipoPDF = strpos(strtoupper($_FILES['archivo']['type']), 'PDF');
+        $tipoDOC = strpos(strtoupper($_FILES['archivo']['type']), 'DOC');
+
+        if ($todoOK && !$tipoPDF && !$tipoDOC) {
+            $error = "ERROR: El tipo de archivo no es valido.";
+            $todoOK = false;
+        }
+
         /* Intentamos copiar el archivo al servidor */
         if ($todoOK && !copy($_FILES['archivo']['tmp_name'], $dir . $nombre)) {
             $error = "ERROR: No se pudo copiar el archivo.";
@@ -60,6 +69,14 @@ class controlArchivos
         } else {
             $todoOK = false;
             $error = "ERROR: No se pudo cargar el archivo.";
+        }
+
+        /* Verificamos que el tipo de archivo sea TXT */
+        $tipoTXT = strpos($_FILES['texto']["type"], 'text/plain');
+
+        if ($todoOK && ($tipoTXT === false)) {
+            $error = "ERROR: El tipo de archivo no es valido.";
+            $todoOK = false;
         }
 
         /* Intentamos copiar el archivo al servidor */
@@ -97,6 +114,40 @@ class controlArchivos
             $error = "ERROR: No se pudo cargar la imagen.";
         }
 
+        /* Verificamos que el tipo de archivo sea de tipo imagen */
+        $tipoIMG = strpos($_FILES['imagen']["type"], "image");
+
+        if ($todoOK && ($tipoIMG === false)) {
+            $error = "ERROR: El tipo de archivo no es valido.";
+            $todoOK = false;
+        }
+
+        /* Comprobamos el ancho y alto de la imagen, 
+        getimagesize nos devuelve el ancho y alto de la imagen */
+        if ($todoOK) {
+            $image_info = getimagesize($_FILES['imagen']['tmp_name']);
+            $image_width = $image_info[0];
+            $image_height = $image_info[1];
+
+            /* Verifico que el ancho sea mayor o igual a 400 */
+            $ancho_limite = false;
+            if ($image_width >= 400) {
+                $ancho_limite = true;
+            }
+
+            /* Verifico que el alto sea de (1.5)*(ancho) */
+            $alto_limite = false;
+            if ($image_height == ($image_width * 1.5)) {
+                $alto_limite = true;
+            }
+
+            /* Controlamos las dimenciones de la imagen */
+            if (!((($ancho_limite) && ($alto_limite)))) {
+                $error = "ERROR: La imagen no cumple con las dimensiones establecidas.";
+                $todoOK = false;
+            }
+        }
+
         /* Intentamos copiar la imagen al servidor */
         if ($todoOK && !copy($_FILES['imagen']['tmp_name'], $dir . $nombre)) {
             $error = "ERROR: No se pudo copiar la imagen.";
@@ -110,6 +161,16 @@ class controlArchivos
             $retorno['imagen']['error'] = $error;
         }
 
+        /* Busco la posicion del punto de la extensión del archivo, para reemplazar con la extensión .txt, 
+        Con esto creo un nuevo arhicvo .txt con el mismo nombre */
+        $pos = mb_strripos($nombre, ".");
+        $texto = $this->verInformacion($_POST);
+        $name = substr($nombre, 0, $pos) . ".txt";
+        $name = $dir . $name;
+        /* fopen crea un nuevo archivo con nombre $name y con "w" reemplaza la información si ya existia */
+        $ar = fopen($name, "w") or die("error al crear");
+        fwrite($ar, $texto);
+        fclose($ar);
         return $retorno;
     }
 
@@ -148,6 +209,7 @@ class controlArchivos
                           <b>Duración:</b> $minutos minutos<br />
                           <b>Restricciones de edad:</b> $rEdad <br />
                           <b>Sinopsis:</b> $sinopsis <br />";
+
         return $texto;
     }
 
@@ -163,46 +225,33 @@ class controlArchivos
     public function obtenerInfoDeArchivo($datos)
     {
         $directorio = "../../uploads/";
-
-        foreach ($datos as $clave => $valor)
+        foreach ($datos as $clave => $valor) {
             $nombreArchivo = str_replace("Seleccion:", '', $clave);
-        $nombreArchivo = str_replace("_", '.', $nombreArchivo);
-        $nombreArchivoFull = $directorio . $nombreArchivo;
-        $nombreArchivoObservaciones = substr($nombreArchivo, 0, strlen($nombreArchivo) - 4) . "_OBS.txt";
-        // $nombreArchivoPDF = substr($nombreArchivo, 0, strlen($nombreArchivo) - 4) . ".pdf";
+        }
 
-        $datosStat = stat($nombreArchivoFull);
+        /* pos y ultPos lo usamos para reemplazar el tipo de arhivo sea cual sea su longitud (.png o .jpeg) */
+        $pos = mb_strripos($nombreArchivo, "_");
+        //echo $pos;
+        $ultPos = substr($nombreArchivo, $pos);
+        //print_r(($ultPos));
+        $ultPos = str_replace("_", '.', $ultPos);
+        // echo " ";
+        // print_r(($ultPos));
+        $nombreArchivo = substr($nombreArchivo, 0, $pos) . $ultPos;
+        $nombreImagen = $directorio . $nombreArchivo;
+        $nombreArchivodescripcion = substr($nombreArchivo, 0, $pos) . ".txt";
 
-        //stat devuelve un arreglo con datos del archivo.
-        //si da error devuelve null
-        //pero voy a crear un arreglo propio con los datos que a mi me interesan nada mas
-        //y con claves más entendibles
-
-        $finfo = new finfo(FILEINFO_MIME); // Devuelve el tipo mime
-
-        /*Voy a devolver las observaciones en el arreglo
-        Se que las observaciones se guardan en un archivo .txt que tiene en el nombre el sufijo "OBS*/
-
-        $observaciones = "";
-        if (file_exists($directorio . $nombreArchivoObservaciones)) {
-            $fArchivoOBS = fopen($directorio . $nombreArchivoObservaciones, "r");
-            $observaciones = fread($fArchivoOBS, filesize($directorio . $nombreArchivoObservaciones));
+        $descripcion = "";
+        if (file_exists($directorio . $nombreArchivodescripcion)) {
+            $fArchivoOBS = fopen($directorio . $nombreArchivodescripcion, "r");
+            $descripcion = fread($fArchivoOBS, filesize($directorio . $nombreArchivodescripcion));
             fclose($fArchivoOBS);
         }
 
-        /*Y ahora voy a ver si hay un PDF, si hay, voy a devolver true*/
-        //$hayArchivo = file_exists($directorio . $nombreArchivoPDF);
-
         $datosArch = [
-            "Tamanio" => $datosStat[7],
-            "UltimoAcceso" => $datosStat[8],
-            "Enlaces" => $datosStat[3],
-            "UltimaModificacion" => $datosStat[9],
-            "Tipo" => $finfo->file($nombreArchivoFull),
+            "link" => $nombreImagen,
             "NombreArchivo" => $nombreArchivo,
-            "Observaciones" => $observaciones
-            // "HayArchivodeTexto" => $hayArchivo,
-            // "ArchivoTexto" => $nombreArchivoPDF
+            "Descripcion" => $descripcion
 
         ];
 
@@ -212,27 +261,23 @@ class controlArchivos
     }
 
 
-
     public function obtenerContenido()
     {
         $directorio = "../../uploads/";
         $nombreArchivo = $_FILES['texto']['name'];
         $link = $directorio . $nombreArchivo;
 
-        /*Voy a devolver las observaciones en el arreglo
-        Se que las observaciones se guardan en un archivo .txt que tiene en el nombre el sufijo "OBS*/
-
-        $observaciones = "";
+        $descripcion = "";
         if (file_exists($link)) {
             $fp = fopen($link, "r");
-            $observaciones = fread($fp, filesize($link));
+            $descripcion = fread($fp, filesize($link));
             fclose($fp);
         } else {
-            $observaciones = "ERROR: El archivo no existe.";
+            $descripcion = "ERROR: El archivo no existe.";
         }
 
         $datosTexto = [
-            "Observaciones" => $observaciones
+            "Descripcion" => $descripcion
         ];
 
         return $datosTexto;
