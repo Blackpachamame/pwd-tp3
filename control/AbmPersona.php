@@ -12,7 +12,7 @@ class AbmPersona
     private function cargarObjeto($param)
     {
         $obj = null;
-        print_r($param);
+        //print_r($param);
         if (
             array_key_exists('NroDni', $param)
             and array_key_exists('Apellido', $param)
@@ -39,7 +39,7 @@ class AbmPersona
 
         if (isset($param['NroDni'])) {
             $obj = new Persona();
-            $obj->setear($param['NroDni'], null, null, null, null, null, null);
+            $obj->setear($param['NroDni'], "", "", "", "", "", "");
         }
         return $obj;
     }
@@ -103,10 +103,35 @@ class AbmPersona
         //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $elObjtTabla = $this->cargarObjeto($param);
-            if ($elObjtTabla != null and $elObjtTabla->modificar()) {
-                $resp = true;
+            $posPersona = $param['NroDni'];
+            $lapersona = $this->buscar($param['NroDni']);
+            //var_dump($lapersona);
+            $cont = 0;
+            foreach ($lapersona as $objPersona) {
+                //var_dump($objPersona);
+                if ($objPersona->getNroDni() != $posPersona) {
+                    $cont++;
+                } else {
+                    break;
+                }
             }
+            //$cambiodni = (array_key_exists('Apellido', $param)); 
+            //var_dump($param,$lapersona);
+            //var_dump($lapersona[0]);
+            if ($lapersona != null) {
+                $lapersona[$cont]->setApellido($param['Apellido']);
+                $lapersona[$cont]->setNombre($param['Nombre']);
+                $lapersona[$cont]->setfechaNac($param['fechaNac']);
+                $lapersona[$cont]->setTelefono($param['Telefono']);
+                $lapersona[$cont]->setDomicilio($param['Domicilio']);
+                if ($lapersona[$cont] != null and $lapersona[$cont]->modificar()) {
+                    $resp = true;
+                }
+            }
+            //$elObjtTabla = $this->cargarObjeto($param);
+            // if ($lapersona != null and $lapersona->modificar()) {
+            //     $resp = true;
+            // }
         }
         return $resp;
     }

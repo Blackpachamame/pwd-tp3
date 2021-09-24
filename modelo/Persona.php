@@ -135,13 +135,14 @@ class Persona
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE persona SET Apellido='" . $this->getApellido() . ",'
-        Nombre='" . $this->getNombre() . ",'
-        fechaNac='" . $this->getfechaNac() . ",'
-        Telefono='" . $this->getTelefono() . ",'
+        $sql = "UPDATE persona SET Apellido='" . $this->getApellido() . "',
+        Nombre='" . $this->getNombre() . "',
+        fechaNac='" . $this->getfechaNac() . "',
+        Telefono='" . $this->getTelefono() . "',
         Domicilio='" . $this->getDomicilio() . "'
         WHERE NroDni=" . $this->getNroDni();
         if ($base->Iniciar()) {
+            //var_dump($sql);
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {

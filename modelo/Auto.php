@@ -45,8 +45,7 @@ class Auto
     {
         $this->Marca = $valor;
     }
-    public function getModelo()
-    {
+    public function getModelo()    {
         return $this->Modelo;
     }
     public function setModelo($valor)
@@ -101,7 +100,7 @@ class Auto
         $resp = false;
         $base = new BaseDatos();
         //$sentencia="INSERT INTO auto(Patente,Marca,Modelo,Dni_Duenio)  VALUES('".$this->getPatente()."','".$this->getMarca()."','.$this->getModelo()','".$this->getDni_Duenio()."');";
-        $sql = "INSERT INTO auto(Patente,Marca,Modelo,DniDuenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','.$this->getModelo()','" . $this->getDniDuenio() . "');";
+        $sql = "INSERT INTO auto(Patente,Marca,Modelo,DniDuenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','".$this->getModelo()."','" . $this->getDniDuenio() . "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setPatente($elid);
@@ -160,6 +159,7 @@ class Auto
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
+        //var_dump($sql);
         $res = $base->Ejecutar($sql);
         if ($res > -1) {
             if ($res > 0) {

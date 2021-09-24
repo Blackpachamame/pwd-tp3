@@ -1,7 +1,10 @@
 <?php
 include_once '../../configuracion.php';
+include_once("../estructura/cabeceraBT.php");
+
 $datos = data_submitted();
 //verEstructura($datos);
+// Accion que permite: cargar un nuevo auto, borrar y editar 
 $resp = false;
 $objTrans = new AbmPersona();
 if (isset($datos['accion'])) {
@@ -37,12 +40,12 @@ if (isset($datos['accion'])) {
 </head>
 
 <body>
-    <h3>Tabla</h3>
-    <br><a href="../verAutos.php">Volver</a><br>
+   <h2>nueva perosona</h2>
 
     <?php
     echo $mensaje;
     ?>
+    <a class="btn btn-dark mb-5" href="../ejercicios/listarPersonas.php" role="button"><i class="fas fa-angle-double-left"></i> Regresar</a>
 
 </body>
 

@@ -12,8 +12,13 @@ class AbmAuto
     private function cargarObjeto($param)
     {
         $obj = null;
+        $cambiodni= (array_key_exists('Patente', $param)
+        and array_key_exists('Marca', $param)
+        and array_key_exists('Modelo', $param)
+        and array_key_exists('DniDuenio', $param));
+        //var_dump($param['Patente']);
 
-        if (array_key_exists('Patente', $param)) {
+        if ($cambiodni) {
             $obj = new Auto();
             $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['DniDuenio']);
         }
@@ -58,7 +63,7 @@ class AbmAuto
     public function alta($param)
     {
         $resp = false;
-        $param['Patente'] = null;
+        //$param['Patente'] = null;
         $elObjtTabla = $this->cargarObjeto($param);
         //        verEstructura($elObjtTabla);
         if ($elObjtTabla != null and $elObjtTabla->insertar()) {
@@ -94,10 +99,22 @@ class AbmAuto
         //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $elObjtTabla = $this->cargarObjeto($param);
-            if ($elObjtTabla != null and $elObjtTabla->modificar()) {
+            $elAuto= new Auto();
+            $elAuto = $this->buscar($param);
+            //var_dump($elAuto);
+            $cambiodni = (array_key_exists('Dnicambio', $param));            
+            if($cambiodni){            
+               $elAuto[0]->setDniDuenio($param['Dnicambio']);
+               if ($elAuto[0] != null and $elAuto[0]->modificar()) {
                 $resp = true;
-            }
+                }
+            }            
+            //var_dump($param);            
+            //$elObjtTabla = $this->cargarObjeto($param);
+            //var_dump($elObjtTabla); 
+            // else if ($elAuto != null and $elAuto->modificar()) {
+            //     $resp = true;
+            // }
         }
         return $resp;
     }
@@ -105,7 +122,7 @@ class AbmAuto
     /**
      * permite buscar un objeto
      * @param array $param
-     * @return array
+     * @return array||Auto
      */
     public function buscar($param)
     {
@@ -120,6 +137,7 @@ class AbmAuto
             if (isset($param['DniDuenio']))
                 $where .= " and DniDuenio ='" . $param['DniDuenio'] . "'";
         }
+
         $arreglo = Auto::listar($where);
         return $arreglo;
     }

@@ -533,3 +533,29 @@ $(document).ready(function () {
         },
     });
 });
+
+
+//EJERCICIO 2 - TP4
+$(document).ready(function () {
+    $('#tp4_eje2').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            Patente: {
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere colocar una patente'
+                    },
+                    regexp: {
+                        regexp: /^[A-ZÑ]{3}\s\d{3}$/,
+                        message: ' Debe ser con este formato: LLL NNN.'
+                    }
+                }
+            }
+        },
+    });
+});
