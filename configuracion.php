@@ -1,5 +1,25 @@
 <?php
 
-$GLOBALS['ROOT'] =$_SERVER['DOCUMENT_ROOT'] ."/PWD2021/TP1/";
+//header('Content-Type: text/html; charset=utf-8');
+//header ("Cache-Control: no-cache, must-revalidate ");
 
-include_once("utiles/funciones.php");
+/////////////////////////////
+// CONFIGURACION APP//
+/////////////////////////////
+
+$PROYECTO = 'PWD2021/TP1';
+
+//variable que almacena el directorio del proyecto
+$ROOT = $_SERVER['DOCUMENT_ROOT'] . "/$PROYECTO/";
+
+include_once($ROOT . 'util/funciones.php');
+
+
+// Variable que define la pagina de autenticacion del proyecto
+$INICIO = "Location:http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/vista/login/login.php";
+
+// variable que define la pagina principal del proyecto (menu principal)
+$PRINCIPAL = "Location:http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/principal.php";
+
+
+$_SESSION['ROOT'] = $ROOT;

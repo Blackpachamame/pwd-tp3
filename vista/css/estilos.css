@@ -98,3 +98,8 @@ a.navbar-brand {
 #pelis .btn {
   border-radius: inherit;
 }
+
+/* Tablas */
+.table-responsive {
+  white-space: nowrap;
+}
