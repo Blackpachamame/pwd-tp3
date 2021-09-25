@@ -1,37 +1,45 @@
 <?php
-$Titulo = "Ejercicio 1 - TP4";
+$Titulo = "Ejercicio 6 - TP4";
 include_once("../estructura/cabeceraBT.php");
 
 $objAbmTabla = new AbmAuto();
 $listaTabla = $objAbmTabla->buscar(null);
 ?>
 
-<h2 class="mt-5">CAmbio De dueño</h2>
+<h2 class="mt-5">Cambio de Dueño</h2>
 <div class="card mb-5">
-  <div class="card-body">
-    <h4 class="card-title border-bottom">Consigna</h4>
-    <p class="card-text">Crear una pagina "buscarAuto.php" que contenga un formulario en donde se solicite el numero de patente de un auto, estos datos deberán ser enviados a una pagina “accionBuscarAuto.php” en donde usando la clase de control correspondiente, se soliciten los datos completos del auto que se corresponda con la patente ingresada y mostrar los datos en una tabla. También deberán mostrar los carteles que crean convenientes en caso de que no se encuentre ningún auto con la patente ingresada.</p>
-    <p class="card-text">Utilizar css y validaciones javaScript cuando crea conveniente. Recordar usar la capa de control antes generada, no se puede acceder directamente a las clases del ORM.</p>
-  </div>
+	<div class="card-body">
+		<h4 class="card-title border-bottom">Consigna</h4>
+		<p class="card-text">Crear una página “CambioDuenio.php” que contenga un formulario en donde se solicite el numero de patente de un auto y un numero de documento de una persona, estos datos deberán ser enviados a una página “accionCambioDuenio.php” en donde se realice cambio del dueño del auto de la patente ingresada en el formulario. Mostrar mensajes de error en caso de que el auto o la persona no se encuentren cargados. Utilizar css y validaciones javaScript cuando crea conveniente. Recordar usar la capa de control antes generada, no se puede acceder directamente a las clases del ORM.</p>
+	</div>
 </div>
 
-
-<form method="post" action="../acciones/abmAuto.php">
-	<label>Patente</label><br />
-	<input id="Patente" name="Patente" type="text" required>
-	<br />	
-	<label>Dni de el propietario Actual</label><br />
-	<input id="DniDuenio" name="DniDuenio" type="text">
-	<br />
-    <label>Dni de el propietario nuevo</label><br />
-	<input id="Dnicambio" name="Dnicambio" type="text">
-	<br />
+<form id="tp4_eje6" name="tp4_eje6" method="POST" action="../acciones/abmAuto.php" data-toggle="validator">
+	<div class="row mx-md-3 justify-content-center">
+		<!-- Patente -->
+		<div class="col-sm-8 col-lg-4 mb-3">
+			<label for="Patente" class="control-label">Patente</label>
+			<input type="text" class="form-control" name="Patente" id="Patente" placeholder="AAA 000" required>
+		</div>
+		<!-- Dni Dueño Actual -->
+		<div class="col-sm-8 col-lg-4 mb-3">
+			<label for="DniDuenio">Dni propietario actual</label>
+			<input type="number" class="form-control" name="DniDuenio" id="DniDuenio" placeholder="11111111" required>
+		</div>
+		<!-- Dni Dueño Nuevo -->
+		<div class="col-sm-8 col-lg-4 mb-3">
+			<label for="Dnicambio">Dni propietario nuevo</label>
+			<input type="number" class="form-control" name="Dnicambio" id="Dnicambio" placeholder="99999999" required>
+		</div>
+	</div>
+	<!-- accion = editar (input oculto) -->
 	<input id="accion" name="accion" value="editar" type="hidden">
-
-	<input type="submit">
-
+	<!-- Botón enviar -->
+	<div class="text-center mt-3 mb-5">
+		<input class="btn btn-danger btn-lg" id="btn_t4_eje6b" name="btn_t4_eje6b" type="reset" value="Limpiar">
+		<input class="btn btn-primary btn-lg" id="btn_t4_eje6" name="btn_t4_eje6" type="submit" value="Enviar">
+	</div>
 </form>
-
 
 <?php
 include_once("../estructura/pieBT.php");

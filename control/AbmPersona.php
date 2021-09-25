@@ -12,7 +12,6 @@ class AbmPersona
     private function cargarObjeto($param)
     {
         $obj = null;
-        //print_r($param);
         if (
             array_key_exists('NroDni', $param)
             and array_key_exists('Apellido', $param)
@@ -20,11 +19,11 @@ class AbmPersona
             and array_key_exists('fechaNac', $param)
             and array_key_exists('Telefono', $param)
             and array_key_exists('Domicilio', $param)
-
         ) {
             $obj = new Persona();
             $obj->setear($param['NroDni'], $param['Apellido'], $param['Nombre'], $param['fechaNac'], $param['Telefono'], $param['Domicilio']);
         }
+
         return $obj;
     }
 
@@ -41,6 +40,7 @@ class AbmPersona
             $obj = new Persona();
             $obj->setear($param['NroDni'], "", "", "", "", "", "");
         }
+
         return $obj;
     }
 
@@ -66,12 +66,17 @@ class AbmPersona
     public function alta($param)
     {
         $resp = false;
-        //$param['NroDni']= null;
-        $elObjtTabla = $this->cargarObjeto($param);
-        //verEstructura($elObjtTabla);
-        if ($elObjtTabla != null and $elObjtTabla->insertar()) {
-            $resp = true;
+        $buscar2 = array();
+        $buscar2['NroDni'] = $param['NroDni'];
+        $encuentraPer = $this->buscar($buscar2);
+
+        if ($encuentraPer == null) {
+            $elObjtTabla = $this->cargarObjeto($param);
+            if ($elObjtTabla != null and $elObjtTabla->insertar()) {
+                $resp = true;
+            }
         }
+
         return $resp;
     }
 
@@ -100,38 +105,25 @@ class AbmPersona
      */
     public function modificacion($param)
     {
-        //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $posPersona = $param['NroDni'];
-            $lapersona = $this->buscar($param['NroDni']);
+            $buscar2 = array();
+            $buscar2['NroDni'] = $param['NroDni'];
+            $lapersona = $this->buscar($buscar2);
             //var_dump($lapersona);
-            $cont = 0;
-            foreach ($lapersona as $objPersona) {
-                //var_dump($objPersona);
-                if ($objPersona->getNroDni() != $posPersona) {
-                    $cont++;
-                } else {
-                    break;
-                }
-            }
             //$cambiodni = (array_key_exists('Apellido', $param)); 
             //var_dump($param,$lapersona);
-            //var_dump($lapersona[0]);
+            var_dump($lapersona);
             if ($lapersona != null) {
-                $lapersona[$cont]->setApellido($param['Apellido']);
-                $lapersona[$cont]->setNombre($param['Nombre']);
-                $lapersona[$cont]->setfechaNac($param['fechaNac']);
-                $lapersona[$cont]->setTelefono($param['Telefono']);
-                $lapersona[$cont]->setDomicilio($param['Domicilio']);
-                if ($lapersona[$cont] != null and $lapersona[$cont]->modificar()) {
+                $lapersona[0]->setApellido($param['Apellido']);
+                $lapersona[0]->setNombre($param['Nombre']);
+                $lapersona[0]->setfechaNac($param['fechaNac']);
+                $lapersona[0]->setTelefono($param['Telefono']);
+                $lapersona[0]->setDomicilio($param['Domicilio']);
+                if ($lapersona[0] != null and $lapersona[0]->modificar()) {
                     $resp = true;
                 }
             }
-            //$elObjtTabla = $this->cargarObjeto($param);
-            // if ($lapersona != null and $lapersona->modificar()) {
-            //     $resp = true;
-            // }
         }
         return $resp;
     }
@@ -159,6 +151,7 @@ class AbmPersona
                 $where .= " and Domicilio ='" . $param['Domicilio'] . "'";
         }
         $arreglo = Persona::listar($where);
+
         return $arreglo;
     }
 }

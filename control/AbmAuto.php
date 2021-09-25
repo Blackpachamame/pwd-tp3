@@ -12,10 +12,10 @@ class AbmAuto
     private function cargarObjeto($param)
     {
         $obj = null;
-        $cambiodni= (array_key_exists('Patente', $param)
-        and array_key_exists('Marca', $param)
-        and array_key_exists('Modelo', $param)
-        and array_key_exists('DniDuenio', $param));
+        $cambiodni = (array_key_exists('Patente', $param)
+            and array_key_exists('Marca', $param)
+            and array_key_exists('Modelo', $param)
+            and array_key_exists('DniDuenio', $param));
         //var_dump($param['Patente']);
 
         if ($cambiodni) {
@@ -63,14 +63,22 @@ class AbmAuto
     public function alta($param)
     {
         $resp = false;
-        //$param['Patente'] = null;
-        $elObjtTabla = $this->cargarObjeto($param);
-        //        verEstructura($elObjtTabla);
-        if ($elObjtTabla != null and $elObjtTabla->insertar()) {
-            $resp = true;
+        $buscarPatente = array();
+        $buscarPatente['Patente'] = $param['Patente'];
+        $buscarDniDuenio = array();
+        $buscarDniDuenio['DniDuenio'] = $param['DniDuenio'];
+        $encuentraPat = $this->buscar($buscarPatente);
+        $encuentraDni = $this->buscar($buscarDniDuenio);
+
+        if ($encuentraPat == null && $encuentraDni != null) {
+            $elObjtTabla = $this->cargarObjeto($param);
+            if ($elObjtTabla != null and $elObjtTabla->insertar()) {
+                $resp = true;
+            }
         }
         return $resp;
     }
+
     /**
      * permite eliminar un objeto 
      * @param array $param
@@ -99,16 +107,16 @@ class AbmAuto
         //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $elAuto= new Auto();
+            $elAuto = new Auto();
             $elAuto = $this->buscar($param);
             //var_dump($elAuto);
-            $cambiodni = (array_key_exists('Dnicambio', $param));            
-            if($cambiodni){            
-               $elAuto[0]->setDniDuenio($param['Dnicambio']);
-               if ($elAuto[0] != null and $elAuto[0]->modificar()) {
-                $resp = true;
+            $cambiodni = (array_key_exists('Dnicambio', $param));
+            if ($cambiodni) {
+                $elAuto[0]->setDniDuenio($param['Dnicambio']);
+                if ($elAuto[0] != null and $elAuto[0]->modificar()) {
+                    $resp = true;
                 }
-            }            
+            }
             //var_dump($param);            
             //$elObjtTabla = $this->cargarObjeto($param);
             //var_dump($elObjtTabla); 

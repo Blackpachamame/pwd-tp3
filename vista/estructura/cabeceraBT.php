@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-nav shadow">
+    <nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-nav shadow">
         <div class="container-fluid">
             <!-- Brand -->
             <a class="navbar-brand" href="../home/index.php"><em>PWD2021</em></a>

@@ -41,7 +41,7 @@ $listaTabla = $objAbmTabla->buscar(null);
           echo '<td>' . $objTabla->getMarca() . '</td>';
           echo '<td>' . $objTabla->getModelo() . '</td>';
           echo '<td>' . $dniDu . '</td>';
-          echo '<td class="text-center"><a href="CambioDuenio.php"><button type="button"  class="btn btn-success btn-sm"><i class="fas fa-pen"></i></button><a/>
+          echo '<td class="text-center"><a href="cambioDuenio.php"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></button><a/>
           <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td>';
           echo '</tr>';
           $i++;

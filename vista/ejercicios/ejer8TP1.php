@@ -39,7 +39,7 @@ include_once("../estructura/cabeceraBT.php");
     </div>
     <!-- Botones -->
     <div class="mt-4 mb-5">
-        <input class="btn btn-danger" name="btn_eje8b" type="reset" value="Borrar"></input>
+        <input class="btn btn-danger" name="btn_eje8b" type="reset" value="Limpiar"></input>
         <input class="btn btn-primary" name="btn_eje8" type="submit" value="Enviar"></input>
     </div>
 </form>

@@ -14,7 +14,7 @@ include_once("../estructura/cabeceraBT.php");
             <li>El campo duración debe permitir un máximo de 3 números.</li>
             <li>Todos los datos son obligatorios.</li>
             <li>Al hacer click en el botón “Enviar”, se deberán mostrar todos los datos ingresados en el formulario.</li>
-            <li>El botón “Borrar” debe limpiar el formulario.</li>
+            <li>El botón “Limpiar” debe limpiar el formulario.</li>
         </ul>
     </div>
 </div>
@@ -132,7 +132,7 @@ include_once("../estructura/cabeceraBT.php");
     </div>
     <!-- Botones -->
     <div class="text-center mb-5">
-        <input class="btn btn-danger btn-lg" name="btn_eje4_tp2b" type="reset" value="Borrar"></input>
+        <input class="btn btn-danger btn-lg" name="btn_eje4_tp2b" type="reset" value="Limpiar"></input>
         <input class="btn btn-primary btn-lg" name="btn_eje4_tp2" type="submit" value="Enviar"></input>
     </div>
 </form>

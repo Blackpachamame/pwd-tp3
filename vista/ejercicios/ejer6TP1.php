@@ -33,7 +33,6 @@ include_once("../estructura/cabeceraBT.php");
             <label for="direccion">Dirección</label>
             <textarea class="form-control" name="direccion" id="direccion" placeholder="Escriba su direccion completa" required></textarea>
         </div>
-
     </div>
     <!-- Nivel de estudio -->
     <div class="row mx-md-3 justify-content-center justify-content-md-start">

@@ -1,4 +1,4 @@
-//EJERCICIO 3
+//EJERCICIO 3 - TP1
 $(document).ready(function () {
     $('#eje3').bootstrapValidator({
         message: 'Este valor no es valido',
@@ -16,7 +16,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -28,7 +28,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -53,7 +53,7 @@ $(document).ready(function () {
     });
 });
 
-//EJERCICIO 4
+//EJERCICIO 4 - TP1
 $(document).ready(function () {
     $('#eje4').bootstrapValidator({
         message: 'Este valor no es valido',
@@ -71,7 +71,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -83,7 +83,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -108,7 +108,7 @@ $(document).ready(function () {
     });
 });
 
-//EJERCICIO 5
+//EJERCICIO 5 - TP1
 $(document).ready(function () {
     $('#eje5').bootstrapValidator({
         message: 'Este valor no es valido',
@@ -126,7 +126,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -138,7 +138,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -177,7 +177,7 @@ $(document).ready(function () {
     });
 });
 
-//EJERCICIO 6
+//EJERCICIO 6 - TP1
 $(document).ready(function () {
     $('#eje6').bootstrapValidator({
         message: 'Este valor no es valido',
@@ -195,7 +195,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -207,7 +207,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -345,7 +345,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -505,7 +505,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: ' La primer letra en mayuscula. Solo letras.'
+                        message: ' La primer letra en mayúscula. Solo letras.'
                     }
                 }
             },
@@ -534,7 +534,6 @@ $(document).ready(function () {
     });
 });
 
-
 //EJERCICIO 2 - TP4
 $(document).ready(function () {
     $('#tp4_eje2').bootstrapValidator({
@@ -548,11 +547,209 @@ $(document).ready(function () {
             Patente: {
                 validators: {
                     notEmpty: {
-                        message: ' Se requiere colocar una patente'
+                        message: ' Debe ingresar una patente'
                     },
                     regexp: {
                         regexp: /^[A-ZÑ]{3}\s\d{3}$/,
                         message: ' Debe ser con este formato: LLL NNN.'
+                    }
+                }
+            }
+        },
+    });
+});
+
+//EJERCICIO 4 - TP4
+$(document).ready(function () {
+    $('#tp4_eje4').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            Nombre: {
+                message: 'Nombre no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere el nombre de usuario'
+                    },
+                    regexp: {
+                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
+                        message: ' La primer letra en mayúscula. Solo letras.'
+                    }
+                }
+            },
+            Apellido: {
+                message: 'Apellido no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' El apellido es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
+                        message: ' La primer letra en mayúscula. Solo letras.'
+                    }
+                }
+            },
+            NroDni: {
+                message: 'Dni no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' El Dni es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^\d{8}$/,
+                        message: ' Debe ingresar 8 dígitos.'
+                    }
+                }
+            },
+            Domicilio: {
+                message: 'Domicilio invalido',
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere un domicilio'
+                    }
+                }
+            },
+            fechaNac: {
+                validators: {
+                    notEmpty: {
+                        message: ' Debe ingresar una fecha'
+                    }
+                }
+            },
+            Telefono: {
+                validators: {
+                    notEmpty: {
+                        message: ' Ingrese nro de teléfono'
+                    }
+                }
+            }
+        },
+    });
+});
+
+//EJERCICIO 5 - TP4
+$(document).ready(function () {
+    $('#tp4_eje5').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            Patente: {
+                validators: {
+                    notEmpty: {
+                        message: ' Ingrese una patente'
+                    },
+                    regexp: {
+                        regexp: /^[A-ZÑ]{3}\s\d{3}$/,
+                        message: ' Formato: LLL NNN.'
+                    }
+                }
+            },
+            Marca: {
+                message: 'Apellido no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' Ingrese una marca'
+                    }
+                }
+            },
+            DniDuenio: {
+                message: 'Dni no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' El Dni es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^\d{8}$/,
+                        message: ' Debe ingresar 8 dígitos.'
+                    }
+                }
+            },
+            Modelo: {
+                validators: {
+                    notEmpty: {
+                        message: ' Ingrese un modelo'
+                    }
+                }
+            }
+        },
+    });
+});
+
+//EJERCICIO 6 - TP4
+$(document).ready(function () {
+    $('#tp4_eje6').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            Patente: {
+                validators: {
+                    notEmpty: {
+                        message: ' Debe ingresar una patente'
+                    },
+                    regexp: {
+                        regexp: /^[A-ZÑ]{3}\s\d{3}$/,
+                        message: ' Formato: LLL NNN.'
+                    }
+                }
+            },
+            DniDuenio: {
+                message: 'Dni no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' El Dni es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^\d{8}$/,
+                        message: ' Debe ingresar 8 dígitos.'
+                    }
+                }
+            },
+            Dnicambio: {
+                message: 'Dni no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' El Dni es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^\d{8}$/,
+                        message: ' Debe ingresar 8 dígitos.'
+                    }
+                }
+            }
+        },
+    });
+});
+
+//EJERCICIO 7 - TP4
+$(document).ready(function () {
+    $('#tp4_eje7').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            NroDni: {
+                validators: {
+                    notEmpty: {
+                        message: ' El Dni es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^\d{8}$/,
+                        message: ' Debe ingresar 8 dígitos.'
                     }
                 }
             }
