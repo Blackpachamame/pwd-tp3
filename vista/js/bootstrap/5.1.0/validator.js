@@ -725,6 +725,10 @@ $(document).ready(function () {
                     regexp: {
                         regexp: /^\d{8}$/,
                         message: ' Debe ingresar 8 dígitos.'
+                    },
+                    different: {
+                        field: 'DniDuenio',
+                        message: ' Debe ser distinto al dni del dueño'
                     }
                 }
             }

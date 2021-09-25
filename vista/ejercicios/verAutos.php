@@ -7,15 +7,18 @@ $listaTabla = $objAbmTabla->buscar(null);
 ?>
 
 <h2 class="mt-5">ABM - Autos</h2>
-<div class="card mb-5">
+<div class="card mb-4">
   <div class="card-body">
     <h4 class="card-title border-bottom">Consigna</h4>
-    <p class="card-text">Crear una pagina "buscarAuto.php" que contenga un formulario en donde se solicite el numero de patente de un auto, estos datos deberán ser enviados a una pagina “accionBuscarAuto.php” en donde usando la clase de control correspondiente, se soliciten los datos completos del auto que se corresponda con la patente ingresada y mostrar los datos en una tabla. También deberán mostrar los carteles que crean convenientes en caso de que no se encuentre ningún auto con la patente ingresada.</p>
-    <p class="card-text">Utilizar css y validaciones javaScript cuando crea conveniente. Recordar usar la capa de control antes generada, no se puede acceder directamente a las clases del ORM.</p>
+    <p class="card-text">Crear una pagina php “VerAutos.php”, en ella usando la capa de control correspondiente mostrar todos los datos de los autos que se encuentran cargados, de los dueños mostrar nombre y apellido. En caso de que no se encuentre ningún auto cargado en la base mostrar un mensaje indicando que no hay autos cargados.</p>
   </div>
 </div>
 
 <div class="row mb-5" id="tp4_eje1">
+  <!-- Boton Agregar Auto -->
+  <div class="mb-2 d-flex justify-content-end">
+    <a class="btn btn-primary" href="../ejercicios/nuevoAuto.php" role="button"><i class="fas fa-plus"></i> Nuevo Auto</a>
+  </div>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -35,19 +38,24 @@ $listaTabla = $objAbmTabla->buscar(null);
         echo '<tbody>';
         foreach ($listaTabla as $objTabla) {
           $dniDu = $objTabla->getDniDuenio();
-          echo '<tr>';
+          echo '<tr class="align-middle">';
           echo '<th scope="row">' . $i . '</th>';
           echo '<td>' . $objTabla->getPatente() . '</td>';
           echo '<td>' . $objTabla->getMarca() . '</td>';
           echo '<td>' . $objTabla->getModelo() . '</td>';
           echo '<td>' . $dniDu . '</td>';
-          echo '<td class="text-center"><a href="cambioDuenio.php"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></button><a/>
-          <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td>';
+          echo '<td class="text-center"><a href="cambioDuenio.php" class="btn btn-success btn-sm" role="button"><i class="fas fa-pen"></i><a/>
+          <a href="eliminarPersona.php" class="btn btn-danger btn-sm disabled" role="button"><i class="fas fa-trash-alt"></i><a/></td>';
           echo '</tr>';
           $i++;
         }
         echo '</tbody>';
         echo '</table>';
+      } else {
+        echo "<div class='alert alert-success d-flex align-items-center mt-5' role='alert'>
+        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
+        <div>ERROR: No se encontraron autos en la Base de Datos.</div>
+        </div>";
       }
 
       ?>

@@ -13,7 +13,9 @@ $unAuto = $objAbmAuto->buscar($datos);
 
     <?php
     if (count($unAuto) > 0) {
-        echo "<div><div class='alert alert-success mt-5' role='alert'>¡Auto encontrado!</div></div>";
+        echo "<div><div class='alert alert-success d-flex align-items-center mt-5' role='alert'>
+            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
+            <div>¡Auto encontrado!</div></div></div>";
         $i = 1;
         echo "<div class='table-responsive'>
                 <table class='table table-striped'>
@@ -42,7 +44,9 @@ $unAuto = $objAbmAuto->buscar($datos);
         echo '</table>';
         echo '</div>';
     } else {
-        echo "<div><div class='alert alert-danger mt-5' role='alert'>No se encontro ningún auto con la patente ingresada.</div></div>";
+        echo "<div><div class='alert alert-danger d-flex align-items-center mt-5' role='alert'>
+            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+            <div>No se encontro ningún auto con la patente ingresada.</div></div></div>";
     }
 
     ?>

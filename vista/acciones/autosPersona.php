@@ -1,5 +1,4 @@
 <?php
-
 $Titulo = "Acción 3 - TP4";
 include_once("../estructura/cabeceraBT.php");
 
@@ -19,7 +18,9 @@ print_r($listaAutoPersona);*/
 
   <?php
   if (count($listaAutoPersona) > 0) {
-    echo "<div><div class='alert alert-success mt-5' role='alert'>Esta persona es dueña de los siguientes autos.</div></div>";
+    echo "<div><div class='alert alert-success d-flex align-items-center mt-5' role='alert'>
+            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
+            <div>Esta persona es dueña de los siguientes autos.</div></div></div>";
     $i = 1;
     echo "<div class='table-responsive'>
                 <table class='table table-striped'>
@@ -35,7 +36,6 @@ print_r($listaAutoPersona);*/
                     </thead>
                     <tbody>";
     foreach ($listaAutoPersona as $objAutoPersona) {
-      //echo $objAutoPersona->getDniDuenio();
       $dniDu = $objAutoPersona->getDniDuenio();
 
       if ($dni != "") {
@@ -54,7 +54,9 @@ print_r($listaAutoPersona);*/
     echo '</table>';
     echo '</div>';
   } else {
-    echo "<div><div class='alert alert-danger mt-5' role='alert'>Esta persona no tiene autos.</div></div>";
+    echo "<div><div class='alert alert-danger d-flex align-items-center mt-5' role='alert'>
+            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+            <div>Esta persona no tiene autos.</div></div></div>";
   }
   ?>
 

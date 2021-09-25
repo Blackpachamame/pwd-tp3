@@ -2,18 +2,12 @@
 $Titulo = "Ejercicio 3 - TP4";
 include_once("../estructura/cabeceraBT.php");
 
-/* Crear una página "listaPersonas.php" que muestre un listado con las personas que se
-encuentran cargadas y un link a otra página “autosPersona.php” que recibe un dni de una persona y muestra
-los datos de la persona y un listado de los autos que tiene asociados. Recordar usar la capa de control antes
-generada, no se puede acceder directamente a las clases del ORM.*/
-
 $objAbmTabla = new AbmPersona();
 $listaTabla = $objAbmTabla->buscar(null);
-
 ?>
 
 <h2 class="mt-5">Listar Personas</h2>
-<div class="card mb-5">
+<div class="card mb-4">
   <div class="card-body">
     <h4 class="card-title border-bottom">Consigna</h4>
     <p class="card-text">Crear una página "listaPersonas.php" que muestre un listado con las personas que se encuentran cargadas y un link a otra página “autosPersona.php” que recibe un dni de una persona y muestra los datos de la persona y un listado de los autos que tiene asociados. Recordar usar la capa de control antes generada, no se puede acceder directamente a las clases del ORM.</p>
@@ -22,6 +16,10 @@ $listaTabla = $objAbmTabla->buscar(null);
 
 
 <div class="row mb-5" id="tp4_eje3">
+  <!-- Boton Agregar Persona -->
+  <div class="mb-2 d-flex justify-content-end">
+    <a class="btn btn-primary" href="../ejercicios/nuevaPersona.php" role="button"><i class="fas fa-plus"></i> Nueva Persona</a>
+  </div>
   <form id="DniDuenio" name="autosPersona" action="../acciones/autosPersona.php" method="post">
     <div class="table-responsive">
       <table class="table table-striped">
@@ -43,7 +41,8 @@ $listaTabla = $objAbmTabla->buscar(null);
           $i = 1;
           echo '<tbody>';
           foreach ($listaTabla as $objTabla) {
-            echo '<tr>';
+            $dni = $objTabla->getNroDni();
+            echo '<tr class="align-middle">';
             echo '<th scope="row">' . $i . '</th>';
             echo '<td>' . $objTabla->getNroDni() .    '</td>';
             echo '<td>' . $objTabla->getApellido() .  '</td>';
@@ -51,8 +50,10 @@ $listaTabla = $objAbmTabla->buscar(null);
             echo '<td>' . $objTabla->getfechaNac() .  '</td>';
             echo '<td>' . $objTabla->getTelefono() .  '</td>';
             echo '<td>' . $objTabla->getDomicilio() . '</td>';
-            //echo '<input type="hidden" id="DniDuenio" name="DniDuenio" value="' . $objTabla->getNroDni() . '" />';
-            echo '<td class="text-center"> <input type="submit" id="DniDuenio" name="DniDuenio" value="' . $objTabla->getNroDni() . '" /></td>';
+            echo "<td class='text-center'>
+                <button class='btn btn-warning btn-sm' id='DniDuenio' name='DniDuenio' value='" . $dni . "' type='submit'>
+                <i class='fas fa-eye'></i></button></td>";
+            //echo '<td class="text-center"> <input type="submit" id="DniDuenio" name="DniDuenio" value="' . $dni . '"></td>';
             echo '</tr>';
             $i++;
           }

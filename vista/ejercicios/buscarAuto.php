@@ -1,5 +1,4 @@
 <?php
-
 $Titulo = "Ejercicio 2 - TP4";
 include_once("../estructura/cabeceraBT.php");
 

@@ -13,39 +13,47 @@ $unaPersona = $objAbmPersona->buscar($datos);
 
         <?php
         if (count($unaPersona) > 0) {
-            echo "<div><div class='alert alert-success mt-5' role='alert'>¡Persona encontrada!</div></div>";
+            echo "<div class='alert alert-success d-flex align-items-center mt-5' role='alert'>
+            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
+            <div>¡Persona encontrada!</div></div>";
             $i = 1;
             echo "<div class='table-responsive'>
                 <table class='table table-striped'>
                     <thead>
-                        <tr>
+                        <tr class='align-middle'>
                             <th scope=''>#</th>
                             <th scope='col'>Apellido</th>
                             <th scope='col'>Nombre</th>
                             <th scope='col'>Fecha nacimiento</th>
-                            <th scope='col'>Telefono</th>
+                            <th scope='col'>Teléfono</th>
                             <th scope='col'>Domicilio</th>
                             <th scope='col'>Dni</th>
+                            <th class='d-none' scope='col'>#</th>                      
+                            <th scope='col'>Editar</th>
                         </tr>
                     </thead>
                     <tbody>";
             foreach ($unaPersona as $personaEncontrado) {
                 $dniDu = $personaEncontrado->getNroDni();
-                echo '<tr>';
+                $apellido = $personaEncontrado->getApellido();
+                $nombre = $personaEncontrado->getNombre();
+                $fecha = $personaEncontrado->getfechaNac();
+                $tel = $personaEncontrado->getTelefono();
+                $domi = $personaEncontrado->getDomicilio();
+
+                echo '<tr class="align-middle">';
                 echo '<th scope="row">' . $i . '</th>';
-                echo '<td><input id="Apellido" name="Apellido"  type= "text" value=' . $personaEncontrado->getApellido() . '>' . '</td>';
-                echo '<td><input type= "text" id="Nombre" name="Nombre" value=' . $personaEncontrado->getNombre() . '>' . '</td>';
-                echo '<td><input type= "text" id="fechaNac" name="fechaNac" value=' . $personaEncontrado->getfechaNac() . '>' . '</td>';
-                echo '<td><input type= "text" id="Telefono" name="Telefono" value=' . $personaEncontrado->getTelefono() . '>' . '</td>';
-                echo '<td><input type= "text" id="Domicilio" name="Domicilio" value=' . $personaEncontrado->getDomicilio() . '>' . '</td>';
-                // echo '<td>' . $personaEncontrado->getNombre() . '</td>';
-                // echo '<td>' . $personaEncontrado->getfechaNac() . '</td>';
-                // echo '<td>' . $personaEncontrado->getTelefono() . '</td>';
-                // echo '<td>' . $personaEncontrado->getDomicilio() . '</td>';
+                echo '<td><input class="w-100" type="text" id="Apellido" name="Apellido" value="' . $apellido . '">' . '</td>';
+                echo '<td><input class="w-100" type="text" id="Nombre" name="Nombre" value="' . $nombre . '">' . '</td>';
+                echo '<td><input class="w-100" type="text" id="fechaNac" name="fechaNac" value="' . $fecha . '">' . '</td>';
+                echo '<td><input class="w-100" type="text" id="Telefono" name="Telefono" value="' . $tel . '">' . '</td>';
+                echo '<td><input class="w-100" type="text" id="Domicilio" name="Domicilio" value="' . $domi . '">' . '</td>';
                 echo '<td>' . $dniDu . '</td>';
-                echo '<td><input id="NroDni" name="NroDni"  type="hidden" value="' . $dniDu . '">' . '</td>';
-                //echo "<input id='accion' name='accion' value='editar' class='btn btn-primary' type='submit'>";
-                echo "<td class='text-center'><input id='accion' name='accion' value='editar' type='submit'><button type='button' class='btn btn-success btn-sm'><i class='fas fa-pen'></i></button></input></td>";
+                echo '<td class="d-none"><input id="NroDni" name="NroDni" type="hidden" value="' . $dniDu . '">' . '</td>';
+                //<input id='accion' name='accion' value='editar' type='submit'>
+                echo "<td class='text-center'>
+                <button class='btn btn-success btn-sm' id='accion' name='accion' value='editar' type='submit'>
+                <i class='fas fa-pen'></i></button></td>";
                 echo '</tr>';
                 $i++;
             }
@@ -53,15 +61,16 @@ $unaPersona = $objAbmPersona->buscar($datos);
             echo '</table>';
             echo '</div>';
         } else {
-            echo "<div><div class='alert alert-danger mt-5' role='alert'>No se encontro ninguna persona con ese dni.</div></div>";
+            echo "<div class='alert alert-danger d-flex align-items-center mt-5' role='alert'>
+            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+            <div>No se encontro ninguna persona con ese dni.</div></div>";
         }
 
         ?>
 
         <!-- Botones -->
-        <div class="my-5">
+        <div class="mb-5">
             <a class="btn btn-dark" href="../ejercicios/buscarPersona.php" role="button"><i class="fas fa-angle-double-left"></i> Regresar</a>
-            <!-- <a class='btn btn-primary' type='submit' id='accion' name='accion' value='editar'>Editar <i class="fas fa-angle-double-right"></i></a>-->
         </div>
     </form>
 </div>

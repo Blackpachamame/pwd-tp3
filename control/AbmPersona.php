@@ -44,7 +44,6 @@ class AbmPersona
         return $obj;
     }
 
-
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
@@ -71,8 +70,8 @@ class AbmPersona
         $encuentraPer = $this->buscar($buscar2);
 
         if ($encuentraPer == null) {
-            $elObjtTabla = $this->cargarObjeto($param);
-            if ($elObjtTabla != null and $elObjtTabla->insertar()) {
+            $elObjtPersona = $this->cargarObjeto($param);
+            if ($elObjtPersona != null and $elObjtPersona->insertar()) {
                 $resp = true;
             }
         }
@@ -89,8 +88,8 @@ class AbmPersona
     {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $elObjtTabla = $this->cargarObjetoConClave($param);
-            if ($elObjtTabla != null and $elObjtTabla->eliminar()) {
+            $elObjtPersona = $this->cargarObjetoConClave($param);
+            if ($elObjtPersona != null and $elObjtPersona->eliminar()) {
                 $resp = true;
             }
         }
@@ -110,10 +109,6 @@ class AbmPersona
             $buscar2 = array();
             $buscar2['NroDni'] = $param['NroDni'];
             $lapersona = $this->buscar($buscar2);
-            //var_dump($lapersona);
-            //$cambiodni = (array_key_exists('Apellido', $param)); 
-            //var_dump($param,$lapersona);
-            var_dump($lapersona);
             if ($lapersona != null) {
                 $lapersona[0]->setApellido($param['Apellido']);
                 $lapersona[0]->setNombre($param['Nombre']);
@@ -125,6 +120,7 @@ class AbmPersona
                 }
             }
         }
+
         return $resp;
     }
 
