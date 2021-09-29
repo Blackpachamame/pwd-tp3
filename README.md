@@ -2,12 +2,12 @@
 
 ## Tabla de contenido
 
-- [Descripción](#descripción-📝)
-  - [Objetivo](#objetivo-📌)
-- [Mi Procedimiento](#mi-procedimiento)
-  - [Construido con](#construido-con-🔧)
-  - [Lo que aprendimos](#lo-que-aprendimos)
-  - [Recursos útiles](#recursos-útiles-👈)
+- [Descripción](#descripción-)
+  - [Objetivo](#objetivo-)
+- [Mi Procedimiento](#mi-procedimiento-)
+  - [Construido con](#construido-con-)
+  - [Lo que aprendimos](#lo-que-aprendimos-)
+  - [Recursos útiles](#recursos-útiles-)
 
 ## Descripción 📝
 
