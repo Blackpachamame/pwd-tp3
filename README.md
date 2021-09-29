@@ -6,7 +6,7 @@
   - [Objetivo](#objetivo-📌)
 - [Mi Procedimiento](#mi-procedimiento)
   - [Construido con](#construido-con-🔧)
-  - [Lo que aprendimos](#custom-id)
+  - [Lo que aprendimos](#lo-que-aprendimos-:nerd_face:)
   - [Recursos útiles](#recursos-útiles-👈)
 
 ## Descripción 📝
@@ -31,7 +31,7 @@ Validar todos los formularios que se implementen en cada uno de los ejercicios d
 - PHP
 - Visual Studio Code
 
-### Lo que aprendimos 🤓 {#custom-id}
+### Lo que aprendimos 🤓
 
 - Subir archivos
 - Restringir el tipo, tamaño y las dimensiones de los archivos a subir
