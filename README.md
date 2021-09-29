@@ -6,7 +6,7 @@
   - [Objetivo](#objetivo-📌)
 - [Mi Procedimiento](#mi-procedimiento)
   - [Construido con](#construido-con-🔧)
-  - [Lo que aprendimos](#lo-que-aprendimos-:nerd_face:)
+  - [Lo que aprendimos](#lo-que-aprendimos)
   - [Recursos útiles](#recursos-útiles-👈)
 
 ## Descripción 📝
