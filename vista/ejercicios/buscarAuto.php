@@ -15,9 +15,9 @@ $listaTabla = $objAbmTabla->buscar(null);
     </div>
 </div>
 
-<form class="row" id="tp4_eje2" name="tp4_eje2" method="POST" action="../acciones/accionBuscarAuto.php">
+<form class="row mb-5" id="tp4_eje2" name="tp4_eje2" method="POST" action="../acciones/accionBuscarAuto.php">
     <div class="col-7 col-lg-6 col-xl-4">
-        <div class="input-group mb-5">
+        <div class="input-group">
             <input type="text" class="form-control" name="Patente" id="Patente" placeholder="Ingrese una patente" aria-label="Ingrese una patente" aria-describedby="patente" required>
             <button class="btn btn-primary" type="submit" id="Patente">Buscar</button>
         </div>

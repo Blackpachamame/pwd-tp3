@@ -122,7 +122,7 @@ class controlArchivos
             $todoOK = false;
         }
 
-        /* Comprobamos el ancho y alto de la imagen, 
+        /* Comprobamos el ancho y alto de la imagen para mantener una misma relación de aspecto, 
         getimagesize nos devuelve el ancho y alto de la imagen */
         if ($todoOK) {
             $image_info = getimagesize($_FILES['imagen']['tmp_name']);
@@ -141,7 +141,7 @@ class controlArchivos
                 $alto_limite = true;
             }
 
-            /* Controlamos las dimenciones de la imagen */
+            /* Controlamos las dimensiones de la imagen */
             if (!((($ancho_limite) && ($alto_limite)))) {
                 $error = "ERROR: La imagen no cumple con las dimensiones establecidas.";
                 $todoOK = false;

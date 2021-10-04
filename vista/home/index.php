@@ -11,7 +11,7 @@ $arreglo = $obj->obtenerArchivos();
     <div class="mt-3 mb-3">
         <img alt="Programación Web Dinámica" class="mt-3 mb-3" src="../img/logoPWD2.png" width="25%">
         <h2 class="mt-2"><strong>Programación Web Dinámica</strong></h2>
-        <h5 class="mb-3">HTML - CSS - JAVASCRIPT - BOOSTRAP</h5>
+        <h5 class="mb-3">HTML - CSS - JAVASCRIPT - PHP - BOOSTRAP</h5>
     </div>
 </div>
 
