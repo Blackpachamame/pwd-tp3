@@ -6,7 +6,6 @@ include_once("../estructura/cabeceraBT.php");
 $datos = data_submitted();
 $objAbmAuto = new AbmAuto();
 $unAuto = $objAbmAuto->buscar($datos);
-
 ?>
 
 <div class="row mb-5">

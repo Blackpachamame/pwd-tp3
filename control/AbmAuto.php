@@ -16,7 +16,6 @@ class AbmAuto
             and array_key_exists('Marca', $param)
             and array_key_exists('Modelo', $param)
             and array_key_exists('Duenio', $param));
-        //var_dump($param['Patente']);
 
         if ($cambiodni) {
             $obj = new Auto();
@@ -24,6 +23,7 @@ class AbmAuto
         }
         return $obj;
     }
+
 
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
@@ -47,7 +47,6 @@ class AbmAuto
      * @param array $param
      * @return boolean
      */
-
     private function seteadosCamposClaves($param)
     {
         $resp = false;
@@ -56,8 +55,9 @@ class AbmAuto
         return $resp;
     }
 
+
     /**
-     * 
+     * ALTA
      * @param array $param
      */
     public function alta($param)
@@ -79,8 +79,9 @@ class AbmAuto
         return $resp;
     }
 
+
     /**
-     * permite eliminar un objeto 
+     * BAJA 
      * @param array $param
      * @return boolean
      */
@@ -93,12 +94,12 @@ class AbmAuto
                 $resp = true;
             }
         }
-
         return $resp;
     }
 
+
     /**
-     * permite modificar un objeto
+     * MODIFICACION
      * @param array $param
      * @return boolean
      */
@@ -107,20 +108,17 @@ class AbmAuto
         //echo "Estoy en modificacion";
         $resp = false;
         $seteados = $this->seteadosCamposClaves($param);
-        var_dump($seteados);
+        //var_dump($seteados);
         if ($this->seteadosCamposClaves($param)) {
             $elAuto = new Auto();
-            $filtro=array();
-            $filtro['Patente'] = $param['Patente'];            
+            $filtro = array();
+            $filtro['Patente'] = $param['Patente'];
             $elAuto = $this->buscar($filtro);
             //var_dump($elAuto);                
-                $elAuto[0]->setDuenio($param['Duenio']);
-                if ($elAuto[0] != null and $elAuto[0]->modificar()) {
-                    $resp = true;
-                }         
-                             
-            
-
+            $elAuto[0]->setDuenio($param['Duenio']);
+            if ($elAuto[0] != null and $elAuto[0]->modificar()) {
+                $resp = true;
+            }
         }
         return $resp;
     }
@@ -141,7 +139,7 @@ class AbmAuto
     //             $filtro['Dnicambio'] = $param['Dnicambio'];
     //             $duenio = $ambDuenio->buscar($filtro);
     //             //var_dump($duenio);
-                
+
     //             $elAuto[0]->setDuenio($duenio[0]->getNroDni());
     //             if ($elAuto[0] != null and $elAuto[0]->modificar()) {
     //                 $resp = true;
@@ -156,7 +154,7 @@ class AbmAuto
     //                 }
     //             }
     //         }            
-            
+
     //         //var_dump($param);            
     //         //$elObjtTabla = $this->cargarObjeto($param);
     //         //var_dump($elObjtTabla); 
@@ -167,8 +165,9 @@ class AbmAuto
     //     return $resp;
     // }
 
+
     /**
-     * permite buscar un objeto
+     * BUSCAR
      * @param array $param
      * @return array||Auto
      */
@@ -185,7 +184,6 @@ class AbmAuto
             if (isset($param['Duenio']))
                 $where .= " and Duenio ='" . $param['Duenio'] . "'";
         }
-
         $arreglo = Auto::listar($where);
         return $arreglo;
     }

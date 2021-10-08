@@ -5,19 +5,20 @@ class Auto
     private $Marca;
     private $Modelo;
     private $Duenio;
-
     private $mensajeoperacion;
 
 
+    /** CONSTRUCTOR **/
     public function __construct()
     {
-
         $this->Patente = "";
         $this->Marca = "";
         $this->Modelo = "";
         $this->Duenio = new Persona();
         $this->mensajeoperacion = "";
     }
+
+    /** SETEAR **/
     public function setear($Patente, $Marca, $Modelo, $Duenio)
     {
         $this->setPatente($Patente);
@@ -26,12 +27,12 @@ class Auto
         $this->setDuenio($Duenio);
     }
 
-
-
+    /** GETS Y SETS **/
     public function getPatente()
     {
         return $this->Patente;
     }
+
     public function setPatente($valor)
     {
         $this->Patente = $valor;
@@ -41,33 +42,32 @@ class Auto
     {
         return $this->Marca;
     }
+
     public function setMarca($valor)
     {
         $this->Marca = $valor;
     }
-    public function getModelo()    {
+
+    public function getModelo()
+    {
         return $this->Modelo;
     }
+
     public function setModelo($valor)
     {
         $this->Modelo = $valor;
     }
-    /**
-     * permite buscar un objeto
-     * @return Persona
-     */
+
     public function getDuenio()
     {
         return $this->Duenio;
     }
 
-    
     public function setDuenio($valor)
     {
-                var_dump($valor);
-        $duenio =$this->getDuenio();
+        //var_dump($valor);
+        $duenio = $this->getDuenio();
         $duenio->setNroDni($valor);
-        
         $this->Duenio = $duenio;
         $this->Duenio->cargar();
 
@@ -85,6 +85,7 @@ class Auto
     }
 
 
+    /** CARGAR **/
     public function cargar()
     {
         $resp = false;
@@ -104,12 +105,13 @@ class Auto
         return $resp;
     }
 
+
+    /** INSERTAR **/
     public function insertar()
     {
         $resp = false;
         $base = new BaseDatos();
-        //$sentencia="INSERT INTO auto(Patente,Marca,Modelo,Dni_Duenio)  VALUES('".$this->getPatente()."','".$this->getMarca()."','.$this->getModelo()','".$this->getDni_Duenio()."');";
-        $sql = "INSERT INTO auto(Patente,Marca,Modelo,Duenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','".$this->getModelo()."','" . $this->getDuenio() . "');";
+        $sql = "INSERT INTO auto(Patente,Marca,Modelo,Duenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','" . $this->getModelo() . "','" . $this->getDuenio() . "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setPatente($elid);
@@ -123,6 +125,8 @@ class Auto
         return $resp;
     }
 
+
+    /** MODIFICAR **/
     public function modificar()
     {
         $resp = false;
@@ -143,6 +147,8 @@ class Auto
         return $resp;
     }
 
+
+    /** ELIMINAR **/
     public function eliminar()
     {
         $resp = false;
@@ -160,6 +166,8 @@ class Auto
         return $resp;
     }
 
+
+    /** LISTAR **/
     public static function listar($parametro = "")
     {
         $arreglo = array();
@@ -168,11 +176,9 @@ class Auto
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
-        //var_dump($sql);
         $res = $base->Ejecutar($sql);
         if ($res > -1) {
             if ($res > 0) {
-
                 while ($row = $base->Registro()) {
                     $obj = new Auto();
                     $persona = new Persona();
@@ -186,7 +192,6 @@ class Auto
         } else {
             //$this->setmensajeoperacion("Tabla->listar: ".$base->getError());
         }
-
         return $arreglo;
     }
 }

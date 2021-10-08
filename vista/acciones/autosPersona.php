@@ -7,13 +7,6 @@ $objAbmPersona = new AbmPersona();
 $dni = $datos['NroDni'];
 $persona = $objAbmPersona->buscar($datos);
 $arrayautos = $persona[0]->getArrayAutos();
-//var_dump($arrayautos);
-//var_dump($persona);
-/*print_r($dni);
-echo "<br>";
-print_r($datos);
-echo "<br>";
-print_r($persona);*/
 ?>
 
 
