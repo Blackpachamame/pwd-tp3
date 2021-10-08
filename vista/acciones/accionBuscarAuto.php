@@ -30,7 +30,7 @@ $unAuto = $objAbmAuto->buscar($datos);
                     </thead>
                     <tbody>";
         foreach ($unAuto as $autoEncontrado) {
-            $dniDu = $autoEncontrado->getDniDuenio();
+            $dniDu = $autoEncontrado->getDuenio();
             echo '<tr>';
             echo '<th scope="row">' . $i . '</th>';
             echo '<td>' . $autoEncontrado->getPatente() . '</td>';

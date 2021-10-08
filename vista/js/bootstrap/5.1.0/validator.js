@@ -660,7 +660,7 @@ $(document).ready(function () {
                     }
                 }
             },
-            DniDuenio: {
+            Duenio: {
                 message: 'Dni no valido',
                 validators: {
                     notEmpty: {
@@ -704,7 +704,7 @@ $(document).ready(function () {
                     }
                 }
             },
-            DniDuenio: {
+            Duenio: {
                 message: 'Dni no valido',
                 validators: {
                     notEmpty: {
@@ -727,7 +727,7 @@ $(document).ready(function () {
                         message: ' Debe ingresar 8 dígitos.'
                     },
                     different: {
-                        field: 'DniDuenio',
+                        field: 'Duenio',
                         message: ' Debe ser distinto al dni del dueño'
                     }
                 }

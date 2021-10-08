@@ -15,12 +15,12 @@ class AbmAuto
         $cambiodni = (array_key_exists('Patente', $param)
             and array_key_exists('Marca', $param)
             and array_key_exists('Modelo', $param)
-            and array_key_exists('DniDuenio', $param));
+            and array_key_exists('Duenio', $param));
         //var_dump($param['Patente']);
 
         if ($cambiodni) {
             $obj = new Auto();
-            $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['DniDuenio']);
+            $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['Duenio']);
         }
         return $obj;
     }
@@ -65,10 +65,10 @@ class AbmAuto
         $resp = false;
         $buscarPatente = array();
         $buscarPatente['Patente'] = $param['Patente'];
-        $buscarDniDuenio = array();
-        $buscarDniDuenio['DniDuenio'] = $param['DniDuenio'];
+        $buscarDuenio = array();
+        $buscarDuenio['Duenio'] = $param['Duenio'];
         $encuentraPat = $this->buscar($buscarPatente);
-        $encuentraDni = $this->buscar($buscarDniDuenio);
+        $encuentraDni = $this->buscar($buscarDuenio);
 
         if ($encuentraPat == null && $encuentraDni != null) {
             $elObjtTabla = $this->cargarObjeto($param);
@@ -106,26 +106,66 @@ class AbmAuto
     {
         //echo "Estoy en modificacion";
         $resp = false;
+        $seteados = $this->seteadosCamposClaves($param);
+        var_dump($seteados);
         if ($this->seteadosCamposClaves($param)) {
             $elAuto = new Auto();
-            $elAuto = $this->buscar($param);
-            //var_dump($elAuto);
-            $cambiodni = (array_key_exists('Dnicambio', $param));
-            if ($cambiodni) {
-                $elAuto[0]->setDniDuenio($param['Dnicambio']);
+            $filtro=array();
+            $filtro['Patente'] = $param['Patente'];            
+            $elAuto = $this->buscar($filtro);
+            //var_dump($elAuto);                
+                $elAuto[0]->setDuenio($param['Duenio']);
                 if ($elAuto[0] != null and $elAuto[0]->modificar()) {
                     $resp = true;
-                }
-            }
-            //var_dump($param);            
-            //$elObjtTabla = $this->cargarObjeto($param);
-            //var_dump($elObjtTabla); 
-            // else if ($elAuto != null and $elAuto->modificar()) {
-            //     $resp = true;
-            // }
+                }         
+                             
+            
+
         }
         return $resp;
     }
+
+
+    // public function modificacion($param)
+    // {
+    //     //echo "Estoy en modificacion";
+    //     $resp = false;
+    //     if ($this->seteadosCamposClaves($param)) {
+    //         $elAuto = new Auto();
+    //         $elAuto = $this->buscar($param);
+    //         //var_dump($elAuto);
+    //         $cambiodni = (array_key_exists('Dnicambio', $param));
+    //         if ($cambiodni) {
+    //             $ambDuenio= new AbmPersona();
+    //             $filtro= array();
+    //             $filtro['Dnicambio'] = $param['Dnicambio'];
+    //             $duenio = $ambDuenio->buscar($filtro);
+    //             //var_dump($duenio);
+                
+    //             $elAuto[0]->setDuenio($duenio[0]->getNroDni());
+    //             if ($elAuto[0] != null and $elAuto[0]->modificar()) {
+    //                 $resp = true;
+    //             }
+    //         }
+    //         else{
+    //             if ($elAuto != null) {
+    //                 $elAuto[0]->setear($param['Patente'],$param['Marca'],
+    //                 $param['Modelo'],$param['DniDueño']);                
+    //                 if ($elAuto[0] != null and $elAuto[0]->modificar()) {
+    //                     $resp = true;
+    //                 }
+    //             }
+    //         }            
+            
+    //         //var_dump($param);            
+    //         //$elObjtTabla = $this->cargarObjeto($param);
+    //         //var_dump($elObjtTabla); 
+    //         // else if ($elAuto != null and $elAuto->modificar()) {
+    //         //     $resp = true;
+    //         // }
+    //     }
+    //     return $resp;
+    // }
 
     /**
      * permite buscar un objeto
@@ -142,8 +182,8 @@ class AbmAuto
                 $where .= " and Marca ='" . $param['Marca'] . "'";
             if (isset($param['Modelo']))
                 $where .= " and Modelo =" . $param['Modelo'];
-            if (isset($param['DniDuenio']))
-                $where .= " and DniDuenio ='" . $param['DniDuenio'] . "'";
+            if (isset($param['Duenio']))
+                $where .= " and Duenio ='" . $param['Duenio'] . "'";
         }
 
         $arreglo = Auto::listar($where);

@@ -110,11 +110,8 @@ class AbmPersona
             $buscar2['NroDni'] = $param['NroDni'];
             $lapersona = $this->buscar($buscar2);
             if ($lapersona != null) {
-                $lapersona[0]->setApellido($param['Apellido']);
-                $lapersona[0]->setNombre($param['Nombre']);
-                $lapersona[0]->setfechaNac($param['fechaNac']);
-                $lapersona[0]->setTelefono($param['Telefono']);
-                $lapersona[0]->setDomicilio($param['Domicilio']);
+                $lapersona[0]->setear($param['NroDni'],$param['Apellido'],
+                $param['Nombre'],$param['fechaNac'],$param['Telefono'],$param['Domicilio'] );                
                 if ($lapersona[0] != null and $lapersona[0]->modificar()) {
                     $resp = true;
                 }

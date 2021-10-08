@@ -36,13 +36,16 @@ $listaTabla = $objAbmTabla->buscar(null);
       if (count($listaTabla) > 0) {
         $i = 1;
         echo '<tbody>';
-        foreach ($listaTabla as $objTabla) {
-          $dniDu = $objTabla->getDniDuenio();
+        foreach ($listaTabla as $objAuto) {
+          $dniDu = $objAuto->getDuenio();
+          
+          $dniDu= $dniDu->__toString();
+          
           echo '<tr class="align-middle">';
           echo '<th scope="row">' . $i . '</th>';
-          echo '<td>' . $objTabla->getPatente() . '</td>';
-          echo '<td>' . $objTabla->getMarca() . '</td>';
-          echo '<td>' . $objTabla->getModelo() . '</td>';
+          echo '<td>' . $objAuto->getPatente() . '</td>';
+          echo '<td>' . $objAuto->getMarca() . '</td>';
+          echo '<td>' . $objAuto->getModelo() . '</td>';
           echo '<td>' . $dniDu . '</td>';
           echo '<td class="text-center"><a href="cambioDuenio.php" class="btn btn-success btn-sm" role="button"><i class="fas fa-pen"></i><a/>
           <a href="eliminarPersona.php" class="btn btn-danger btn-sm disabled" role="button"><i class="fas fa-trash-alt"></i><a/></td>';

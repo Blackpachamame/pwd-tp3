@@ -7,6 +7,7 @@ class Persona
     private $fechaNac;
     private $Telefono;
     private $Domicilio;
+    private $arrayautos;
 
 
     public function __construct()
@@ -18,6 +19,7 @@ class Persona
         $this->fechaNac = "";
         $this->Telefono = "";
         $this->Domicilio = "";
+        $this->arrayautos= array();
     }
     public function setear($NroDni, $Apellido, $Nombre, $fechaNac, $Telefono, $Domicilio)
     {
@@ -27,10 +29,14 @@ class Persona
         $this->setfechaNac($fechaNac);
         $this->setTelefono($Telefono);
         $this->setDomicilio($Domicilio);
+        //$this->setArrayAutos();
     }
 
 
-
+/**
+     * permite buscar un objeto
+     * @return String
+     */
     public function getNroDni()
     {
         return $this->NroDni;
@@ -88,6 +94,23 @@ class Persona
     {
         $this->mensajeoperacion = $valor;
     }
+    public function getArrayAutos()
+    {
+        $arr = array();
+        $condicion = "Duenio='". $this->getNroDni()."'";
+        $objAuto = new Auto();
+        $colAutos = $objAuto->listar($condicion); 
+        foreach ($colAutos as $auto) {
+            array_push($arr, $auto);
+        }
+        return $arr;
+    }
+    public function setArrayAutos($valor)
+    {
+        $this->arrayautos= $valor;
+    }
+
+
 
 
     public function cargar()
@@ -101,6 +124,7 @@ class Persona
                 if ($res > 0) {
                     $row = $base->Registro();
                     $this->setear($row['NroDni'], $row['Apellido'], $row['Nombre'], $row['fechaNac'], $row['Telefono'], $row['Domicilio']);
+                    
                 }
             }
         } else {
@@ -186,6 +210,9 @@ class Persona
                 while ($row = $base->Registro()) {
                     $obj = new Persona();
                     $obj->setear($row['NroDni'], $row['Apellido'], $row['Nombre'], $row['fechaNac'], $row['Telefono'], $row['Domicilio']);
+                    $arrayautos = $obj->getArrayAutos();
+                    $obj->setArrayAutos($arrayautos);  
+
                     array_push($arreglo, $obj);
                 }
             }
