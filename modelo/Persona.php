@@ -1,84 +1,76 @@
 <?php
-class Persona
+class Usuario
 {
-    private $NroDni;
-    private $Apellido;
-    private $Nombre;
-    private $fechaNac;
-    private $Telefono;
-    private $Domicilio;
+    private $idusuario;
+    private $usnombre;
+    private $uspass;
+    private $usmail;
+    private $usdeshabilitado;
+
 
 
     public function __construct()
     {
 
-        $this->NroDni = "";
-        $this->Apellido = "";
-        $this->Nombre = "";
-        $this->fechaNac = "";
-        $this->Telefono = "";
-        $this->Domicilio = "";
+        $this->idusuario = "";
+        $this->usnombre = "";
+        $this->uspass = "";
+        $this->usmail = "";
+        $this->usdeshabilitado = "";
+      
     }
-    public function setear($NroDni, $Apellido, $Nombre, $fechaNac, $Telefono, $Domicilio)
+    public function setear($idusuario, $usnombre, $uspass, $usmail, $usdeshabilitado)
     {
-        $this->setNroDni($NroDni);
-        $this->setApellido($Apellido);
-        $this->setNombre($Nombre);
-        $this->setfechaNac($fechaNac);
-        $this->setTelefono($Telefono);
-        $this->setDomicilio($Domicilio);
-    }
-
-
-
-    public function getNroDni()
-    {
-        return $this->NroDni;
-    }
-    public function setNroDni($valor)
-    {
-        $this->NroDni = $valor;
+        $this->setidusuario($idusuario);
+        $this->setusnombre($usnombre);
+        $this->setuspass($uspass);
+        $this->setusmail($usmail);
+        $this->setusdeshabilitado($usdeshabilitado);
+     
     }
 
-    public function getApellido()
+
+
+    public function getidusuario()
     {
-        return $this->Apellido;
+        return $this->idusuario;
     }
-    public function setApellido($valor)
+    public function setidusuario($valor)
     {
-        $this->Apellido = $valor;
+        $this->idusuario = $valor;
     }
-    public function getNombre()
+
+    public function getusnombre()
     {
-        return $this->Nombre;
+        return $this->usnombre;
     }
-    public function setNombre($valor)
+    public function setusnombre($valor)
     {
-        $this->Nombre = $valor;
+        $this->usnombre = $valor;
     }
-    public function getfechaNac()
+    public function getuspass()
     {
-        return $this->fechaNac;
+        return $this->uspass;
     }
-    public function setfechaNac($valor)
+    public function setuspass($valor)
     {
-        $this->fechaNac = $valor;
+        $this->uspass = $valor;
     }
-    public function getTelefono()
+    public function getusmail()
     {
-        return $this->Telefono;
+        return $this->usmail;
     }
-    public function setTelefono($valor)
+    public function setusmail($valor)
     {
-        $this->Telefono = $valor;
+        $this->usmail = $valor;
     }
-    public function getDomicilio()
+    public function getusdeshabilitado()
     {
-        return $this->Domicilio;
+        return $this->usdeshabilitado;
     }
-    public function setDomicilio($valor)
+    public function setusdeshabilitado($valor)
     {
-        $this->Domicilio = $valor;
+        $this->usdeshabilitado = $valor;
     }
     public function getmensajeoperacion()
     {
@@ -94,13 +86,13 @@ class Persona
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "SELECT * FROM persona WHERE NroDni = " . $this->getNroDni();
+        $sql = "SELECT * FROM persona WHERE idusuario = " . $this->getidusuario();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setear($row['NroDni'], $row['Apellido'], $row['Nombre'], $row['fechaNac'], $row['Telefono'], $row['Domicilio']);
+                    $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['$usdeshabilitado']);
                 }
             }
         } else {
@@ -108,19 +100,19 @@ class Persona
         }
         return $resp;
     }
-    public function MostrarNombreyApellido()
+    public function MostrarNombreyusnombre()
     {
-        return $this->getNombre() . ' ' . $this->getApellido();
+        return  $this->getusnombre(); //borre lo que seria el id;
     }
 
     public function insertar()
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO persona(NroDni,Apellido,Nombre,fechaNac,Telefono,Domicilio)  VALUES('" . $this->getNroDni() . "','" . $this->getApellido() . "','" . $this->getNombre() . "','" . $this->getfechaNac() . "','" . $this->getTelefono() . "','" . $this->getDomicilio() . "');";
+        $sql = "INSERT INTO persona(idusuario,usnombre,uspass,usmail,usdeshabilitado)  VALUES('" . $this->getidusuario() . "','" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','" . $this->getusdeshabilitado()."');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
-                $this->setNroDni($elid);
+                $this->setidusuario($elid);
                 $resp = true;
             } else {
                 $this->setmensajeoperacion("Tabla->insertar: " . $base->getError());
@@ -135,12 +127,11 @@ class Persona
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE persona SET Apellido='" . $this->getApellido() . "',
-        Nombre='" . $this->getNombre() . "',
-        fechaNac='" . $this->getfechaNac() . "',
-        Telefono='" . $this->getTelefono() . "',
-        Domicilio='" . $this->getDomicilio() . "'
-        WHERE NroDni=" . $this->getNroDni();
+        $sql = "UPDATE persona SET usnombre='" . $this->getusnombre() . "',
+        Nombre='" . $this->getuspass() . "',
+        usmail='" . $this->getusmail() . "',
+        usdeshabilitado='" . $this->getusdeshabilitado() . "'
+        WHERE idusuario=" . $this->getidusuario();
         if ($base->Iniciar()) {
             //var_dump($sql);
             if ($base->Ejecutar($sql)) {
@@ -158,7 +149,7 @@ class Persona
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM persona WHERE DniNro=" . $this->getNroDni();
+        $sql = "DELETE FROM persona WHERE DniNro=" . $this->getidusuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 return true;
@@ -185,7 +176,7 @@ class Persona
 
                 while ($row = $base->Registro()) {
                     $obj = new Persona();
-                    $obj->setear($row['NroDni'], $row['Apellido'], $row['Nombre'], $row['fechaNac'], $row['Telefono'], $row['Domicilio']);
+                    $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['usdeshabilitado']);
                     array_push($arreglo, $obj);
                 }
             }
@@ -199,6 +190,6 @@ class Persona
 
     function __toString()
     {
-        return $this->getNombre() . ' ' . $this->getApellido();
+        return $this->getidusuario() . ' ' . $this->getusnombre();
     }
 }
