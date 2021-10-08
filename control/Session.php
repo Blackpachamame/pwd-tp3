@@ -14,5 +14,40 @@
 
 class Session {
   	
+
+    //-----------------------------constructor
+    public function __construct() {
+		if (session_status() === PHP_SESSION_NONE){
+		session_start();
+	     }
+    }
+
+    public function iniciar(){
+
+    }
+
+    public function validar(){
+
+    }
+
+    public function activa(){
+
+    }
+
+    //---------------------------------getuser
+
+   
+
+
+    //--------------------------------getrol
+
+
     
-}
+    public function cerrar(){
+        
+    }
+
+
+
+    
+}//clase
