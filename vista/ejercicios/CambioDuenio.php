@@ -22,14 +22,11 @@ $listaTabla = $objAbmTabla->buscar(null);
 			<input type="text" class="form-control" name="Patente" id="Patente" placeholder="AAA 000" required>
 		</div>
 		<!-- Dni Dueño Actual -->
-		<div class="col-sm-8 col-lg-4 mb-3">
-			<label for="DniDuenio">Dni propietario actual</label>
-			<input type="number" class="form-control" name="DniDuenio" id="DniDuenio" placeholder="11111111" required>
-		</div>
+
 		<!-- Dni Dueño Nuevo -->
 		<div class="col-sm-8 col-lg-4 mb-3">
-			<label for="Dnicambio">Dni propietario nuevo</label>
-			<input type="number" class="form-control" name="Dnicambio" id="Dnicambio" placeholder="99999999" required>
+			<label for="Duenio">Dni propietario nuevo</label>
+			<input type="number" class="form-control" name="Duenio" id="Duenio" placeholder="99999999" required>
 		</div>
 	</div>
 	<!-- accion = editar (input oculto) -->
