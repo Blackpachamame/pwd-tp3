@@ -22,32 +22,60 @@ class Session {
 	     }
     }
 
+
+
+     //-----------get rol y usuarui. 
+
+
+
+
+     
+
+    //----------------------------iniciar session
+
     public function iniciar(){
+       
+        $this->session_started;
+		$this->setAtributo("usuario",$datos["NombreUsuario"]);
+		$this->setAtributo("login",$datos["login"]);
+		$this->setAtributo("rol", $datos["roles"]);
+		$this->setAtributo("idusuario", $datos["idusuario"]);
+		
+		$resp=true;
+	
+	return $resp;
 
     }
 
+
+    //---------------------------validar session
     public function validar(){
 
+        //esta funcion es compleja porque ya maneja en profundidad los obsj
+       //validar(). Valida si la sesión actual tiene usuario y psw válidos. Devuelve true o false.
     }
 
+    //---------------------------activa
     public function activa(){
-
+        $resp=true; 
+		session_status();
+		if(session_status() !== PHP_SESSION_ACTIVE){
+			$resp= false;
+		}
+		return $resp; 
     }
 
-    //---------------------------------getuser
 
-   
-
-
-    //--------------------------------getrol
-
-
+    //----------------------------------cerrar
     
-    public function cerrar(){
-        
+    public function cerrar()
+    {
+        session_destroy();
     }
 
 
-
+    public function mostrarValorVariables(){
+        print_r($_SESSION);
+    }
     
 }//clase

@@ -34,7 +34,7 @@ class AbmRol
 
         if (isset($param['idrol'])) {
             $obj = new Rol();
-            $obj->setear($param['idrol'], "", "");
+            $obj->setear($param['idrol'], "", ""); //???---------------------------2 o 3?
         }
 
         return $obj;
