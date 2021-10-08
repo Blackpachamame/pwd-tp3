@@ -1,11 +1,11 @@
 <?php
 class AbmUsuario
 {
-    //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
+    //Espera como parametro un arreglo asociativo donde las claves coinciden con los uspasss de las variables instancias del objeto
 
 
     /**
-     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
+     * Espera como parametro un arreglo asociativo donde las claves coinciden con los uspasss de las variables instancias del objeto
      * @param array $param
      * @return Usuario
      */
@@ -13,22 +13,21 @@ class AbmUsuario
     {
         $obj = null;
         if (
-            array_key_exists('NroDni', $param)
-            and array_key_exists('Apellido', $param)
-            and array_key_exists('Nombre', $param)
-            and array_key_exists('fechaNac', $param)
-            and array_key_exists('Telefono', $param)
-            and array_key_exists('Domicilio', $param)
+            array_key_exists('idusuario', $param)
+            and array_key_exists('usnombre', $param)
+            and array_key_exists('uspass', $param)
+            and array_key_exists('usmail', $param)
+            and array_key_exists('usdeshabilitado', $param)
         ) {
             $obj = new Usuario();
-            $obj->setear($param['NroDni'], $param['Apellido'], $param['Nombre'], $param['fechaNac'], $param['Telefono'], $param['Domicilio']);
+            $obj->setear($param['idusuario'], $param['usnombre'], $param['uspass'], $param['usmail'], $param['usdeshabilitado']);
         }
 
         return $obj;
     }
 
     /**
-     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
+     * Espera como parametro un arreglo asociativo donde las claves coinciden con los uspasss de las variables instancias del objeto que son claves
      * @param array $param
      * @return Usuario
      */
@@ -36,9 +35,10 @@ class AbmUsuario
     {
         $obj = null;
 
-        if (isset($param['NroDni'])) {
+        if (isset($param['idusuario'])) {
             $obj = new Usuario();
-            $obj->setear($param['NroDni'], "", "", "", "", "", "");
+            $obj->setear($param['idusuario'], "", "", "", "", "");
+            //???---------------------------catidad seteadaaaaaaa?
         }
 
         return $obj;
@@ -53,7 +53,7 @@ class AbmUsuario
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['NroDni']))
+        if (isset($param['idusuario']))
             $resp = true;
         return $resp;
     }
@@ -66,7 +66,7 @@ class AbmUsuario
     {
         $resp = false;
         $buscar2 = array();
-        $buscar2['NroDni'] = $param['NroDni'];
+        $buscar2['idusuario'] = $param['idusuario'];
         $encuentraPer = $this->buscar($buscar2);
 
         if ($encuentraPer == null) {
@@ -107,14 +107,14 @@ class AbmUsuario
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $buscar2 = array();
-            $buscar2['NroDni'] = $param['NroDni'];
+            $buscar2['idusuario'] = $param['idusuario'];
             $laUsuario = $this->buscar($buscar2);
             if ($laUsuario != null) {
-                $laUsuario[0]->setApellido($param['Apellido']);
-                $laUsuario[0]->setNombre($param['Nombre']);
-                $laUsuario[0]->setfechaNac($param['fechaNac']);
-                $laUsuario[0]->setTelefono($param['Telefono']);
-                $laUsuario[0]->setDomicilio($param['Domicilio']);
+                $laUsuario[0]->setusnombre($param['usnombre']);
+                $laUsuario[0]->setuspass($param['uspass']);
+                $laUsuario[0]->setusmail($param['usmail']);
+                $laUsuario[0]->setusdeshabilitado($param['usdeshabilitado']);
+     
                 if ($laUsuario[0] != null and $laUsuario[0]->modificar()) {
                     $resp = true;
                 }
@@ -133,18 +133,16 @@ class AbmUsuario
     {
         $where = " true ";
         if ($param <> NULL) {
-            if (isset($param['NroDni']))
-                $where .= " and NroDni =" . $param['NroDni'];
-            if (isset($param['Apellido']))
-                $where .= " and Apellido ='" . $param['Apellido'] . "'";
-            if (isset($param['Nombre']))
-                $where .= " and Nombre ='" . $param['Nombre'] . "'";
-            if (isset($param['fechaNac']))
-                $where .= " and fechaNac ='" . $param['fechaNac'] . "'";
-            if (isset($param['Telefono']))
-                $where .= " and Telefono ='" . $param['Telefono'] . "'";
-            if (isset($param['Domicilio']))
-                $where .= " and Domicilio ='" . $param['Domicilio'] . "'";
+            if (isset($param['idusuario']))
+                $where .= " and idusuario =" . $param['idusuario'];
+            if (isset($param['usnombre']))
+                $where .= " and usnombre ='" . $param['usnombre'] . "'";
+            if (isset($param['uspass']))
+                $where .= " and uspass ='" . $param['uspass'] . "'";
+            if (isset($param['usmail']))
+                $where .= " and usmail ='" . $param['usmail'] . "'";
+            if (isset($param['usdeshabilitado']))
+                $where .= " and usdeshabilitado ='" . $param['usdeshabilitado'] . "'";
         }
         $arreglo = Usuario::listar($where);
 
