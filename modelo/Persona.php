@@ -22,6 +22,7 @@ class Persona
         $this->arrayautos = array();
     }
 
+
     /** SETEAR **/
     public function setear($NroDni, $Apellido, $Nombre, $fechaNac, $Telefono, $Domicilio)
     {

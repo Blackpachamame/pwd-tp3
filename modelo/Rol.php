@@ -1,84 +1,52 @@
 <?php
-class Auto
+class Rol
 {
-    private $Patente;
-    private $Marca;
-    private $Modelo;
-    private $Duenio;
-    private $mensajeoperacion;
+    private $idrol;
+    private $roldescripcion;
 
 
     /** CONSTRUCTOR **/
     public function __construct()
     {
-        $this->Patente = "";
-        $this->Marca = "";
-        $this->Modelo = "";
-        $this->Duenio = new Persona();
-        $this->mensajeoperacion = "";
+        $this->idrol = "";
+        $this->roldescripcion = "";
     }
 
 
     /** SETEAR **/
-    public function setear($Patente, $Marca, $Modelo, $Duenio)
+    public function setear($idrol, $roldescripcion)
     {
-        $this->setPatente($Patente);
-        $this->setMarca($Marca);
-        $this->setModelo($Modelo);
-        $this->setDuenio($Duenio);
+        $this->setidrol($idrol);
+        $this->setroldescripcion($roldescripcion);
     }
 
 
-    /** GETS Y SETS **/
-    public function getPatente()
+    /** GETS **/
+    public function getidrol()
     {
-        return $this->Patente;
+        return $this->idrol;
     }
 
-    public function setPatente($valor)
+    public function getroldescripcion()
     {
-        $this->Patente = $valor;
-    }
-
-    public function getMarca()
-    {
-        return $this->Marca;
-    }
-
-    public function setMarca($valor)
-    {
-        $this->Marca = $valor;
-    }
-
-    public function getModelo()
-    {
-        return $this->Modelo;
-    }
-
-    public function setModelo($valor)
-    {
-        $this->Modelo = $valor;
-    }
-
-    public function getDuenio()
-    {
-        return $this->Duenio;
-    }
-
-    public function setDuenio($valor)
-    {
-        //var_dump($valor);
-        $duenio = $this->getDuenio();
-        $duenio->setNroDni($valor);
-        $this->Duenio = $duenio;
-        $this->Duenio->cargar();
-
-        return $this;
+        return $this->roldescripcion;
     }
 
     public function getmensajeoperacion()
     {
         return $this->mensajeoperacion;
+    }
+
+
+    /** SETS **/
+    public function setidrol($valor)
+    {
+        $this->idrol = $valor;
+    }
+
+    public function setroldescripcion($valor)
+    {
+        $this->roldescripcion = $valor;
     }
 
     public function setmensajeoperacion($valor)
@@ -92,13 +60,13 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "SELECT * FROM auto WHERE Patente = " . $this->getPatente();
+        $sql = "SELECT * FROM rol WHERE idrol = " . $this->getidrol();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setear($row['Patente'], $row['Marca'], $row['Modelo'], $row['Duenio']);
+                    $this->setear($row['idrol'], $row['roldescripcion']);
                 }
             }
         } else {
@@ -113,10 +81,10 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO auto(Patente,Marca,Modelo,Duenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','" . $this->getModelo() . "','" . $this->getDuenio() . "');";
+        $sql = "INSERT INTO rol(idrol,roldescripcion)  VALUES('" . $this->getidrol() . "','" . $this->getroldescripcion() . "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
-                $this->setPatente($elid);
+                $this->setidrol($elid);
                 $resp = true;
             } else {
                 $this->setmensajeoperacion("Tabla->insertar: " . $base->getError());
@@ -133,11 +101,11 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE auto SET Marca='" . $this->getMarca() . "',";
-        $sql .= "Modelo=" . $this->getModelo() . ",";
-        $sql .= "Duenio='" . $this->getDuenio() . "' ";
-        $sql .= "WHERE Patente='" . $this->getPatente() . "'";
+        $sql = "UPDATE rol SET roldescripcion='" . $this->getroldescripcion() . "',
+        descripcion='" . $this->getroldescripcion() . "'
+        WHERE idrol=" . $this->getidrol();
         if ($base->Iniciar()) {
+            //var_dump($sql);
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
@@ -155,7 +123,7 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM auto WHERE Patente=" . $this->getPatente();
+        $sql = "DELETE FROM rol WHERE idrol=" . $this->getidrol();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 return true;
@@ -174,7 +142,7 @@ class Auto
     {
         $arreglo = array();
         $base = new BaseDatos();
-        $sql = "SELECT * FROM auto ";
+        $sql = "SELECT * FROM rol ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
@@ -182,18 +150,21 @@ class Auto
         if ($res > -1) {
             if ($res > 0) {
                 while ($row = $base->Registro()) {
-                    $obj = new Auto();
-                    $persona = new Persona();
-                    $persona->setNroDni($row['Duenio']);
-                    $persona->cargar();
-                    $obj->setear($row['Patente'], $row['Marca'], $row['Modelo'], $row['Duenio']);
-
+                    $obj = new Rol();
+                    $obj->setear($row['idrol'], $row['roldescripcion']);
                     array_push($arreglo, $obj);
                 }
             }
         } else {
-            //$this->setmensajeoperacion("Tabla->listar: ".$base->getError());
+            //$this->setmensajeoperacion("Tabla->listar: " . $base->getError());
         }
         return $arreglo;
+    }
+
+
+    /** TO STRING **/
+    function __toString()
+    {
+        return $this->getroldescripcion();
     }
 }

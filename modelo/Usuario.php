@@ -1,79 +1,84 @@
 <?php
-class Auto
+class Usuario
 {
-    private $Patente;
-    private $Marca;
-    private $Modelo;
-    private $Duenio;
-    private $mensajeoperacion;
+    private $idusuario;
+    private $usnombre;
+    private $uspass;
+    private $usmail;
+    private $usdeshabilitado;
 
 
     /** CONSTRUCTOR **/
     public function __construct()
     {
-        $this->Patente = "";
-        $this->Marca = "";
-        $this->Modelo = "";
-        $this->Duenio = new Persona();
-        $this->mensajeoperacion = "";
+        $this->idusuario = "";
+        $this->usnombre = "";
+        $this->uspass = "";
+        $this->usmail = "";
+        $this->usdeshabilitado = "";
     }
 
 
     /** SETEAR **/
-    public function setear($Patente, $Marca, $Modelo, $Duenio)
+    public function setear($idusuario, $usnombre, $uspass, $usmail, $usdeshabilitado)
     {
-        $this->setPatente($Patente);
-        $this->setMarca($Marca);
-        $this->setModelo($Modelo);
-        $this->setDuenio($Duenio);
+        $this->setidusuario($idusuario);
+        $this->setusnombre($usnombre);
+        $this->setuspass($uspass);
+        $this->setusmail($usmail);
+        $this->setusdeshabilitado($usdeshabilitado);
     }
 
 
     /** GETS Y SETS **/
-    public function getPatente()
+    public function getidusuario()
     {
-        return $this->Patente;
+        return $this->idusuario;
     }
 
-    public function setPatente($valor)
+    public function setidusuario($valor)
     {
-        $this->Patente = $valor;
+        $this->idusuario = $valor;
     }
 
-    public function getMarca()
+    public function getusnombre()
     {
-        return $this->Marca;
+        return $this->usnombre;
     }
 
-    public function setMarca($valor)
+    public function setusnombre($valor)
     {
-        $this->Marca = $valor;
+        $this->usnombre = $valor;
     }
 
-    public function getModelo()
+    public function getuspass()
     {
-        return $this->Modelo;
+        return $this->uspass;
     }
 
-    public function setModelo($valor)
+    public function setuspass($valor)
     {
-        $this->Modelo = $valor;
+        $this->uspass = $valor;
     }
 
-    public function getDuenio()
+    public function getusmail()
     {
-        return $this->Duenio;
+        return $this->usmail;
     }
 
-    public function setDuenio($valor)
+    public function setusmail($valor)
     {
-        //var_dump($valor);
-        $duenio = $this->getDuenio();
-        $duenio->setNroDni($valor);
-        $this->Duenio = $duenio;
-        $this->Duenio->cargar();
+        $this->usmail = $valor;
+    }
 
-        return $this;
+    public function getusdeshabilitado()
+    {
+        return $this->usdeshabilitado;
+    }
+
+    public function setusdeshabilitado($valor)
+    {
+        $this->usdeshabilitado = $valor;
     }
 
     public function getmensajeoperacion()
@@ -92,13 +97,13 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "SELECT * FROM auto WHERE Patente = " . $this->getPatente();
+        $sql = "SELECT * FROM Usuario WHERE idusuario = " . $this->getidusuario();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setear($row['Patente'], $row['Marca'], $row['Modelo'], $row['Duenio']);
+                    $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['$usdeshabilitado']);
                 }
             }
         } else {
@@ -108,15 +113,22 @@ class Auto
     }
 
 
+    /** MOSTRAR NOMBRE Y USUARIO **/
+    public function MostrarNombreyusnombre()
+    {
+        return  $this->getusnombre(); //borre lo que seria el id;
+    }
+
+
     /** INSERTAR **/
     public function insertar()
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO auto(Patente,Marca,Modelo,Duenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','" . $this->getModelo() . "','" . $this->getDuenio() . "');";
+        $sql = "INSERT INTO Usuario(idusuario,usnombre,uspass,usmail,usdeshabilitado)  VALUES('" . $this->getidusuario() . "','" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','" . $this->getusdeshabilitado() . "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
-                $this->setPatente($elid);
+                $this->setidusuario($elid);
                 $resp = true;
             } else {
                 $this->setmensajeoperacion("Tabla->insertar: " . $base->getError());
@@ -133,11 +145,13 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE auto SET Marca='" . $this->getMarca() . "',";
-        $sql .= "Modelo=" . $this->getModelo() . ",";
-        $sql .= "Duenio='" . $this->getDuenio() . "' ";
-        $sql .= "WHERE Patente='" . $this->getPatente() . "'";
+        $sql = "UPDATE Usuario SET usnombre='" . $this->getusnombre() . "',
+        Nombre='" . $this->getuspass() . "',
+        usmail='" . $this->getusmail() . "',
+        usdeshabilitado='" . $this->getusdeshabilitado() . "'
+        WHERE idusuario=" . $this->getidusuario();
         if ($base->Iniciar()) {
+            //var_dump($sql);
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
@@ -155,7 +169,7 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM auto WHERE Patente=" . $this->getPatente();
+        $sql = "DELETE FROM Usuario WHERE DniNro=" . $this->getidusuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 return true;
@@ -174,7 +188,7 @@ class Auto
     {
         $arreglo = array();
         $base = new BaseDatos();
-        $sql = "SELECT * FROM auto ";
+        $sql = "SELECT * FROM Usuario ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
@@ -182,18 +196,21 @@ class Auto
         if ($res > -1) {
             if ($res > 0) {
                 while ($row = $base->Registro()) {
-                    $obj = new Auto();
-                    $persona = new Persona();
-                    $persona->setNroDni($row['Duenio']);
-                    $persona->cargar();
-                    $obj->setear($row['Patente'], $row['Marca'], $row['Modelo'], $row['Duenio']);
-
+                    $obj = new Usuario();
+                    $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['usdeshabilitado']);
                     array_push($arreglo, $obj);
                 }
             }
         } else {
-            //$this->setmensajeoperacion("Tabla->listar: ".$base->getError());
+            //$this->setmensajeoperacion("Tabla->listar: " . $base->getError());
         }
         return $arreglo;
+    }
+
+
+    /** TO STRING **/
+    function __toString()
+    {
+        return $this->getidusuario() . ' ' . $this->getusnombre();
     }
 }
