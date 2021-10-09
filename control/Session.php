@@ -14,71 +14,130 @@
 
 class Session
 {
+    private $objUsuario;
+    private $listaRoles;
+    private $mensajeoperacion;
 
 
     /** CONSTRUCTOR **/
     public function __construct()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        if (session_start()) {
+            $this->objUsuario = null;
+            $this->listaRoles = [];
+            $this->mensajeoperacion = "";
         }
     }
 
 
-
-    //-----------get rol y usuarui. 
-
-
-
-
-
-
-    /** INICIAR **/
-    public function iniciar()
+    /** GETS Y SETS **/
+    public function getObjUsuario()
     {
+        return $this->objUsuario;
+    }
 
-        $this->session_started;
-        $this->setAtributo("usuario", $datos["NombreUsuario"]);
-        $this->setAtributo("login", $datos["login"]);
-        $this->setAtributo("rol", $datos["roles"]);
-        $this->setAtributo("idusuario", $datos["idusuario"]);
+    public function setObjUsuario($objUsuario)
+    {
+        $this->objUsuario = $objUsuario;
+    }
 
-        $resp = true;
+    public function getListaRoles()
+    {
+        return $this->listaRoles;
+    }
 
-        return $resp;
+    public function setListaRoles($listaRoles)
+    {
+        $this->listaRoles = $listaRoles;
+    }
+
+    public function getMensajeoperacion()
+    {
+        return $this->mensajeoperacion;
+    }
+
+    public function setMensajeoperacion($mensajeoperacion)
+    {
+        $this->mensajeoperacion = $mensajeoperacion;
     }
 
 
     /** VALIDAR **/
     public function validar()
     {
+        $inicia = false;
+        $abmUsuario = new AbmUsuario();
+        $nombreUsuario = $_SESSION['idusuario'];
+        $psw = $_SESSION['nombreUsu'];
+        $where = ['usnombre' => $nombreUsuario, 'uspsw' => $psw];
+        $listaUsuarios = $abmUsuario->buscar($where);
+        if (count($listaUsuarios) > 0) {
+            $inicia = true;
+        }
+        return $inicia;
+    }
 
-        //esta funcion es compleja porque ya maneja en profundidad los obsj
-        //validar(). Valida si la sesión actual tiene usuario y psw válidos. Devuelve true o false.
+
+    /** INICIAR **/
+    public function iniciar($nombreUsuario, $psw)
+    {
+        if ($this->activa()) {
+            $_SESSION['idusuario'] = $nombreUsuario;
+            $_SESSION['nombreUsu'] = $psw;
+        }
+        return $_SESSION;
     }
 
 
     /** ACTIVA **/
     public function activa()
     {
-        $resp = true;
-        session_status();
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            $resp = false;
+        $activa = false;
+        if (session_start()) {
+            $activa = true;
         }
-        return $resp;
+        return $activa;
+    }
+
+
+    /** GET USUARIO **/
+    public function getUsuario()
+    {
+        $abmUsuario = new AbmUsuario();
+        $where = ['usnombre' => $_SESSION['nombreUsu'], 'idusuario' => $_SESSION['idusuario']];
+        $listaUsuarios = $abmUsuario->buscar($where);
+        if ($listaUsuarios >= 1) {
+            $usuarioLog = $listaUsuarios[0];
+        }
+        return $usuarioLog;
+    }
+
+
+    /** GET ROL **/
+    public function getRol()
+    {
+        $abmRol = new abmRol();
+        $abmUsuarioRol = new AbmUsuarioRol();
+        $usuario = $this->getUsuario();
+        $idUsuario = $usuario->getIdUsuario();
+        $param = ['idusuario' => $idUsuario];
+        $listaRolesUsu = $abmUsuarioRol->buscar($param);
+        if ($listaRolesUsu > 1) {
+            $rol = $listaRolesUsu;
+        } else {
+            $rol = $listaRolesUsu[0];
+        }
+        return $rol;
     }
 
 
     /** CERRAR **/
     public function cerrar()
     {
-        session_destroy();
+        $cerrar = false;
+        if (session_destroy()) {
+            $cerrar = true;
+        }
+        return $cerrar;
     }
-
-
-    public function mostrarValorVariables()
-    {
-        print_r($_SESSION);
-    }
-}//clase
+}

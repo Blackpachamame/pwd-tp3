@@ -202,7 +202,7 @@
                                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                             <polyline points="13 2 13 9 20 9"></polyline>
                                         </svg>
-                                        Ejercicio 1
+                                        verAutos
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -211,7 +211,7 @@
                                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                             <polyline points="13 2 13 9 20 9"></polyline>
                                         </svg>
-                                        Ejercicio 2
+                                        buscarAuto
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -220,7 +220,7 @@
                                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                             <polyline points="13 2 13 9 20 9"></polyline>
                                         </svg>
-                                        Ejercicio 3
+                                        listarPersonas
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -229,7 +229,7 @@
                                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                             <polyline points="13 2 13 9 20 9"></polyline>
                                         </svg>
-                                        Ejercicio 4
+                                        nuevaPersona
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -238,7 +238,7 @@
                                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                             <polyline points="13 2 13 9 20 9"></polyline>
                                         </svg>
-                                        Ejercicio 5
+                                        nuevoAuto
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -247,7 +247,7 @@
                                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                             <polyline points="13 2 13 9 20 9"></polyline>
                                         </svg>
-                                        Ejercicio 6
+                                        cambioDuenio
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -256,7 +256,46 @@
                                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                             <polyline points="13 2 13 9 20 9"></polyline>
                                         </svg>
-                                        Ejercicio 7
+                                        buscarPersona
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Acordeon TP5 -->
+                    <div class="accordion-item">
+                        <h4 class="accordion-header bg-light pt-2" id="flush-headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                TP5
+                            </button>
+                        </h4>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="../ejercicios/listarUsuarios.php">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+                                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                            <polyline points="13 2 13 9 20 9"></polyline>
+                                        </svg>
+                                        listarUsuarios
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="../ejercicios/login.php">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+                                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                            <polyline points="13 2 13 9 20 9"></polyline>
+                                        </svg>
+                                        login
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="../ejercicios/paginaSegura.php">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+                                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                            <polyline points="13 2 13 9 20 9"></polyline>
+                                        </svg>
+                                        paginaSegura
                                     </a>
                                 </li>
                             </ul>

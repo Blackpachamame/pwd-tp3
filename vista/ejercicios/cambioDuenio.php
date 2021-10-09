@@ -21,8 +21,6 @@ $listaTabla = $objAbmTabla->buscar(null);
 			<label for="Patente" class="control-label">Patente</label>
 			<input type="text" class="form-control" name="Patente" id="Patente" placeholder="AAA 000" required>
 		</div>
-		<!-- Dni Dueño Actual -->
-
 		<!-- Dni Dueño Nuevo -->
 		<div class="col-sm-8 col-lg-4 mb-3">
 			<label for="Duenio">Dni propietario nuevo</label>

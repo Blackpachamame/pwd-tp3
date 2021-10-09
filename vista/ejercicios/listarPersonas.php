@@ -67,12 +67,6 @@ $listaTabla = $objAbmTabla->buscar(null);
     </div>
 
   </form>
-
-  <!-- <form name="form" method="post" action="../acciones/autosPersona.php">
-    Ingrese DNI para visualizar autos propios.
-    <input type="number" id="dni" name="dni" min="" maxlenght="8" value="ver autos de: ">
-    <input type="submit">
-  </form> -->
 </div>
 
 <?php

@@ -67,9 +67,9 @@ class AbmUsuario
         $resp = false;
         $buscar2 = array();
         $buscar2['idusuario'] = $param['idusuario'];
-        $encuentraPer = $this->buscar($buscar2);
+        $encuentraUser = $this->buscar($buscar2);
 
-        if ($encuentraPer == null) {
+        if ($encuentraUser == null) {
             $elObjtUsuario = $this->cargarObjeto($param);
             if ($elObjtUsuario != null and $elObjtUsuario->insertar()) {
                 $resp = true;
@@ -108,14 +108,14 @@ class AbmUsuario
         if ($this->seteadosCamposClaves($param)) {
             $buscar2 = array();
             $buscar2['idusuario'] = $param['idusuario'];
-            $laUsuario = $this->buscar($buscar2);
-            if ($laUsuario != null) {
-                $laUsuario[0]->setusnombre($param['usnombre']);
-                $laUsuario[0]->setuspass($param['uspass']);
-                $laUsuario[0]->setusmail($param['usmail']);
-                $laUsuario[0]->setusdeshabilitado($param['usdeshabilitado']);
+            $elUsuario = $this->buscar($buscar2);
+            if ($elUsuario != null) {
+                $elUsuario[0]->setusnombre($param['usnombre']);
+                $elUsuario[0]->setuspass($param['uspass']);
+                $elUsuario[0]->setusmail($param['usmail']);
+                $elUsuario[0]->setusdeshabilitado($param['usdeshabilitado']);
 
-                if ($laUsuario[0] != null and $laUsuario[0]->modificar()) {
+                if ($elUsuario[0] != null and $elUsuario[0]->modificar()) {
                     $resp = true;
                 }
             }
