@@ -8,12 +8,12 @@ if ($objLogin->activa()) {
     $Titulo = "Ejercicio 4.2 - TP5";
     include_once("../estructura/cabeceraBT.php");
 }
-$datos = data_submitted();
+/*$datos = data_submitted();
 if (isset($datos['error'])) {
     if ($datos['error'] == 1) {
         $mensaje = "Error. Usuario y/o contraseña incorrectos.";
     }
-}
+}*/
 
 ?>
 <div class="row my-5">
@@ -32,7 +32,6 @@ if (isset($datos['error'])) {
                     <input class="form-control" type="password" id="uspass" name="uspass" placeholder="Contraseña" aria-label="password" aria-describedby="basic-addon1" required>
                 </div>
             </div>
-            <input id="accion" name="accion" value="nuevo" type="hidden">
             <div class="d-grid mb-5 mt-3">
                 <button class="btn btn-primary" type="submit">Iniciar sesión</button>
             </div>

@@ -14,11 +14,6 @@
 
 class Session
 {
-    private $userName;
-    private $pass;
-    //private $listaRoles;
-    private $mensajeoperacion;
-
 
     /** CONSTRUCTOR **/
     public function __construct()
@@ -47,31 +42,24 @@ class Session
         $_SESSION['uspass'] = $pass;
     }
 
-    /*public function getListaRoles()
-    {
-        return $this->listaRoles;
-    }
 
-    public function setListaRoles($listaRoles)
+    /** INICIAR **/
+    public function iniciar($nombreUsuario, $passUsuario)
     {
-        $this->listaRoles = $listaRoles;
-    }*/
-
-    public function getMensajeoperacion()
-    {
-        return $this->mensajeoperacion;
-    }
-
-    public function setMensajeoperacion($mensajeoperacion)
-    {
-        $this->mensajeoperacion = $mensajeoperacion;
+        $this->setUserName($nombreUsuario);
+        $this->setPass($passUsuario);
+        /*if ($this->activa()) {
+            $_SESSION['usnombre'] = $nombreUsuario;
+            $_SESSION['uspass'] = $passUsuario;
+        }
+        return $_SESSION;*/
     }
 
 
     /** VALIDAR **/
     public function validar()
     {
-        $valido = false;
+        /*$valido = false;
         $nombre = $this->getUserName();
         $pass = $this->getPass();
         $objAbm = new AbmUsuario();
@@ -91,30 +79,26 @@ class Session
                 $valido = false;
             }
         }
-        return $valido;
-        /*$inicia = false;
+        return $valido;*/
+        echo "entreeee";
+        $inicia = false;
+        $nombreUsuario = $this->getUserName();
+        $passUsuario = $this->getPass();
+
+        echo $nombreUsuario;
+        echo "abajousname";
+
         $abmUsuario = new AbmUsuario();
-        $nombreUsuario = $_SESSION['idusuario'];
-        $passUsuario = $_SESSION['usnombre'];
-        $where = ['usnombre' => $nombreUsuario, 'uspass' => $passUsuario];
+        echo "morte";
+        $where = array();
+        $where['usnombre'] = $nombreUsuario;
+        $where['uspass'] = $passUsuario;
+        //$where = ['usnombre' => $nombreUsuario, 'uspass' => $passUsuario];
         $listaUsuarios = $abmUsuario->buscar($where);
         if (count($listaUsuarios) > 0) {
             $inicia = true;
         }
-        return $inicia;*/
-    }
-
-
-    /** INICIAR **/
-    public function iniciar($nombreUsuario, $passUsuario)
-    {
-        $this->setUserName($nombreUsuario);
-        $this->setPass($passUsuario);
-        /*if ($this->activa()) {
-            $_SESSION['idusuario'] = $nombreUsuario;
-            $_SESSION['usnombre'] = $passUsuario;
-        }
-        return $_SESSION;*/
+        return $inicia;
     }
 
 
@@ -132,37 +116,19 @@ class Session
     /** GET USUARIO **/
     public function getUsuario()
     {
-        $objUs = null;
-        $abmUs = new AbmUsuario();
-        $arrayUs = $abmUs->buscar(['usnombre' => $this->getUserName(), 'uspass' => $this->getPass()]);
-        if (count($arrayUs) == 1) {
-            $objUs = $arrayUs[0];
-        }
-        return $objUs;
-        /*$abmUsuario = new AbmUsuario();
+        $abmUsuario = new AbmUsuario();
         $where = ['usnombre' => $_SESSION['usnombre'], 'idusuario' => $_SESSION['idusuario']];
         $listaUsuarios = $abmUsuario->buscar($where);
         if ($listaUsuarios >= 1) {
             $usuarioLog = $listaUsuarios[0];
         }
-        return $usuarioLog;*/
+        return $usuarioLog;
     }
 
 
     /** GET ROL **/
     public function getRol()
     {
-        $roles = [];
-        $nombre = ['usnombre' => $this->getUserName()];
-        $abmUs = new AbmUsuario();
-        $arreglo = $abmUs->buscar($nombre);
-        if (count($arreglo) == 1) {
-            $id = $arreglo[0]->getIdusuario();
-            $abmUserRol = new AbmUsuarioRol();
-            $roles = $abmUserRol->buscar(['idusuario' => $id]);
-        }
-        return $roles;
-        /*
         $abmUsuarioRol = new AbmUsuarioRol();
         $usuario = $this->getUsuario();
         $idUsuario = $usuario->getIdUsuario();
@@ -173,7 +139,7 @@ class Session
         } else {
             $rol = $listaRolesUsu[0];
         }
-        return $rol;*/
+        return $rol;
     }
 
 
