@@ -15,14 +15,10 @@ $filtroAuto['Patente'] = $datos['Patente'];
 $auto = $objTrans->buscar($filtroAuto);
 
 
+/* Accion que permite: cargar un nuevo auto, borrar y editar */
+if (isset($datos['accion'])) {
+    $mensaje = "";
 
-$unAuto = $objTrans-> buscar($datos['Patente']);
-if (count($unAuto) == null) {
- echo "<div><div class='alert alert-danger d-flex align-items-center mt-5' role='alert'>
-        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
-        <div>No se encontro ningún auto con la patente ingresada.</div></div></div>";
-
-}else{
     if ($datos['accion'] == 'editar') {
         /* Verificamos que exista la persona */
         $persona = $objPersona->buscar($filtro);
@@ -46,12 +42,7 @@ if (count($unAuto) == null) {
             }
         }
     }
-}
-    //----------editar
-  
 
-
-   /*-------borrar--------*/
     if ($datos['accion'] == 'borrar') {
         if ($objTrans->baja($datos)) {
             $resp = true;
@@ -60,7 +51,6 @@ if (count($unAuto) == null) {
         }
     }
 
-    /*-------nuevo--------*/ 
     if ($datos['accion'] == 'nuevo') {
         if ($objTrans->alta($datos)) {
             $resp = true;
@@ -74,7 +64,7 @@ if (count($unAuto) == null) {
     } else {
         $mensaje .= "La acción <b>" . $datos['accion'] . " auto</b> no pudo concretarse.";
     }
-
+}
 
 $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
 ?>
