@@ -6,7 +6,6 @@ include_once("../estructura/cabeceraBT.php");
 $datos = data_submitted();
 $objAbmAuto = new AbmAuto();
 $unAuto = $objAbmAuto->buscar($datos);
-
 ?>
 
 <div class="row mb-5">
@@ -30,7 +29,7 @@ $unAuto = $objAbmAuto->buscar($datos);
                     </thead>
                     <tbody>";
         foreach ($unAuto as $autoEncontrado) {
-            $dniDu = $autoEncontrado->getDniDuenio();
+            $dniDu = $autoEncontrado->getDuenio();
             echo '<tr>';
             echo '<th scope="row">' . $i . '</th>';
             echo '<td>' . $autoEncontrado->getPatente() . '</td>';

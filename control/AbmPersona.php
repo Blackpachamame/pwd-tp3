@@ -27,6 +27,7 @@ class AbmPersona
         return $obj;
     }
 
+
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
@@ -44,12 +45,12 @@ class AbmPersona
         return $obj;
     }
 
+
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
      * @return boolean
      */
-
     private function seteadosCamposClaves($param)
     {
         $resp = false;
@@ -58,8 +59,9 @@ class AbmPersona
         return $resp;
     }
 
+
     /**
-     * 
+     * ALTA
      * @param array $param
      */
     public function alta($param)
@@ -79,8 +81,9 @@ class AbmPersona
         return $resp;
     }
 
+
     /**
-     * permite eliminar un objeto 
+     * BAJA
      * @param array $param
      * @return boolean
      */
@@ -97,8 +100,9 @@ class AbmPersona
         return $resp;
     }
 
+
     /**
-     * permite modificar un objeto
+     * MODIFICACION
      * @param array $param
      * @return boolean
      */
@@ -110,11 +114,14 @@ class AbmPersona
             $buscar2['NroDni'] = $param['NroDni'];
             $lapersona = $this->buscar($buscar2);
             if ($lapersona != null) {
-                $lapersona[0]->setApellido($param['Apellido']);
-                $lapersona[0]->setNombre($param['Nombre']);
-                $lapersona[0]->setfechaNac($param['fechaNac']);
-                $lapersona[0]->setTelefono($param['Telefono']);
-                $lapersona[0]->setDomicilio($param['Domicilio']);
+                $lapersona[0]->setear(
+                    $param['NroDni'],
+                    $param['Apellido'],
+                    $param['Nombre'],
+                    $param['fechaNac'],
+                    $param['Telefono'],
+                    $param['Domicilio']
+                );
                 if ($lapersona[0] != null and $lapersona[0]->modificar()) {
                     $resp = true;
                 }
@@ -124,8 +131,9 @@ class AbmPersona
         return $resp;
     }
 
+
     /**
-     * permite buscar un objeto
+     * BUSCAR
      * @param array $param
      * @return array
      */

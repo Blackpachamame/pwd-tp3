@@ -7,18 +7,23 @@ class Persona
     private $fechaNac;
     private $Telefono;
     private $Domicilio;
+    private $arrayautos;
 
 
+    /** CONSTRUCTOR **/
     public function __construct()
     {
-
         $this->NroDni = "";
         $this->Apellido = "";
         $this->Nombre = "";
         $this->fechaNac = "";
         $this->Telefono = "";
         $this->Domicilio = "";
+        $this->arrayautos = array();
     }
+
+
+    /** SETEAR **/
     public function setear($NroDni, $Apellido, $Nombre, $fechaNac, $Telefono, $Domicilio)
     {
         $this->setNroDni($NroDni);
@@ -27,14 +32,16 @@ class Persona
         $this->setfechaNac($fechaNac);
         $this->setTelefono($Telefono);
         $this->setDomicilio($Domicilio);
+        //$this->setArrayAutos();
     }
 
 
-
+    /** GETS Y SETS **/
     public function getNroDni()
     {
         return $this->NroDni;
     }
+
     public function setNroDni($valor)
     {
         $this->NroDni = $valor;
@@ -44,52 +51,81 @@ class Persona
     {
         return $this->Apellido;
     }
+
     public function setApellido($valor)
     {
         $this->Apellido = $valor;
     }
+
     public function getNombre()
     {
         return $this->Nombre;
     }
+
     public function setNombre($valor)
     {
         $this->Nombre = $valor;
     }
+
     public function getfechaNac()
     {
         return $this->fechaNac;
     }
+
     public function setfechaNac($valor)
     {
         $this->fechaNac = $valor;
     }
+
     public function getTelefono()
     {
         return $this->Telefono;
     }
+
     public function setTelefono($valor)
     {
         $this->Telefono = $valor;
     }
+
     public function getDomicilio()
     {
         return $this->Domicilio;
     }
+
     public function setDomicilio($valor)
     {
         $this->Domicilio = $valor;
     }
+
     public function getmensajeoperacion()
     {
         return $this->mensajeoperacion;
     }
+
     public function setmensajeoperacion($valor)
     {
         $this->mensajeoperacion = $valor;
     }
 
+    public function getArrayAutos()
+    {
+        $arr = array();
+        $condicion = "Duenio='" . $this->getNroDni() . "'";
+        $objAuto = new Auto();
+        $colAutos = $objAuto->listar($condicion);
+        foreach ($colAutos as $auto) {
+            array_push($arr, $auto);
+        }
+        return $arr;
+    }
 
+    public function setArrayAutos($valor)
+    {
+        $this->arrayautos = $valor;
+    }
+
+
+    /** CARGAR **/
     public function cargar()
     {
         $resp = false;
@@ -113,6 +149,8 @@ class Persona
         return $this->getNombre() . ' ' . $this->getApellido();
     }
 
+
+    /** INSERTAR **/
     public function insertar()
     {
         $resp = false;
@@ -131,6 +169,8 @@ class Persona
         return $resp;
     }
 
+
+    /** MODIFICAR **/
     public function modificar()
     {
         $resp = false;
@@ -142,7 +182,6 @@ class Persona
         Domicilio='" . $this->getDomicilio() . "'
         WHERE NroDni=" . $this->getNroDni();
         if ($base->Iniciar()) {
-            //var_dump($sql);
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
@@ -154,6 +193,8 @@ class Persona
         return $resp;
     }
 
+
+    /** ELIMINAR **/
     public function eliminar()
     {
         $resp = false;
@@ -171,6 +212,8 @@ class Persona
         return $resp;
     }
 
+
+    /** LISTAR **/
     public static function listar($parametro = "")
     {
         $arreglo = array();
@@ -182,21 +225,23 @@ class Persona
         $res = $base->Ejecutar($sql);
         if ($res > -1) {
             if ($res > 0) {
-
                 while ($row = $base->Registro()) {
                     $obj = new Persona();
                     $obj->setear($row['NroDni'], $row['Apellido'], $row['Nombre'], $row['fechaNac'], $row['Telefono'], $row['Domicilio']);
+                    $arrayautos = $obj->getArrayAutos();
+                    $obj->setArrayAutos($arrayautos);
+
                     array_push($arreglo, $obj);
                 }
             }
         } else {
             //$this->setmensajeoperacion("Tabla->listar: " . $base->getError());
         }
-
         return $arreglo;
     }
 
 
+    /** TO STRING **/
     function __toString()
     {
         return $this->getNombre() . ' ' . $this->getApellido();

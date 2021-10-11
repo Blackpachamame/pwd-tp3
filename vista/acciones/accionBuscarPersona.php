@@ -5,7 +5,6 @@ include_once("../estructura/cabeceraBT.php");
 $datos = data_submitted();
 $objAbmPersona = new AbmPersona();
 $unaPersona = $objAbmPersona->buscar($datos);
-
 ?>
 
 <div class="row mb-5">

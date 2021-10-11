@@ -22,9 +22,9 @@ class AbmUsuario
             $obj = new Usuario();
             $obj->setear($param['idusuario'], $param['usnombre'], $param['uspass'], $param['usmail'], $param['usdeshabilitado']);
         }
-
         return $obj;
     }
+
 
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los uspasss de las variables instancias del objeto que son claves
@@ -40,16 +40,15 @@ class AbmUsuario
             $obj->setear($param['idusuario'], "", "", "", "", "");
             //???---------------------------catidad seteadaaaaaaa?
         }
-
         return $obj;
     }
+
 
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
      * @return boolean
      */
-
     private function seteadosCamposClaves($param)
     {
         $resp = false;
@@ -58,8 +57,9 @@ class AbmUsuario
         return $resp;
     }
 
+
     /**
-     * 
+     * ALTA
      * @param array $param
      */
     public function alta($param)
@@ -67,20 +67,20 @@ class AbmUsuario
         $resp = false;
         $buscar2 = array();
         $buscar2['idusuario'] = $param['idusuario'];
-        $encuentraPer = $this->buscar($buscar2);
+        $encuentraUser = $this->buscar($buscar2);
 
-        if ($encuentraPer == null) {
+        if ($encuentraUser == null) {
             $elObjtUsuario = $this->cargarObjeto($param);
             if ($elObjtUsuario != null and $elObjtUsuario->insertar()) {
                 $resp = true;
             }
         }
-
         return $resp;
     }
 
+
     /**
-     * permite eliminar un objeto 
+     * BAJA 
      * @param array $param
      * @return boolean
      */
@@ -93,12 +93,12 @@ class AbmUsuario
                 $resp = true;
             }
         }
-
         return $resp;
     }
 
+
     /**
-     * permite modificar un objeto
+     * MODIFICACION
      * @param array $param
      * @return boolean
      */
@@ -108,24 +108,24 @@ class AbmUsuario
         if ($this->seteadosCamposClaves($param)) {
             $buscar2 = array();
             $buscar2['idusuario'] = $param['idusuario'];
-            $laUsuario = $this->buscar($buscar2);
-            if ($laUsuario != null) {
-                $laUsuario[0]->setusnombre($param['usnombre']);
-                $laUsuario[0]->setuspass($param['uspass']);
-                $laUsuario[0]->setusmail($param['usmail']);
-                $laUsuario[0]->setusdeshabilitado($param['usdeshabilitado']);
-     
-                if ($laUsuario[0] != null and $laUsuario[0]->modificar()) {
+            $elUsuario = $this->buscar($buscar2);
+            if ($elUsuario != null) {
+                $elUsuario[0]->setusnombre($param['usnombre']);
+                $elUsuario[0]->setuspass($param['uspass']);
+                $elUsuario[0]->setusmail($param['usmail']);
+                $elUsuario[0]->setusdeshabilitado($param['usdeshabilitado']);
+
+                if ($elUsuario[0] != null and $elUsuario[0]->modificar()) {
                     $resp = true;
                 }
             }
         }
-
         return $resp;
     }
 
+
     /**
-     * permite buscar un objeto
+     * BUSCAR
      * @param array $param
      * @return array
      */
@@ -145,7 +145,6 @@ class AbmUsuario
                 $where .= " and usdeshabilitado ='" . $param['usdeshabilitado'] . "'";
         }
         $arreglo = Usuario::listar($where);
-
         return $arreglo;
     }
 }

@@ -19,9 +19,9 @@ class AbmRol
             $obj = new Rol();
             $obj->setear($param['idrol'], $param['roldescripcion']);
         }
-
         return $obj;
     }
+
 
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los uspasss de las variables instancias del objeto que son claves
@@ -31,21 +31,19 @@ class AbmRol
     private function cargarObjetoConClave($param)
     {
         $obj = null;
-
         if (isset($param['idrol'])) {
             $obj = new Rol();
             $obj->setear($param['idrol'], "", ""); //???---------------------------2 o 3?
         }
-
         return $obj;
     }
+
 
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
      * @return boolean
      */
-
     private function seteadosCamposClaves($param)
     {
         $resp = false;
@@ -54,8 +52,9 @@ class AbmRol
         return $resp;
     }
 
+
     /**
-     * 
+     * ALTA
      * @param array $param
      */
     public function alta($param)
@@ -71,12 +70,12 @@ class AbmRol
                 $resp = true;
             }
         }
-
         return $resp;
     }
 
+
     /**
-     * permite eliminar un objeto 
+     * BAJA
      * @param array $param
      * @return boolean
      */
@@ -89,12 +88,12 @@ class AbmRol
                 $resp = true;
             }
         }
-
         return $resp;
     }
 
+
     /**
-     * permite modificar un objeto
+     * MODIFICACION
      * @param array $param
      * @return boolean
      */
@@ -107,18 +106,17 @@ class AbmRol
             $larol = $this->buscar($buscar2);
             if ($larol != null) {
                 $larol[0]->setroldescripcion($param['roldescripcion']);
- 
                 if ($larol[0] != null and $larol[0]->modificar()) {
                     $resp = true;
                 }
             }
         }
-
         return $resp;
     }
 
+
     /**
-     * permite buscar un objeto
+     * BUSCAR
      * @param array $param
      * @return array
      */
@@ -132,7 +130,6 @@ class AbmRol
                 $where .= " and roldescripcion ='" . $param['roldescripcion'] . "'";
         }
         $arreglo = Rol::listar($where);
-
         return $arreglo;
     }
 }

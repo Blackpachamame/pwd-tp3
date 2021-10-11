@@ -30,8 +30,8 @@ include_once("../estructura/cabeceraBT.php");
 		</div>
 		<!-- Dni -->
 		<div class="col-sm-8 col-md-6 col-lg-3 mb-3">
-			<label for="DniDuenio">Dni</label>
-			<input type="number" class="form-control" name="DniDuenio" id="DniDuenio" placeholder="11111111" required>
+			<label for="Duenio">Dni</label>
+			<input type="number" class="form-control" name="Duenio" id="Duenio" placeholder="11111111" required>
 		</div>
 	</div>
 	<!-- accion = nuevo (input oculto) -->

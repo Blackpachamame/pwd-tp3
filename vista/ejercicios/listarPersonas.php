@@ -20,7 +20,7 @@ $listaTabla = $objAbmTabla->buscar(null);
   <div class="mb-2 d-flex justify-content-end">
     <a class="btn btn-primary" href="../ejercicios/nuevaPersona.php" role="button"><i class="fas fa-plus"></i> Nueva Persona</a>
   </div>
-  <form id="DniDuenio" name="autosPersona" action="../acciones/autosPersona.php" method="post">
+  <form id="Duenio" name="autosPersona" action="../acciones/autosPersona.php" method="post">
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -40,20 +40,21 @@ $listaTabla = $objAbmTabla->buscar(null);
         if (count($listaTabla) > 0) {
           $i = 1;
           echo '<tbody>';
-          foreach ($listaTabla as $objTabla) {
-            $dni = $objTabla->getNroDni();
+          foreach ($listaTabla as $objPersona) {
+            $dni = $objPersona->getNroDni();
+            // var_dump($objPersona);
             echo '<tr class="align-middle">';
             echo '<th scope="row">' . $i . '</th>';
-            echo '<td>' . $objTabla->getNroDni() .    '</td>';
-            echo '<td>' . $objTabla->getApellido() .  '</td>';
-            echo '<td>' . $objTabla->getNombre() .    '</td>';
-            echo '<td>' . $objTabla->getfechaNac() .  '</td>';
-            echo '<td>' . $objTabla->getTelefono() .  '</td>';
-            echo '<td>' . $objTabla->getDomicilio() . '</td>';
+            echo '<td>' . $objPersona->getNroDni() .    '</td>';
+            echo '<td>' . $objPersona->getApellido() .  '</td>';
+            echo '<td>' . $objPersona->getNombre() .    '</td>';
+            echo '<td>' . $objPersona->getfechaNac() .  '</td>';
+            echo '<td>' . $objPersona->getTelefono() .  '</td>';
+            echo '<td>' . $objPersona->getDomicilio() . '</td>';
             echo "<td class='text-center'>
-                <button class='btn btn-warning btn-sm' id='DniDuenio' name='DniDuenio' value='" . $dni . "' type='submit'>
+                <button class='btn btn-warning btn-sm' id='NroDni' name='NroDni' value='" . $dni . "' type='submit'>
                 <i class='fas fa-eye'></i></button></td>";
-            //echo '<td class="text-center"> <input type="submit" id="DniDuenio" name="DniDuenio" value="' . $dni . '"></td>';
+            //echo '<td class="text-center"> <input type="submit" id="Duenio" name="Duenio" value="' . $dni . '"></td>';
             echo '</tr>';
             $i++;
           }
@@ -66,12 +67,6 @@ $listaTabla = $objAbmTabla->buscar(null);
     </div>
 
   </form>
-
-  <!-- <form name="form" method="post" action="../acciones/autosPersona.php">
-    Ingrese DNI para visualizar autos propios.
-    <input type="number" id="dni" name="dni" min="" maxlenght="8" value="ver autos de: ">
-    <input type="submit">
-  </form> -->
 </div>
 
 <?php

@@ -12,6 +12,7 @@ class BaseDatos extends PDO
     private $indice;
     private $resultado;
 
+
     public function __construct()
     {
         $this->engine = 'mysql';
@@ -33,6 +34,8 @@ class BaseDatos extends PDO
             $this->conec = false;
         }
     }
+
+
     /**
      * Inicia la coneccion con el Servidor y la  Base Datos Mysql.
      * Retorna true si la coneccion con el servidor se pudo establecer y false en caso contrario
@@ -49,7 +52,6 @@ class BaseDatos extends PDO
     {
         return $this->conec;
     }
-
 
     public function setDebug($debug)
     {
@@ -115,11 +117,11 @@ class BaseDatos extends PDO
         return $resp;
     }
 
+
     /**
      *Si se inserta en una tabla que tiene una columna autoincrement se retorna el id con el que se inserto el registro
      *caso contrario se retorna -1
      */
-
     private function EjecutarInsert($sql)
     {
         $resultado = parent::query($sql);
@@ -134,6 +136,7 @@ class BaseDatos extends PDO
         }
         return $id;
     }
+
 
     /**
      * Devuelve la cantidad de filas afectadas por la ejecucion SQL. Si el valor es <0 no se pudo realizar la opercion
@@ -152,12 +155,12 @@ class BaseDatos extends PDO
         return $cantFilas;
     }
 
+
     /**
      * Retorna cada uno de los registros de una consulta select
      * @return integer
      *
      */
-
     private function EjecutarSelect($sql)
     {
         $cant = -1;
@@ -173,6 +176,7 @@ class BaseDatos extends PDO
         }
         return $cant;
     }
+
 
     /**
      * Devuelve un registro retornado por la ejecucion de una consulta
@@ -199,6 +203,7 @@ class BaseDatos extends PDO
         return $filaActual;
     }
 
+
     /**
      * Esta funcion si esta seteado la variable instancia $this->debug visualiza el debug
      */
@@ -213,6 +218,7 @@ class BaseDatos extends PDO
         }
     }
 
+
     private function setIndice($valor)
     {
         $this->indice = $valor;
@@ -222,13 +228,14 @@ class BaseDatos extends PDO
     {
         return $this->indice;
     }
+
     private function setResultado($valor)
     {
         $this->resultado = $valor;
     }
+
     private function getResultado()
     {
-
         return $this->resultado;
     }
 }

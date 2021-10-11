@@ -1,17 +1,20 @@
 <?php
-class Rol
-{
+
+class Rol {
+
     private $idrol;
     private $roldescripcion;
 
-    //metodo constructor 
+
+    /** CONSTRUCTOR **/
     public function __construct()
     {
         $this->idrol = "";
         $this->roldescripcion = "";
     }
 
-    //funcion para setear datos
+
+    /** SETEAR **/
     public function setear($idrol, $roldescripcion)
     {
         $this->setidrol($idrol);
@@ -19,7 +22,7 @@ class Rol
     }
 
 
-      //-----------------------------get
+    /** GETS **/
     public function getidrol()
     {
         return $this->idrol;
@@ -32,8 +35,9 @@ class Rol
     {
         return $this->mensajeoperacion;
     }
-     //----------------------------set
 
+
+    /** SETS **/
     public function setidrol($valor)
     {
         $this->idrol = $valor;
@@ -47,8 +51,8 @@ class Rol
         $this->mensajeoperacion = $valor;
     }
 
-    
-    //
+
+    /** CARGAR **/
     public function cargar()
     {
         $resp = false;
@@ -68,12 +72,8 @@ class Rol
         return $resp;
     }
 
-    /*
-    public function MostrarNombreyroldescripcion()
-    {
-        return $this->getNombre() . ' ' . $this->getroldescripcion();
-    }*/
 
+    /** INSERTAR **/
     public function insertar()
     {
         $resp = false;
@@ -92,6 +92,8 @@ class Rol
         return $resp;
     }
 
+
+    /** MODIFICAR **/
     public function modificar()
     {
         $resp = false;
@@ -112,6 +114,8 @@ class Rol
         return $resp;
     }
 
+
+    /** ELIMINAR **/
     public function eliminar()
     {
         $resp = false;
@@ -129,6 +133,8 @@ class Rol
         return $resp;
     }
 
+
+    /** LISTAR **/
     public static function listar($parametro = "")
     {
         $arreglo = array();
@@ -140,7 +146,6 @@ class Rol
         $res = $base->Ejecutar($sql);
         if ($res > -1) {
             if ($res > 0) {
-
                 while ($row = $base->Registro()) {
                     $obj = new Rol();
                     $obj->setear($row['idrol'], $row['roldescripcion']);
@@ -150,11 +155,11 @@ class Rol
         } else {
             //$this->setmensajeoperacion("Tabla->listar: " . $base->getError());
         }
-
         return $arreglo;
     }
 
 
+    /** TO STRING **/
     function __toString()
     {
         return $this->getroldescripcion();

@@ -8,17 +8,18 @@ class Usuario
     private $usdeshabilitado;
 
 
-
+    /** CONSTRUCTOR **/
     public function __construct()
     {
-
         $this->idusuario = "";
         $this->usnombre = "";
         $this->uspass = "";
         $this->usmail = "";
         $this->usdeshabilitado = "";
-      
     }
+
+
+    /** SETEAR **/
     public function setear($idusuario, $usnombre, $uspass, $usmail, $usdeshabilitado)
     {
         $this->setidusuario($idusuario);
@@ -26,11 +27,10 @@ class Usuario
         $this->setuspass($uspass);
         $this->setusmail($usmail);
         $this->setusdeshabilitado($usdeshabilitado);
-     
     }
 
 
-
+    /** GETS Y SETS **/
     public function getidusuario()
     {
         return $this->idusuario;
@@ -82,6 +82,7 @@ class Usuario
     }
 
 
+    /** CARGAR **/
     public function cargar()
     {
         $resp = false;
@@ -100,16 +101,21 @@ class Usuario
         }
         return $resp;
     }
+
+
+    /** MOSTRAR NOMBRE Y USUARIO **/
     public function MostrarNombreyusnombre()
     {
         return  $this->getusnombre(); //borre lo que seria el id;
     }
 
+
+    /** INSERTAR **/
     public function insertar()
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO Usuario(idusuario,usnombre,uspass,usmail,usdeshabilitado)  VALUES('" . $this->getidusuario() . "','" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','" . $this->getusdeshabilitado()."');";
+        $sql = "INSERT INTO Usuario(idusuario,usnombre,uspass,usmail,usdeshabilitado)  VALUES('" . $this->getidusuario() . "','" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','" . $this->getusdeshabilitado() . "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setidusuario($elid);
@@ -123,6 +129,8 @@ class Usuario
         return $resp;
     }
 
+
+    /** MODIFICAR **/
     public function modificar()
     {
         $resp = false;
@@ -145,6 +153,8 @@ class Usuario
         return $resp;
     }
 
+
+    /** ELIMINAR **/
     public function eliminar()
     {
         $resp = false;
@@ -162,6 +172,8 @@ class Usuario
         return $resp;
     }
 
+
+    /** LISTAR **/
     public static function listar($parametro = "")
     {
         $arreglo = array();
@@ -173,7 +185,6 @@ class Usuario
         $res = $base->Ejecutar($sql);
         if ($res > -1) {
             if ($res > 0) {
-
                 while ($row = $base->Registro()) {
                     $obj = new Usuario();
                     $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['usdeshabilitado']);
@@ -183,11 +194,11 @@ class Usuario
         } else {
             //$this->setmensajeoperacion("Tabla->listar: " . $base->getError());
         }
-
         return $arreglo;
     }
 
 
+    /** TO STRING **/
     function __toString()
     {
         return $this->getidusuario() . ' ' . $this->getusnombre();

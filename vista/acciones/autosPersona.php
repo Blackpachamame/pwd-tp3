@@ -3,21 +3,17 @@ $Titulo = "Acción 3 - TP4";
 include_once("../estructura/cabeceraBT.php");
 
 $datos = data_submitted();
-$objAbmAutoPersona = new AbmAuto();
-$dni = $datos['DniDuenio'];
-$listaAutoPersona = $objAbmAutoPersona->buscar($datos);
-/*print_r($dni);
-echo "<br>";
-print_r($datos);
-echo "<br>";
-print_r($listaAutoPersona);*/
+$objAbmPersona = new AbmPersona();
+$dni = $datos['NroDni'];
+$persona = $objAbmPersona->buscar($datos);
+$arrayautos = $persona[0]->getArrayAutos();
 ?>
 
 
 <div class="row mb-5">
 
   <?php
-  if (count($listaAutoPersona) > 0) {
+  if (count($persona) > 0) {
     echo "<div><div class='alert alert-success d-flex align-items-center mt-5' role='alert'>
             <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
             <div>Esta persona es dueña de los siguientes autos.</div></div></div>";
@@ -35,8 +31,8 @@ print_r($listaAutoPersona);*/
                         </tr>
                     </thead>
                     <tbody>";
-    foreach ($listaAutoPersona as $objAutoPersona) {
-      $dniDu = $objAutoPersona->getDniDuenio();
+    foreach ($arrayautos as $objAutoPersona) {
+      $dniDu = $objAutoPersona->getDuenio();
 
       if ($dni != "") {
         echo '<tr>';
