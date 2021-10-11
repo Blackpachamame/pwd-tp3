@@ -8,12 +8,12 @@ $objPersona = new AbmPersona();
 $objTrans = new AbmAuto();
 $filtro = array();
 $existePersona = true;
+$existeAutito = true;
 $filtro['NroDni'] = $datos['Duenio'];
 $filtroAuto = array();
 $filtroAuto['Patente'] = $datos['Patente'];
 $auto = $objTrans->buscar($filtroAuto);
-$datos['Marca'] = $auto[0]->getMarca();
-$datos['Modelo'] = $auto[0]->getModelo();
+
 
 /* Accion que permite: cargar un nuevo auto, borrar y editar */
 if (isset($datos['accion'])) {
@@ -25,10 +25,18 @@ if (isset($datos['accion'])) {
             $existePersona = false;
             $mensaje = "<b>ERROR: No existe la persona.</b> <br>";
         } else {
-            if ($objTrans->modificacion($datos)) {
-                $resp = true;
+            $unAuto = $objTrans->buscar($filtroAuto);
+            if ($unAuto == null) {
+                $existeAutito = false;
+                $mensaje = "<b>ERROR: No existe el auto.</b> <br>";
             } else {
-                $mensaje = "<b>ERROR: no se modifico. </b>";
+                $datos['Marca'] = $auto[0]->getMarca();
+                $datos['Modelo'] = $auto[0]->getModelo();
+                if ($objTrans->modificacion($datos)) {
+                    $resp = true;
+                } else {
+                    $mensaje = "<b>ERROR: no se modifico. </b>";
+                }
             }
         }
     }
@@ -83,9 +91,10 @@ $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
     <?php
     if (!$existePersona) {
         echo '<a class="btn btn-warning" href="../ejercicios/nuevaPersona.php" role="button"><i class="fas fa-plus"></i> Agregar persona</a>';
+    } elseif (!$existeAutito) {
+        echo '<a class="btn btn-primary" href="../ejercicios/nuevoAuto.php" role="button"><i class="fas fa-plus"></i> Agregar autito</a>';
     }
     ?>
-    <a class="btn btn-primary" href="../ejercicios/nuevoAuto.php" role="button"><i class="fas fa-plus"></i> Agregar</a>
     <a class='btn btn-success' href='../ejercicios/cambioDuenio.php' role='button'><i class="fas fa-pen"></i> Modificar</a>
     <a class='btn btn-danger' href='../ejercicios/verAutos.php' role='button'><i class="fas fa-eye"></i> Ver</a>
 </div>
