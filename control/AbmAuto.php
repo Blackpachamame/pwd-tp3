@@ -104,8 +104,7 @@ class AbmAuto
      * @return boolean
      */
     public function modificacion($param)
-    {
-        //echo "Estoy en modificacion";
+    {  
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $elObjtAuto = $this->cargarObjeto($param);
@@ -197,7 +196,4 @@ class AbmAuto
         $arreglo = Auto::listar($where);
         return $arreglo;
     }
-
-
-
 }//clase
