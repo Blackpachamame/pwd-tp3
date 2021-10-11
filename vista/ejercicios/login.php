@@ -1,26 +1,45 @@
 <?php
-$Titulo = "Ejercicio 4.2 - TP5";
-include_once("../estructura/cabeceraBT.php");
+
+include_once '../../configuracion.php';
+$objLogin = new Session();
+if ($objLogin->activa()) {
+    header('location:paginaSegura.php');
+} else {
+    $Titulo = "Ejercicio 4.2 - TP5";
+    include_once("../estructura/cabeceraBT.php");
+}
+$datos = data_submitted();
+if (isset($datos['error'])) {
+    if ($datos['error'] == 1) {
+        $mensaje = "Error. Usuario y/o contraseña incorrectos.";
+    }
+}
+
 ?>
+<div class="row my-5">
+    <form class="form-signin" id="login_4TP5" name="login_4TP5" method="POST" action="../acciones/verificarLogin.php">
+        <div class="login mx-auto">
+            <h1 class="h3 mb-3 text-center">Usuario</h1>
+            <div class="form-group">
+                <div class="input-group mt-3">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    <input class="form-control" type="text" id="usnombre" name="usnombre" placeholder="Nombre de usuario" aria-label="username" aria-describedby="basic-addon1" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mt-3">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    <input class="form-control" type="password" id="uspass" name="uspass" placeholder="Contraseña" aria-label="password" aria-describedby="basic-addon1" required>
+                </div>
+            </div>
+            <input id="accion" name="accion" value="nuevo" type="hidden">
+            <div class="d-grid mb-5 mt-3">
+                <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-<h3>Usuario</h3>
-
-<form method="post" action="../acciones/verificarLogin.php">
-
-    <input id="idusuario" name="idusuario" type="hidden" value=null>
-
-    <label>Nombre</label><br />
-    <input id="usnombre" name="usnombre" width="80" type="text" required><br /> <br />
-
-    <label>Pass</label><br />
-    <input id="uspass" name="uspass" width="80" type="number" required><br /> <br />
-
-    <label>Mail</label><br />
-    <input id="usmail" name="usmail" width="80" type="text" required><br /> <br />
-
-
-    <input id="accion" name="accion" value="nuevo" type="hidden">
-    <input type="submit">
-</form>
-<br><br>
-<a href="listarUsuario.php">Volver</a>
+<?php
+include_once("../estructura/pieBT.php");
+?>
