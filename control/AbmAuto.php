@@ -187,4 +187,7 @@ class AbmAuto
         $arreglo = Auto::listar($where);
         return $arreglo;
     }
-}
+
+
+
+}//clase

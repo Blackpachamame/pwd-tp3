@@ -4,30 +4,41 @@ include_once("../estructura/cabeceraBT.php");
 
 $datos = data_submitted();
 $resp = false;
+
 $objPersona = new AbmPersona();
 $objTrans = new AbmAuto();
+
 $filtro = array();
 $existePersona = true;
 $filtro['NroDni'] = $datos['Duenio'];
 
-/* Accion que permite: cargar un nuevo auto, borrar y editar */
-if (isset($datos['accion'])) {
-    $mensaje = "";
 
+$unAuto = $objTrans-> buscar($datos['Patente']);
+if (count($unAuto) == null) {
+ echo "<div><div class='alert alert-danger d-flex align-items-center mt-5' role='alert'>
+        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+        <div>No se encontro ningún auto con la patente ingresada.</div></div></div>";
+
+}else{
     if ($datos['accion'] == 'editar') {
         $persona = $objPersona->buscar($filtro);
         if ($persona == null) {
             $existePersona = false;
             $mensaje = "<b>ERROR: No existe la persona.</b> <br>";
         } else {
-            if ($objTrans->modificacion($datos)) {
+           if ($objTrans->modificacion($datos)) {
                 $resp = true;
             } else {
                 $mensaje = "<b>ERROR: no se modifico. </b>";
             }
         }
     }
+}
+    //----------editar
+  
 
+
+   /*-------borrar--------*/
     if ($datos['accion'] == 'borrar') {
         if ($objTrans->baja($datos)) {
             $resp = true;
@@ -36,6 +47,7 @@ if (isset($datos['accion'])) {
         }
     }
 
+    /*-------nuevo--------*/ 
     if ($datos['accion'] == 'nuevo') {
         if ($objTrans->alta($datos)) {
             $resp = true;
@@ -49,7 +61,7 @@ if (isset($datos['accion'])) {
     } else {
         $mensaje .= "La acción <b>" . $datos['accion'] . " auto</b> no pudo concretarse.";
     }
-}
+
 
 $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
 ?>
