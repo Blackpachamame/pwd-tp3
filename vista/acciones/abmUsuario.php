@@ -10,17 +10,19 @@ $Titulo = "Acción abmUsuario - TP5";
 include_once("../estructura/cabeceraBT.php");
 
 $resp = false;
-$objUsuario = new AbmUsuario();
+$abmUser = new AbmUsuario();
 
 $userDelete = new AbmUsuario();
-$filtro = $userDelete->buscar($datos);
-$objUsuario = $filtro[0];
+$filtro = array();
+$filtro['idusuario'] = $datos['idusuario'];
+$user = $userDelete->buscar($filtro);
+$objUsuario = $user[0];
 
 /* Accion que permite: cargar una nueva usuario, borrar y editar */
 if (isset($datos['accion'])) {
     $mensaje = "";
     if ($datos['accion'] == 'editar') {
-        if ($objUsuario->modificacion($datos)) {
+        if ($abmUser->modificacion($datos)) {
             $resp = true;
         } else {
             $mensaje = "<b>ERROR: </b>";

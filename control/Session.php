@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*3. Implementar dentro de la capa de Control la clase Session con los siguientes métodos:
 • _ _construct(). Constructor que. Inicia la sesión.
@@ -85,6 +85,7 @@ class Session
             $_SESSION['idusuario'] = $nombreUsuario;
             $_SESSION['nombreUsu'] = $psw;
         }
+
         return $_SESSION;
     }
 
@@ -116,7 +117,7 @@ class Session
     /** GET ROL **/
     public function getRol()
     {
-        $abmRol = new abmRol();
+
         $abmUsuarioRol = new AbmUsuarioRol();
         $usuario = $this->getUsuario();
         $idUsuario = $usuario->getIdUsuario();

@@ -9,6 +9,11 @@ $objTrans = new AbmAuto();
 $filtro = array();
 $existePersona = true;
 $filtro['NroDni'] = $datos['Duenio'];
+$filtroAuto = array();
+$filtroAuto['Patente'] = $datos['Patente'];
+$auto = $objTrans->buscar($filtroAuto);
+$datos['Marca'] = $auto[0]->getMarca();
+$datos['Modelo'] = $auto[0]->getModelo();
 
 /* Accion que permite: cargar un nuevo auto, borrar y editar */
 if (isset($datos['accion'])) {

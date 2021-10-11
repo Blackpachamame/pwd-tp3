@@ -107,21 +107,31 @@ class AbmAuto
     {
         //echo "Estoy en modificacion";
         $resp = false;
-        $seteados = $this->seteadosCamposClaves($param);
-        //var_dump($seteados);
         if ($this->seteadosCamposClaves($param)) {
-            $elAuto = new Auto();
-            $filtro = array();
-            $filtro['Patente'] = $param['Patente'];
-            $elAuto = $this->buscar($filtro);
-            //var_dump($elAuto);                
-            $elAuto[0]->setDuenio($param['Duenio']);
-            if ($elAuto[0] != null and $elAuto[0]->modificar()) {
+            $elObjtAuto = $this->cargarObjeto($param);
+            if ($elObjtAuto != null and $elObjtAuto->modificar()) {
                 $resp = true;
             }
         }
         return $resp;
     }
+
+    // public function modificacion($param)
+    // {
+    //     $resp = false;
+    //     $seteados = $this->seteadosCamposClaves($param);
+    //     if ($this->seteadosCamposClaves($param)) {
+    //         $elAuto = new Auto();
+    //         $filtro = array();
+    //         $filtro['Patente'] = $param['Patente'];
+    //         $elAuto = $this->buscar($filtro);
+    //         $elAuto[0]->setDuenio($param['Duenio']);
+    //         if ($elAuto[0] != null and $elAuto[0]->modificar()) {
+    //             $resp = true;
+    //         }
+    //     }
+    //     return $resp;
+    // }
 
 
     // public function modificacion($param)
