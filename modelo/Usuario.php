@@ -97,16 +97,9 @@ class Usuario
                 }
             }
         } else {
-            $this->setmensajeoperacion("Tabla->listar: " . $base->getError());
+            $this->setmensajeoperacion("Usuario->listar: " . $base->getError());
         }
         return $resp;
-    }
-
-
-    /** MOSTRAR NOMBRE Y USUARIO **/
-    public function MostrarNombreyusnombre()
-    {
-        return  $this->getusnombre(); //borre lo que seria el id;
     }
 
 
@@ -115,16 +108,16 @@ class Usuario
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO Usuario(idusuario,usnombre,uspass,usmail,usdeshabilitado)  VALUES('" . $this->getidusuario() . "','" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','" . $this->getusdeshabilitado() . "');";
+        $sql = "INSERT INTO Usuario(idusuario,usnombre,uspass,usmail,usdeshabilitado) VALUES('" . $this->getidusuario() . "','" . $this->getusnombre() . "','" . $this->getuspass() . "','" . $this->getusmail() . "','" . $this->getusdeshabilitado() . "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setidusuario($elid);
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Tabla->insertar: " . $base->getError());
+                $this->setmensajeoperacion("Usuario->insertar: " . $base->getError());
             }
         } else {
-            $this->setmensajeoperacion("Tabla->insertar: " . $base->getError());
+            $this->setmensajeoperacion("Usuario->insertar: " . $base->getError());
         }
         return $resp;
     }
@@ -136,19 +129,18 @@ class Usuario
         $resp = false;
         $base = new BaseDatos();
         $sql = "UPDATE Usuario SET usnombre='" . $this->getusnombre() . "',
-        Nombre='" . $this->getuspass() . "',
+        uspass='" . $this->getuspass() . "',
         usmail='" . $this->getusmail() . "',
         usdeshabilitado='" . $this->getusdeshabilitado() . "'
         WHERE idusuario=" . $this->getidusuario();
         if ($base->Iniciar()) {
-            //var_dump($sql);
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Tabla->modificar: " . $base->getError());
+                $this->setmensajeoperacion("Usuario->modificar: " . $base->getError());
             }
         } else {
-            $this->setmensajeoperacion("Tabla->modificar: " . $base->getError());
+            $this->setmensajeoperacion("Usuario->modificar: " . $base->getError());
         }
         return $resp;
     }
@@ -159,15 +151,15 @@ class Usuario
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM Usuario WHERE DniNro=" . $this->getidusuario();
+        $sql = "DELETE FROM Usuario WHERE idusuario=" . $this->getidusuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 return true;
             } else {
-                $this->setmensajeoperacion("Tabla->eliminar: " . $base->getError());
+                $this->setmensajeoperacion("Usuario->eliminar: " . $base->getError());
             }
         } else {
-            $this->setmensajeoperacion("Tabla->eliminar: " . $base->getError());
+            $this->setmensajeoperacion("Usuario->eliminar: " . $base->getError());
         }
         return $resp;
     }
@@ -192,15 +184,8 @@ class Usuario
                 }
             }
         } else {
-            //$this->setmensajeoperacion("Tabla->listar: " . $base->getError());
+            //$this->setmensajeoperacion("Usuario->listar: " . $base->getError());
         }
         return $arreglo;
-    }
-
-
-    /** TO STRING **/
-    function __toString()
-    {
-        return $this->getidusuario() . ' ' . $this->getusnombre();
     }
 }

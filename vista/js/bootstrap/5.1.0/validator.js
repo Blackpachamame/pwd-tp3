@@ -760,3 +760,63 @@ $(document).ready(function () {
         },
     });
 });
+
+//ACCION 4 - TP4
+$(document).ready(function () {
+    $('#accion_E7TP4').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            Apellido: {
+                message: 'Apellido no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' El apellido es obligatorio. '
+                    },
+                    regexp: {
+                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
+                        message: ' La primer letra en mayúscula. Solo letras. '
+                    }
+                }
+            },
+            Nombre: {
+                message: 'Nombre no valido',
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere el nombre de usuario. '
+                    },
+                    regexp: {
+                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
+                        message: ' La primer letra en mayúscula. Solo letras. '
+                    }
+                }
+            },
+            fechaNac: {
+                validators: {
+                    notEmpty: {
+                        message: ' Debe ingresar una fecha. '
+                    }
+                }
+            },
+            Telefono: {
+                validators: {
+                    notEmpty: {
+                        message: ' Ingrese nro de teléfono. '
+                    }
+                }
+            },
+            Domicilio: {
+                message: 'Domicilio invalido',
+                validators: {
+                    notEmpty: {
+                        message: ' Se requiere un domicilio. '
+                    }
+                }
+            },
+        },
+    });
+});

@@ -4,13 +4,16 @@ include_once("../estructura/cabeceraBT.php");
 
 $datos = data_submitted();
 $resp = false;
-
 $objPersona = new AbmPersona();
 $objTrans = new AbmAuto();
-
 $filtro = array();
 $existePersona = true;
+$existeAutito = true;
 $filtro['NroDni'] = $datos['Duenio'];
+$filtroAuto = array();
+$filtroAuto['Patente'] = $datos['Patente'];
+$auto = $objTrans->buscar($filtroAuto);
+
 
 
 $unAuto = $objTrans-> buscar($datos['Patente']);
@@ -21,15 +24,25 @@ if (count($unAuto) == null) {
 
 }else{
     if ($datos['accion'] == 'editar') {
+        /* Verificamos que exista la persona */
         $persona = $objPersona->buscar($filtro);
         if ($persona == null) {
             $existePersona = false;
             $mensaje = "<b>ERROR: No existe la persona.</b> <br>";
         } else {
-           if ($objTrans->modificacion($datos)) {
-                $resp = true;
+            /* Si la persona existe verificamos que exista el auto */
+            $unAuto = $objTrans->buscar($filtroAuto);
+            if ($unAuto == null) {
+                $existeAutito = false;
+                $mensaje = "<b>ERROR: No existe el auto.</b> <br>";
             } else {
-                $mensaje = "<b>ERROR: no se modifico. </b>";
+                $datos['Marca'] = $auto[0]->getMarca();
+                $datos['Modelo'] = $auto[0]->getModelo();
+                if ($objTrans->modificacion($datos)) {
+                    $resp = true;
+                } else {
+                    $mensaje = "<b>ERROR: no se modifico. </b>";
+                }
             }
         }
     }
@@ -68,6 +81,7 @@ $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
 
 <div class="row">
     <div>
+
         <?php
 
         if ($encuentraError > 0) {
@@ -88,11 +102,14 @@ $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
 
 <div class="mb-5">
     <?php
+
+    /* Si no existe la persona muestro un boton para agregar persona, si no existe el auto muestro un boton para agregar auto */
     if (!$existePersona) {
         echo '<a class="btn btn-warning" href="../ejercicios/nuevaPersona.php" role="button"><i class="fas fa-plus"></i> Agregar persona</a>';
+    } elseif (!$existeAutito) {
+        echo '<a class="btn btn-primary" href="../ejercicios/nuevoAuto.php" role="button"><i class="fas fa-plus"></i> Agregar autito</a>';
     }
     ?>
-    <a class="btn btn-primary" href="../ejercicios/nuevoAuto.php" role="button"><i class="fas fa-plus"></i> Agregar</a>
     <a class='btn btn-success' href='../ejercicios/cambioDuenio.php' role='button'><i class="fas fa-pen"></i> Modificar</a>
     <a class='btn btn-danger' href='../ejercicios/verAutos.php' role='button'><i class="fas fa-eye"></i> Ver</a>
 </div>

@@ -1,46 +1,49 @@
-<?
+<?php
 
 /*3. Implementar dentro de la capa de Control la clase Session con los siguientes métodos:
 • _ _construct(). Constructor que. Inicia la sesión.
-• iniciar($nombreUsuario,$psw). Actualiza las variables de sesión con los valores ingresados.
-• validar(). Valida si la sesión actual tiene usuario y psw válidos. Devuelve true o false.
+• iniciar($nombreUsuario,$passUsuario). Actualiza las variables de sesión con los valores ingresados.
+• validar(). Valida si la sesión actual tiene usuario y passUsuario válidos. Devuelve true o false.
 • activa(). Devuelve true o false si la sesión está activa o no. 
 • getUsuario().Devuelve el usuario logeado.
 • getRol(). Devuelve el rol del usuario logeado.
 • cerrar(). Cierra la sesión actual.
  */
-
-
 class Session {
-
-    private $objUsuario;
-    private $listaRoles;
+    private $userName;
+    private $pass;
+    //private $listaRoles;
     private $mensajeoperacion;
 
 
     /** CONSTRUCTOR **/
     public function __construct()
     {
-        if (session_start()) {
-            $this->objUsuario = null;
-            $this->listaRoles = [];
-            $this->mensajeoperacion = "";
-        }
+        session_start();
     }
 
 
     /** GETS Y SETS **/
-    public function getObjUsuario()
+    public function getUserName()
     {
-        return $this->objUsuario;
+        return $_SESSION['usnombre'];
     }
 
-    public function setObjUsuario($objUsuario)
+    public function setUserName($userName)
     {
-        $this->objUsuario = $objUsuario;
+        $_SESSION['usnombre'] = $userName;
     }
 
-    public function getListaRoles()
+    public function getPass()
+    {
+        return $_SESSION['uspass'];
+    }
+    public function setPass($pass)
+    {
+        $_SESSION['uspass'] = $pass;
+    }
+
+    /*public function getListaRoles()
     {
         return $this->listaRoles;
     }
@@ -48,7 +51,7 @@ class Session {
     public function setListaRoles($listaRoles)
     {
         $this->listaRoles = $listaRoles;
-    }
+    }*/
 
     public function getMensajeoperacion()
     {
@@ -64,27 +67,50 @@ class Session {
     /** VALIDAR **/
     public function validar()
     {
-        $inicia = false;
+        $valido = false;
+        $nombre = $this->getUserName();
+        $pass = $this->getPass();
+        $objAbm = new AbmUsuario();
+        $filtro = array();
+        $filtro['usnombre'] = $nombre;
+        $filtro['uspass'] = $pass;
+        $arreglo = $objAbm->buscar($filtro);
+        if (count($arreglo) == 1) {
+            //Chequeo que no haya sido borrado
+            if (!($arreglo[0]->getUsdeshabilitado())) {
+                $valido = true;
+            }
+            //Chequeo que tenga un rol asignado
+            $abmUserRol = new AbmUsuarioRol();
+            $arrayUserRol = $abmUserRol->buscar(['idusuario' => $arreglo[0]->getIdusuario()]);
+            if (count($arrayUserRol) < 1) {
+                $valido = false;
+            }
+        }
+        return $valido;
+        /*$inicia = false;
         $abmUsuario = new AbmUsuario();
         $nombreUsuario = $_SESSION['idusuario'];
-        $psw = $_SESSION['nombreUsu'];
-        $where = ['usnombre' => $nombreUsuario, 'uspsw' => $psw];
+        $passUsuario = $_SESSION['usnombre'];
+        $where = ['usnombre' => $nombreUsuario, 'uspass' => $passUsuario];
         $listaUsuarios = $abmUsuario->buscar($where);
         if (count($listaUsuarios) > 0) {
             $inicia = true;
         }
-        return $inicia;
+        return $inicia;*/
     }
 
 
     /** INICIAR **/
-    public function iniciar($nombreUsuario, $psw)
+    public function iniciar($nombreUsuario, $passUsuario)
     {
-        if ($this->activa()) {
+        $this->setUserName($nombreUsuario);
+        $this->setPass($passUsuario);
+        /*if ($this->activa()) {
             $_SESSION['idusuario'] = $nombreUsuario;
-            $_SESSION['nombreUsu'] = $psw;
+            $_SESSION['usnombre'] = $passUsuario;
         }
-        return $_SESSION;
+        return $_SESSION;*/
     }
 
 
@@ -92,7 +118,7 @@ class Session {
     public function activa()
     {
         $activa = false;
-        if (session_start()) {
+        if (isset($_SESSION['usnombre'])) {
             $activa = true;
         }
         return $activa;
@@ -102,20 +128,37 @@ class Session {
     /** GET USUARIO **/
     public function getUsuario()
     {
-        $abmUsuario = new AbmUsuario();
-        $where = ['usnombre' => $_SESSION['nombreUsu'], 'idusuario' => $_SESSION['idusuario']];
+        $objUs = null;
+        $abmUs = new AbmUsuario();
+        $arrayUs = $abmUs->buscar(['usnombre' => $this->getUserName(), 'uspass' => $this->getPass()]);
+        if (count($arrayUs) == 1) {
+            $objUs = $arrayUs[0];
+        }
+        return $objUs;
+        /*$abmUsuario = new AbmUsuario();
+        $where = ['usnombre' => $_SESSION['usnombre'], 'idusuario' => $_SESSION['idusuario']];
         $listaUsuarios = $abmUsuario->buscar($where);
         if ($listaUsuarios >= 1) {
             $usuarioLog = $listaUsuarios[0];
         }
-        return $usuarioLog;
+        return $usuarioLog;*/
     }
 
 
     /** GET ROL **/
     public function getRol()
     {
-        $abmRol = new abmRol();
+        $roles = [];
+        $nombre = ['usnombre' => $this->getUserName()];
+        $abmUs = new AbmUsuario();
+        $arreglo = $abmUs->buscar($nombre);
+        if (count($arreglo) == 1) {
+            $id = $arreglo[0]->getIdusuario();
+            $abmUserRol = new AbmUsuarioRol();
+            $roles = $abmUserRol->buscar(['idusuario' => $id]);
+        }
+        return $roles;
+        /*
         $abmUsuarioRol = new AbmUsuarioRol();
         $usuario = $this->getUsuario();
         $idUsuario = $usuario->getIdUsuario();
@@ -126,17 +169,14 @@ class Session {
         } else {
             $rol = $listaRolesUsu[0];
         }
-        return $rol;
+        return $rol;*/
     }
 
 
     /** CERRAR **/
     public function cerrar()
     {
-        $cerrar = false;
-        if (session_destroy()) {
-            $cerrar = true;
-        }
-        return $cerrar;
+        session_unset();
+        session_destroy();
     }
 }
