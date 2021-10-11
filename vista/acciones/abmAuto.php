@@ -20,11 +20,13 @@ if (isset($datos['accion'])) {
     $mensaje = "";
 
     if ($datos['accion'] == 'editar') {
+        /* Verificamos que exista la persona */
         $persona = $objPersona->buscar($filtro);
         if ($persona == null) {
             $existePersona = false;
             $mensaje = "<b>ERROR: No existe la persona.</b> <br>";
         } else {
+            /* Si la persona existe verificamos que exista el auto */
             $unAuto = $objTrans->buscar($filtroAuto);
             if ($unAuto == null) {
                 $existeAutito = false;
@@ -69,6 +71,7 @@ $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
 
 <div class="row">
     <div>
+
         <?php
 
         if ($encuentraError > 0) {
@@ -89,6 +92,8 @@ $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
 
 <div class="mb-5">
     <?php
+
+    /* Si no existe la persona muestro un boton para agregar persona, si no existe el auto muestro un boton para agregar auto */
     if (!$existePersona) {
         echo '<a class="btn btn-warning" href="../ejercicios/nuevaPersona.php" role="button"><i class="fas fa-plus"></i> Agregar persona</a>';
     } elseif (!$existeAutito) {
