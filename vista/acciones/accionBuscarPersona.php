@@ -7,8 +7,8 @@ $objAbmPersona = new AbmPersona();
 $unaPersona = $objAbmPersona->buscar($datos);
 ?>
 
-<div class="row mb-5">
-    <form id=accion method="POST" action="../acciones/abmPersona.php">
+<div class="row">
+    <form id="accion_E7TP4" method="POST" action="../acciones/abmPersona.php">
 
         <?php
         if (count($unaPersona) > 0) {
@@ -43,13 +43,12 @@ $unaPersona = $objAbmPersona->buscar($datos);
                 echo '<tr class="align-middle">';
                 echo '<th scope="row">' . $i . '</th>';
                 echo '<td><input class="w-100" type="text" id="Apellido" name="Apellido" value="' . $apellido . '">' . '</td>';
-                echo '<td><input class="w-100" type="text" id="Nombre" name="Nombre" value="' . $nombre . '">' . '</td>';
+                echo '<td><div><input class="w-100" type="text" id="Nombre" name="Nombre" value="' . $nombre . '">' . '</div></td>';
                 echo '<td><input class="w-100" type="text" id="fechaNac" name="fechaNac" value="' . $fecha . '">' . '</td>';
                 echo '<td><input class="w-100" type="text" id="Telefono" name="Telefono" value="' . $tel . '">' . '</td>';
                 echo '<td><input class="w-100" type="text" id="Domicilio" name="Domicilio" value="' . $domi . '">' . '</td>';
                 echo '<td>' . $dniDu . '</td>';
                 echo '<td class="d-none"><input id="NroDni" name="NroDni" type="hidden" value="' . $dniDu . '">' . '</td>';
-                //<input id='accion' name='accion' value='editar' type='submit'>
                 echo "<td class='text-center'>
                 <button class='btn btn-success btn-sm' id='accion' name='accion' value='editar' type='submit'>
                 <i class='fas fa-pen'></i></button></td>";
@@ -67,11 +66,11 @@ $unaPersona = $objAbmPersona->buscar($datos);
 
         ?>
 
-        <!-- Botones -->
-        <div class="mb-5">
-            <a class="btn btn-dark" href="../ejercicios/buscarPersona.php" role="button"><i class="fas fa-angle-double-left"></i> Regresar</a>
-        </div>
     </form>
+    <!-- Botones -->
+    <div class="mb-5">
+        <a class="btn btn-dark" href="../ejercicios/buscarPersona.php" role="button"><i class="fas fa-angle-double-left"></i> Regresar</a>
+    </div>
 </div>
 
 <?php

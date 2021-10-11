@@ -101,8 +101,7 @@ class Rol
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE rol SET roldescripcion='" . $this->getroldescripcion() . "',
-        descripcion='" . $this->getroldescripcion() . "'
+        $sql = "UPDATE rol SET roldescripcion='" . $this->getroldescripcion() . "'
         WHERE idrol=" . $this->getidrol();
         if ($base->Iniciar()) {
             //var_dump($sql);

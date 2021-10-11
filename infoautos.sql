@@ -108,7 +108,7 @@ CREATE TABLE `usuario` (
   `usnombre` varchar(50) NOT NULL,
   `uspass` int(11) NOT NULL,
   `usmail` varchar(50) NOT NULL,
-  `usdeshabilitado` timestamp NULL DEFAULT NULL
+  `usdeshabilitado` boolean DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -116,9 +116,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado`) VALUES
-(1, 'Aoshi', 123456, 'a_india@hotmail.com', '0000-00-00 00:00:00'),
-(2, 'Bhima', 456123, 'b_india@hotmail.com', '0000-00-00 00:00:00'),
-(3, 'Paris', 162534, 'c_india@hotmail.com', '0000-00-00 00:00:00');
+(1, 'Aoshi', 123456, 'a_india@hotmail.com', 0),
+(2, 'Bhima', 456123, 'b_india@hotmail.com', 0),
+(3, 'Paris', 162534, 'c_india@hotmail.com', 0);
 
 -- --------------------------------------------------------
 

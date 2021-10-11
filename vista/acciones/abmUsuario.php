@@ -1,11 +1,20 @@
 <?php
+include_once("../../configuracion.php");
+
+$datos = data_submitted();
+if ($datos['accion'] == 'noAccion') {
+    header('Location: ../ejercicios/listarUsuarios.php');
+}
+
 $Titulo = "Acción abmUsuario - TP5";
 include_once("../estructura/cabeceraBT.php");
 
-$datos = data_submitted();
 $resp = false;
 $objUsuario = new AbmUsuario();
 
+$userDelete = new AbmUsuario();
+$filtro = $userDelete->buscar($datos);
+$objUsuario = $filtro[0];
 
 /* Accion que permite: cargar una nueva usuario, borrar y editar */
 if (isset($datos['accion'])) {
@@ -17,8 +26,16 @@ if (isset($datos['accion'])) {
             $mensaje = "<b>ERROR: </b>";
         }
     }
-    if ($datos['accion'] == 'borrar') {
-        if ($objUsuario->baja($datos)) {
+    if ($datos['accion'] == 'deshabilitar') {
+        $datos['usnombre'] = $objUsuario->getusnombre();
+        $datos['uspass'] = $objUsuario->getuspass();
+        $datos['usmail'] = $objUsuario->getusmail();
+        if ($objUsuario->getusdeshabilitado()) {
+            $datos['usdeshabilitado'] = 0;
+        } else {
+            $datos['usdeshabilitado'] = 1;
+        }
+        if ($userDelete->modificacion($datos)) {
             $resp = true;
         } else {
             $mensaje = "<b>ERROR: </b>";
@@ -38,25 +55,26 @@ if (isset($datos['accion'])) {
     }
 }
 
+
 $encuentraError = strpos(strtoupper($mensaje), 'ERROR');
 ?>
 
 <div class="row mb-5">
     <div>
         <?php
-
-        if ($encuentraError > 0) {
-            echo "<div class='alert alert-danger d-flex align-items-center mt-5' role='alert'>
-        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
-        <div>" . $mensaje . "</div>
-        </div>";
-        } else {
-            echo "<div class='alert alert-success d-flex align-items-center mt-5' role='alert'>
-        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
-        <div>" . $mensaje . "</div>
-        </div>";
+        if ($mensaje != "") {
+            if ($encuentraError > 0) {
+                echo "<div class='alert alert-danger d-flex align-items-center mt-5' role='alert'>
+                    <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+                    <div>" . $mensaje . "</div>
+                </div>";
+            } else {
+                echo "<div class='alert alert-success d-flex align-items-center mt-5' role='alert'>
+                    <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
+                    <div>" . $mensaje . "</div>
+                </div>";
+            }
         }
-
         ?>
     </div>
 
