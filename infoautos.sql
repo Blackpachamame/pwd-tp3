@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2021 a las 05:49:36
+-- Tiempo de generación: 13-10-2021 a las 23:15:03
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -39,15 +39,13 @@ CREATE TABLE `auto` (
 --
 
 INSERT INTO `auto` (`Patente`, `Marca`, `Modelo`, `Duenio`) VALUES
-('ADC 152', 'Fiat Uno', 98, '20985220'),
-('KJU 952', 'Ford Fiesta', 2006, '22985265'),
-('LKI 865', 'Fiat Siena', 90, '28326986'),
-('LOL 555', 'Ford Fiesta', 2020, '25963874'),
-('MOM 011', 'Volkswagen Gol', 2004, '38222222'),
-('POL 968', 'Renault 12', 77, '28326986'),
-('POP 333', 'Chery Tiggo 3', 2020, '38222222'),
-('SDC 965', 'Peugeot 205', 88, '30875962'),
-('UYH 985', 'Fiat Palio', 95, '30875962');
+('ADC 152', 'Fiat Uno', 1998, '34985220'),
+('KJU 952', 'Ford Fiesta', 2006, '34985220'),
+('LKI 865', 'Fiat Siena', 2002, '38020195'),
+('ZAS 555', 'Ford Fiesta', 2020, '25963874'),
+('BAD 011', 'Volkswagen Gol', 2004, '38020195'),
+('NIF 968', 'Renault 12', 1987, '12121212'),
+('HVT 333', 'Chery Tiggo 3', 2018, '38020195');
 
 -- --------------------------------------------------------
 
@@ -69,14 +67,11 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`NroDni`, `Apellido`, `Nombre`, `fechaNac`, `Telefono`, `Domicilio`) VALUES
-('10909090', 'Sprungfeld', 'Hans', '1975-06-22', '299-1332500', 'Springfield'),
-('20985220', 'El Zapo', 'Pepe', '2010-11-16', '299-8877788', 'Pepepepe'),
-('22985265', 'Ramirez', 'Claudia', '1971-05-16', '299-9854155', 'Sarmiento 55'),
-('25963874', 'Farias', 'Marta', '1975-06-21', '299-1559354', 'Roca 568'),
-('28326986', 'Moyo', 'Manuela', '1981-12-23', '299-9632587', 'Linares 44 piso 2 dpto 5'),
-('30875962', 'Lopez', 'Eduardo', '1983-10-03', '299-6587741', 'Santa Fe 98'),
-('38222222', 'Garcia Ruiz', 'María Eugenia', '2000-05-05', '299-7777777', 'UnDosTres'),
-('39222888', 'El', 'Brayan', '2010-09-12', '299-1277790', 'Entucasa');
+('10909090', 'Sprungfeld', 'Hans', '1955-06-22', '299-1332500', 'Springfield'),
+('12121212', 'Picapiedra', 'Pedro', '1960-01-10', '299-8912398', 'Roca City'),
+('34985220', 'El Zapo', 'Pepe', '1998-11-16', '299-9854155', 'Jardin'),
+('25963874', 'Farias', 'Marta', '1975-08-21', '299-1559354', 'Roca 568'),
+('38020195', 'Garcia Ruiz', 'María Eugenia', '2000-05-05', '299-9632587', 'UnDosTres');
 
 -- --------------------------------------------------------
 
@@ -86,14 +81,14 @@ INSERT INTO `persona` (`NroDni`, `Apellido`, `Nombre`, `fechaNac`, `Telefono`, `
 
 CREATE TABLE `rol` (
   `idrol` bigint(20) NOT NULL,
-  `rodescripcion` varchar(50) NOT NULL
+  `roldescripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `rol` (`idrol`, `rodescripcion`) VALUES
+INSERT INTO `rol` (`idrol`, `roldescripcion`) VALUES
 (1, 'Admin'),
 (2, 'Proletariado');
 
@@ -108,7 +103,7 @@ CREATE TABLE `usuario` (
   `usnombre` varchar(50) NOT NULL,
   `uspass` int(11) NOT NULL,
   `usmail` varchar(50) NOT NULL,
-  `usdeshabilitado` boolean DEFAULT FALSE
+  `usdeshabilitado` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -116,9 +111,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado`) VALUES
-(1, 'Aoshi', 123456, 'a_india@hotmail.com', 0),
-(2, 'Bhima', 456123, 'b_india@hotmail.com', 0),
-(3, 'Paris', 162534, 'c_india@hotmail.com', 0);
+(1, 'Aoshi', 123456, 'aoshi@hotmail.com', 0),
+(2, 'Bhima', 654321, 'bhima91@hotmail.com', 0),
+(3, 'Paris', 321654, 'paris@hotmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -203,7 +198,7 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `auto`
 --
 ALTER TABLE `auto`
-  ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`Duenio`) REFERENCES `persona` (`NroDni`);
+  ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`Duenio`) REFERENCES `persona` (`NroDni`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuariorol`

@@ -103,7 +103,7 @@ class Usuario
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['$usdeshabilitado']);
+                    $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['usdeshabilitado']);
                 }
             }
         } else {

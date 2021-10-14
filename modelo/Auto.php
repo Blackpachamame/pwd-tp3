@@ -68,12 +68,11 @@ class Auto
     public function setDuenio($valor)
     {
         //var_dump($valor);
+
         $duenio = $this->getDuenio();
         $duenio->setNroDni($valor);
         $this->Duenio = $duenio;
         $this->Duenio->cargar();
-
-        return $this;
     }
 
     public function getmensajeoperacion()
@@ -113,7 +112,7 @@ class Auto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO auto(Patente,Marca,Modelo,Duenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','" . $this->getModelo() . "','" . $this->getDuenio() . "');";
+        $sql = "INSERT INTO auto(Patente,Marca,Modelo,Duenio)  VALUES('" . $this->getPatente() . "','" . $this->getMarca() . "','" . $this->getModelo() . "','" . $this->getDuenio()->getNroDni() . "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setPatente($elid);
@@ -135,7 +134,7 @@ class Auto
         $base = new BaseDatos();
         $sql = "UPDATE auto SET Marca='" . $this->getMarca() . "',";
         $sql .= "Modelo=" . $this->getModelo() . ",";
-        $sql .= "Duenio='" . $this->getDuenio() . "' ";
+        $sql .= "Duenio='" . $this->getDuenio()->getNroDni() . "' ";
         $sql .= "WHERE Patente='" . $this->getPatente() . "'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {

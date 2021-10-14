@@ -375,6 +375,7 @@ $(document).ready(function () {
 });
 
 //EJERCICIO 1 - TP3
+/*
 $(document).ready(function () {
     $('#tp3eje1').bootstrapValidator({
         message: 'Este valor no es valido',
@@ -393,13 +394,13 @@ $(document).ready(function () {
                         maxSize: 1024 * 1024 * 2,
                         extension: 'doc, pdf',
                         type: 'application/pdf, application/msword',
-                        message: ' Solo pdf o doc'
+                        message: ' Solo se permiten archivos .pdf o .doc'
                     }
                 }
             }
         },
     });
-});
+});*/
 
 //EJERCICIO 2 - TP3
 $(document).ready(function () {
@@ -414,13 +415,13 @@ $(document).ready(function () {
             archivo: {
                 validators: {
                     notEmpty: {
-                        message: ' envie un archivo'
+                        message: ' Envie un archivo'
                     },
                     file: {
                         maxSize: 1024 * 1024 * 2,
                         extension: 'txt',
                         type: 'txt',
-                        message: ' Solo txt'
+                        message: ' Solo se permiten archivos .txt'
                     }
                 }
             }

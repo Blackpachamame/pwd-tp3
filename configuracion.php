@@ -16,7 +16,7 @@ include_once($ROOT . 'util/funciones.php');
 
 
 // Variable que define la página de autenticación del proyecto
-$INICIO = "Location:http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/vista/ejercicios/login.php";
+$INICIO = "Location:http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/vista/tp5/2/login.php";
 
 // Variable que define la página principal del proyecto (menú principal)
 $PRINCIPAL = "Location:http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/index.php";
