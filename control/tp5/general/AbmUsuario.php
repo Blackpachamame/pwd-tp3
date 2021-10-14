@@ -38,7 +38,6 @@ class AbmUsuario
         if (isset($param['idusuario'])) {
             $obj = new Usuario();
             $obj->setear($param['idusuario'], "", "", "", "", "");
-            //???---------------------------catidad seteadaaaaaaa?
         }
         return $obj;
     }
@@ -111,7 +110,7 @@ class AbmUsuario
             $elUsuario = $this->buscar($buscar2);
             if ($elUsuario != null) {
                 $elUsuario[0]->setusnombre($param['usnombre']);
-                $elUsuario[0]->setuspass($param['uspass']);
+                $elUsuario[0]->setuspass($elUsuario[0]->getuspass());
                 $elUsuario[0]->setusmail($param['usmail']);
                 $elUsuario[0]->setusdeshabilitado($param['usdeshabilitado']);
 

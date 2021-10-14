@@ -35,7 +35,7 @@ if (!$sesion->activa()) {
             <div class='card text-center border border-3 border-warning' style='width: 25rem;'>
                 <div class='card-body my-3'>
                     <?php
-                    echo "<h3 class='card-title'>BIENVENID@ $name</h3>";
+                    echo "<h3 class='card-title'>BIENVENID@ objetoUsuario</h3>";
                     echo "Email: $mail" . "<br>";
                     echo "Rol: $descrp" . "<br>";
                     if ($descrp == "Admin") {

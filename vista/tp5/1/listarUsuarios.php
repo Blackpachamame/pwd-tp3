@@ -10,7 +10,7 @@ $listaTabla = $objAbmTabla->buscar(null);
 <div class="card mb-4">
     <div class="card-body">
         <h4 class="card-title border-bottom">Consigna</h4>
-        <p class="card-text">Un script Vista/listarUsuario.php que liste los usuarios registrados y permita actualizar sus datos o realizar un borrado lógico. Las acciones que se van a poder invocar son: accion/actualizarLogin.php y accion/eliminarLogin.php.</p>
+        <p class="card-text">Un script Vista/listarUsuario.php que liste los usuarios registrados y permita actualizar sus datos o realizar un borrado lÃ³gico. Las acciones que se van a poder invocar son: accion/actualizarLogin.php y accion/eliminarLogin.php.</p>
     </div>
 </div>
 
@@ -28,7 +28,7 @@ $listaTabla = $objAbmTabla->buscar(null);
                     <tr>
                         <th scope="">#</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Contraseña</th>
+
                         <th scope="col">Mail</th>
                         <th scope="col" class="text-center">Deshabilitado</th>
                         <th scope="col" class="text-center">Editar</th>
@@ -41,14 +41,14 @@ $listaTabla = $objAbmTabla->buscar(null);
                     echo '<tbody>';
                     foreach ($listaTabla as $objUsuario) {
                         $nombre = $objUsuario->getusnombre();
-                        $pass = $objUsuario->getuspass();
+
                         $mail = $objUsuario->getusmail();
                         $des = $objUsuario->getusdeshabilitado();
                         $id = $objUsuario->getidusuario();
                         echo '<tr class="align-middle">';
                         echo '<th scope="row">' . $i . '</th>';
                         echo '<td>' . $nombre .    '</td>';
-                        echo '<td>' . $pass .  '</td>';
+
                         echo '<td>' . $mail .  '</td>';
                         //echo '<td>' . $des .  '</td>';
                         if ($des) {

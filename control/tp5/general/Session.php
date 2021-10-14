@@ -22,6 +22,16 @@ class Session
 
 
     /** GETS Y SETS **/
+    public function getIdUser()
+    {
+        return $_SESSION['idusuario'];
+    }
+
+    public function setIdUser($idUser)
+    {
+        $_SESSION['idusuario'] = $idUser;
+    }
+
     public function getUserName()
     {
         return $_SESSION['usnombre'];
@@ -79,6 +89,7 @@ class Session
                 $error .= "El usuario está deshabilitado";
             } else {
                 $inicia = true;
+                $this->setIdUser($listaUsuarios[0]->getidusuario());
             }
         }
         return array($inicia, $error);
@@ -100,7 +111,7 @@ class Session
     public function getUsuario()
     {
         $abmUsuario = new AbmUsuario();
-        $where = ['usnombre' => $_SESSION['usnombre']];
+        $where = ['idusuario' => $_SESSION['idusuario']];
         $listaUsuarios = $abmUsuario->buscar($where);
         if ($listaUsuarios >= 1) {
             $usuarioLog = $listaUsuarios[0];

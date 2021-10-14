@@ -6,7 +6,9 @@ include_once '../../../modelo/conector/BaseDatos.php';
 
 $datos = data_submitted();
 $sesion = new Session();
-$sesion->iniciar($datos['usnombre'], ($datos['uspass']));
+$name = md5($datos['usnombre']);
+$pass = md5($datos['uspass']);
+$sesion->iniciar($name, $pass);
 list($valido, $error) = $sesion->validar();
 
 if ($valido) {

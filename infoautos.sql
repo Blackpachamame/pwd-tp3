@@ -111,9 +111,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado`) VALUES
-(1, 'Aoshi', 123456, 'aoshi@hotmail.com', 0),
-(2, 'Bhima', 654321, 'bhima91@hotmail.com', 0),
-(3, 'Paris', 321654, 'paris@hotmail.com', 1);
+(1, '12d4aaf1584f2d9c40545ddc1309ae5a', 'e10adc3949ba59abbe56e057f20f883e', 'aoshi@hotmail.com', 0),
+(2, '59e9102bf2f15539b491978ba3ee6068', 'd964173dc44da83eeafa3aebbee9a1a0', 'bhima@hotmail.com', 0),
+(3, 'e20d37a5d7fcc4c35be6fc18a8e71bfa', 'c5e172e2507e0a58fac8e343cdfd947d', 'paris@hotmail.com', 0);
 
 -- --------------------------------------------------------
 

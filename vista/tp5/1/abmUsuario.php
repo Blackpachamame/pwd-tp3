@@ -22,6 +22,7 @@ $objUsuario = $user[0];
 if (isset($datos['accion'])) {
     $mensaje = "";
     if ($datos['accion'] == 'editar') {
+        $datos['usnombre'] = md5($datos['usnombre']);
         if ($abmUser->modificacion($datos)) {
             $resp = true;
         } else {
