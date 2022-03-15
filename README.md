@@ -5,7 +5,7 @@
 - [Descripción](#descripción-)
   - [Objetivo](#objetivo-)
 - [Mi Procedimiento](#mi-procedimiento-)
-  - [Construido con](#construido-con-)
+  - [Construido con](#construido-con-%EF%B8%8F)
   - [Lo que aprendimos](#lo-que-aprendimos-)
   - [Problemas y soluciones](#problemas-y-soluciones-)
   - [Recursos útiles](#recursos-útiles-)
